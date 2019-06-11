@@ -1,4 +1,4 @@
-package  com.example.geschat.ui.login;
+package com.example.geschat.ui.login;
 
 import android.app.Activity;
 import android.arch.lifecycle.Observer;
