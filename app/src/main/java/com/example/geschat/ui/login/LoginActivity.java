@@ -11,6 +11,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.Window;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,8 +20,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.geschat.R;
-import com.example.geschat.ui.login.LoginViewModel;
-import com.example.geschat.ui.login.LoginViewModelFactory;
 
 public class LoginActivity extends AppCompatActivity {
 
