@@ -1,4 +1,4 @@
-package  com.example.geschat.ui.login;
+package com.example.geschat.ui.login;
 
 /**
  * Class exposing authenticated user details to the UI.
