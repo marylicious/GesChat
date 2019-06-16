@@ -5,13 +5,12 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-
 import com.example.geschat.MainActivity;
 import com.example.geschat.R;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private LoginViewModel loginViewModel;
+    //private LoginViewModel loginViewModel;
 
 
     private Button button; //Linea agregada para el cambio de abajo
