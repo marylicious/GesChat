@@ -10,8 +10,8 @@
 
     <item>
         <shape android:shape="oval">
-            <gradient android:startColor="@color/colorPrimary"
-                android:endColor="@color/colorPrimaryDark"/>
+            <gradient android:startColor="@color/yellow_logo"
+                android:endColor="@color/yellow"/>
         </shape>
     </item>
 </selector>

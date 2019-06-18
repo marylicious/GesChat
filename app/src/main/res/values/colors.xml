@@ -13,10 +13,18 @@
     <color name="gradEnd">#67efc8</color>
     <color name="gradStart">#63c9ff</color>
     <color name="followersBg">#65dce5</color>
-    <color name="blue">#49beff</color>
+
     <color name="grey">#e5e5e5</color>
     <color name="white">#ffffff</color>
     <color name="green">#16cc4c</color>
     <color name="yellow">#e8c114</color>
+    <color name="dark_green">#297A43</color>
 
+
+    //Company colors
+    <color name="blue_logo">#295594</color>
+    <color name="red_logo">#e5322e</color>
+    <color name="yellow_logo">#fdc526</color>
+    <color name="blue_deg">#01dcfd</color>
+    <color name="blue_light">#49beff</color>
 </resources>

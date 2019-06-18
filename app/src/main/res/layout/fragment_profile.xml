@@ -41,7 +41,7 @@
                 android:layout_below="@id/imUser"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="15sp"
-                android:text="You know who"
+                android:text="@string/frag_prof_user_name"
                 android:textColor="@color/white"
                 android:textSize="32sp" />
 
@@ -51,9 +51,8 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/userProfileName"
                 android:layout_centerHorizontal="true"
-
                 android:layout_marginBottom="10sp"
-                android:text="Scolarship Holder"
+                android:text="@string/frag_prof_user_type"
                 android:textAllCaps="true"
                 android:textColor="@color/address"
                 android:textSize="14sp" />
@@ -72,7 +71,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:background="@color/blue"
+                android:background="@color/blue_light"
                 android:gravity="center"
                 android:paddingTop="5dp"
                 android:paddingBottom="5dp">
@@ -86,7 +85,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Basic"
+                        android:text="@string/frag_prof_user_level"
                         android:textColor="@color/white"
                         android:textSize="25sp" />
 
@@ -119,7 +118,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="150"
+                        android:text="@string/frag_prof_user_chats_score"
                         android:textColor="@color/white"
                         android:textSize="25sp" />
 
@@ -138,7 +137,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:background="@color/yellow"
+                android:background="@color/yellow_logo"
                 android:gravity="center"
                 android:paddingTop="5dp"
                 android:paddingBottom="5dp">
@@ -152,7 +151,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="2"
+                        android:text="@string/frag_prof_user_chats_unfinished"
                         android:textColor="@color/white"
                         android:textSize="25sp" />
 
@@ -198,7 +197,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-light"
-                        android:text="26131345"
+                        android:text="@string/frag_prof_user_id_numb"
                         android:textColor="#000000"
                         android:textSize="18sp" />
 
@@ -227,7 +226,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-light"
-                        android:text="25/01/2000"
+                        android:text="@string/frag_prof_user_birth"
                         android:textColor="#000000"
                         android:textSize="18sp"/>
 
@@ -239,6 +238,7 @@
                         />
 
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_height="wrap_content"
                     android:layout_width="match_parent"
@@ -251,43 +251,126 @@
                         android:textSize="13sp"
                         android:text="Next Chats"/>
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif-light"
-                        android:text="Chat Name 1 - 01/05/2020"
-                        android:layout_marginBottom="8dp"
-                        android:textColor="#000000"
-                        android:textSize="18sp"
-                        android:layout_gravity="end"/>
+                        android:gravity="end"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-light"
+                            android:text="@string/frag_prof_chat_name"
+                            android:drawableLeft="@drawable/ic_chat_dark"
+                            android:paddingRight="15dp"
+                            android:drawablePadding="10dp"
+                            android:layout_marginBottom="8dp"
+                            android:textColor="#000000"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-light"
+                            android:text="@string/frag_prof_chat_date"
+                            android:drawablePadding="10dp"
+                            android:layout_marginBottom="8dp"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif-light"
-                        android:text="Chat Name 2 - 01/07/2020"
-                        android:layout_marginBottom="8dp"
-                        android:textColor="#000000"
-                        android:textSize="18sp"
-                        android:layout_gravity="end"/>
-                    <TextView
-                        android:layout_width="wrap_content"
+                        android:gravity="end"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-light"
+                            android:text="@string/frag_prof_chat_name"
+                            android:drawableLeft="@drawable/ic_chat_dark"
+                            android:paddingRight="15dp"
+                            android:drawablePadding="10dp"
+                            android:layout_marginBottom="8dp"
+                            android:textColor="#000000"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-light"
+                            android:text="@string/frag_prof_chat_date"
+                            android:drawablePadding="10dp"
+                            android:layout_marginBottom="8dp"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif-light"
-                        android:text="Chat Name 3 - 01/07/2020"
-                        android:layout_marginBottom="8dp"
-                        android:textColor="#000000"
-                        android:textSize="18sp"
-                        android:layout_gravity="end"/>
-                    <TextView
-                        android:layout_width="wrap_content"
+                        android:gravity="end"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-light"
+                            android:text="@string/frag_prof_chat_name"
+                            android:drawableLeft="@drawable/ic_chat_dark"
+                            android:paddingRight="15dp"
+                            android:drawablePadding="10dp"
+                            android:layout_marginBottom="8dp"
+                            android:textColor="#000000"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-light"
+                            android:text="@string/frag_prof_chat_date"
+                            android:drawablePadding="10dp"
+                            android:layout_marginBottom="8dp"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif-light"
-                        android:text="Chat Name 4 - 01/08/2020"
-                        android:layout_marginBottom="8dp"
-                        android:textColor="#000000"
-                        android:textSize="18sp"
-                        android:layout_gravity="end"/>
+                        android:gravity="end"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-light"
+                            android:text="@string/frag_prof_chat_name"
+                            android:drawableLeft="@drawable/ic_chat_dark"
+                            android:paddingRight="15dp"
+                            android:drawablePadding="10dp"
+                            android:layout_marginBottom="8dp"
+                            android:textColor="#000000"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-light"
+                            android:text="@string/frag_prof_chat_date"
+                            android:drawablePadding="10dp"
+                            android:layout_marginBottom="8dp"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
 
                     <View
                         android:layout_width="match_parent"
@@ -310,43 +393,156 @@
                         android:textSize="13sp"
                         android:text="Lasts Chats"/>
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif-light"
-                        android:text="Chat Name 1 - 01/04/2020"
-                        android:layout_marginBottom="8dp"
-                        android:textColor="#000000"
-                        android:textSize="18sp"
-                        android:layout_gravity="end"/>
+                        android:gravity="end"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-light"
+                            android:text="@string/frag_prof_chat_name"
+                            android:drawableLeft="@drawable/ic_chat_dark"
+                            android:paddingRight="15dp"
+                            android:drawablePadding="10dp"
+                            android:layout_marginBottom="8dp"
+                            android:textColor="#000000"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-light"
+                            android:text="@string/frag_prof_chat_date"
+                            android:drawablePadding="10dp"
+                            android:layout_marginBottom="8dp"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+                    <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-light"
-                        android:text="Chat Name 2 - 01/03/2020"
+                        android:text="@string/frag_prof_chat_name"
+                        android:drawableLeft="@drawable/ic_chat_dark"
+                        android:paddingRight="15dp"
+                        android:drawablePadding="10dp"
                         android:layout_marginBottom="8dp"
                         android:textColor="#000000"
-                        android:textSize="18sp"
-                        android:layout_gravity="end"/>
+                        android:textSize="18sp" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-light"
-                        android:text="Chat Name 3 - 01/02/2020"
+                        android:text="@string/frag_prof_chat_date"
+                        android:drawablePadding="10dp"
                         android:layout_marginBottom="8dp"
-                        android:textColor="#000000"
-                        android:textSize="18sp"
-                        android:layout_gravity="end"/>
-                    <TextView
-                        android:layout_width="wrap_content"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif-light"
-                        android:text="Chat Name 4 - 01/01/2020"
-                        android:layout_marginBottom="8dp"
-                        android:textColor="#000000"
-                        android:textSize="18sp"
-                        android:layout_gravity="end"/>
+                        android:gravity="end"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-light"
+                            android:text="@string/frag_prof_chat_name"
+                            android:drawableLeft="@drawable/ic_chat_dark"
+                            android:paddingRight="15dp"
+                            android:drawablePadding="10dp"
+                            android:layout_marginBottom="8dp"
+                            android:textColor="#000000"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-light"
+                            android:text="@string/frag_prof_chat_date"
+                            android:drawablePadding="10dp"
+                            android:layout_marginBottom="8dp"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-light"
+                            android:text="@string/frag_prof_chat_name"
+                            android:drawableLeft="@drawable/ic_chat_dark"
+                            android:paddingRight="15dp"
+                            android:drawablePadding="10dp"
+                            android:layout_marginBottom="8dp"
+                            android:textColor="#000000"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-light"
+                            android:text="@string/frag_prof_chat_date"
+                            android:drawablePadding="10dp"
+                            android:layout_marginBottom="8dp"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-light"
+                            android:text="@string/frag_prof_chat_name"
+                            android:drawableLeft="@drawable/ic_chat_dark"
+                            android:paddingRight="15dp"
+                            android:drawablePadding="10dp"
+                            android:layout_marginBottom="8dp"
+                            android:textColor="#000000"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-light"
+                            android:text="@string/frag_prof_chat_date"
+                            android:drawablePadding="10dp"
+                            android:layout_marginBottom="8dp"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
 
                     <View
                         android:layout_width="match_parent"
@@ -357,10 +553,7 @@
 
                 </LinearLayout>
 
-
-
             </LinearLayout>
         </RelativeLayout>
-
     </RelativeLayout>
 </ScrollView>

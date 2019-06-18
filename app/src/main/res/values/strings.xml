@@ -1,7 +1,10 @@
 <resources>
     <!-- Common info -->
-    <string name="user_name">mary</string>
+    <string name="user_name">Faker user</string>
     <string name="app_name">gesChat</string>
+    <string name = "user_email">FakeUser@Gmail.com</string>
+
+
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
@@ -12,7 +15,51 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+
+
+    <!--Strings related to fragment_register-->
+    <string name="frag_reg_title">Registration</string>
+    <string name="frag_reg_name">Full Name</string>
+    <string name="frag_reg_id">Insert ID</string>
+    <string name="frag_reg_email">Email</string>
+    <string name="frag_reg_password">Password</string>
+    <string name="frag_reg_conf_pass">Confirm Password</string>
+
+
+    <!-- Strings related to fragment_profile-->
+    <string name="frag_prof_user_name">You Know Who</string>
+    <string name="frag_prof_user_type">Scolarship Holder</string>  <!--Define si es becario/supervisor/facilitador-->
+    <string name="frag_prof_user_level">Basic</string>
+    <string name="frag_prof_user_chats_score">150</string>
+    <string name="frag_prof_user_chats_unfinished">3</string>
+    <string name="frag_prof_user_id_numb">26534136</string>
+    <string name="frag_prof_user_birth">24/01/1989</string>
+    <string name="frag_prof_chat_name">Chat Name</string>
+    <string name="frag_prof_chat_date">01/05/2020</string>
+
+
+    <!-- Strings related to fragment_home-->
+    <string name="frag_home_book">Kamasutra for dummys. M.V.O.R </string>
+    <string name="frag_home_phrase">Lorem ipsum </string>
+    <string name="frag_home_word">Beauty</string>
+    <string name="frag_home_announcement_tittle">Gran Orgia el lunes por la tarde</string>
+    <string name="frag_home_announcement_autor">Daniel San</string>
+    <string name="frag_home_announcement_preview">Lorem ipsum dolor sit amet, consectetur adispiscing elit, sed do ...</string>
+
+    <!--String related to fragment_announcement-->
+    <string name="frag_announcement_msj_body">Lorem ipsum dolor sit amet, consectetur adispiscing elit, \n
+        sed doLorem ipsum dolor sit amet, consectetur adispiscing elit, sed doLorem ipsum dolor sit amet, consectetur adispiscing elit, sed doLorem ipsum dolor sit amet, consectetur adispiscing elit, sed doLorem ipsum dolor sit amet,
+        consectetur adispiscing elit, sed doLorem ipsum dolor sit amet, consectetur adispiscing elit, sed doLorem ipsum dolor sit amet, consectetur adispiscing elit, sed doLorem ipsum dolor sit amet, consectetur adispiscing elit, sed doLorem ipsum dolor sit amet, consectetur adispiscing elit, sed doLorem ipsum
+        dolor sit amet, consectetur adispiscing elit, sed doLorem ipsum dolor sit amet, consectetur adispiscing elit, sed doLorem ipsum dolor sit amet, consectetur adispiscing elit, sed doLorem ipsum dolor sit amet, consectetur adispiscing elit, sed doLorem ipsum dolor sit amet, consectetur adispiscing elit,
+        sed doLorem ipsum dolor sit amet, consectetur adispiscing elit, sed doLorem ipsum dolor sit amet, consectetur adispiscing elit, sed doLorem ipsum dolor sit amet, consectetur adispiscing elit, sed doLorem ipsum dolor sit amet, consectetur adispiscing elit, sed do</string>
+    <string name="frag_announcement_tittle">Gran Orgia el lunes por la tarde</string>
+    <string name="frag_announcement_autor">Daniel San</string>
+
+
+    <!--Strings related to drawer / Menu Board-->
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+
+
 
 </resources>

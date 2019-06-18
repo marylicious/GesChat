@@ -6,10 +6,13 @@
     android:viewportWidth="108"
     android:viewportHeight="108">
 
-    <gradient
+   <!-- <gradient
         android:angle="45"
         android:endColor="@color/gradEnd"
-        android:startColor="@color/gradStart" />
-
+        android:startColor="@color/gradStart" />-->
+    <gradient
+        android:angle="45"
+        android:endColor="@color/blue_logo"
+        android:startColor="@color/blue_light" />
 
 </shape>
