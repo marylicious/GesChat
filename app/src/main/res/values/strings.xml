@@ -2,7 +2,7 @@
     <!-- Common info -->
     <string name="user_name">Faker user</string>
     <string name="app_name">gesChat</string>
-    <string name = "user_email">FakeUser@Gmail.com</string>
+    <string name="user_email">FakeUser@Gmail.com</string>
 
 
     <!-- Strings related to login -->
@@ -59,7 +59,6 @@
     <!--Strings related to drawer / Menu Board-->
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-
 
 
 </resources>
