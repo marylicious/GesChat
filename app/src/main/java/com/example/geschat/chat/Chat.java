@@ -30,7 +30,7 @@ public class Chat {
         ArrayList<Chat> chatList = new ArrayList<Chat>();
 
         for (int i = 1; i <= numChats; i++) {
-            chatList.add(new Chat("Chat #" + ++lastContactId, i <= numChats / 2));
+            chatList.add(new Chat("Chat #" + ++lastContactId, numChats % 2 == 0 ));
         }
 
         return chatList;

@@ -68,7 +68,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder>{
         TextView textView = viewHolder.chatNameTextView;
         textView.setText(chat1.getChatName());
         Button button = viewHolder.messageButton;
-        button.setText(chat1.isFinished() ? "Finished" : "Confirm");
+        button.setText(chat1.isFinished() ? "Confirm" : "Finished");
         button.setEnabled(chat1.isFinished());
     }
 
