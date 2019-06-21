@@ -73,11 +73,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         new ConfigFragment()).commit();
                 break;
 
-                //BORRAR
-            case R.id.nav_close_session:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new AnnouncementFragment()).commit();
-                break;
         }
 
         drawer.closeDrawer(GravityCompat.START);
