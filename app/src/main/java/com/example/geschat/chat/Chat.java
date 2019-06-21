@@ -22,7 +22,7 @@ public class Chat {
     }
 
 
-    //generar unos chats pa proba
+    //generar unos chats pa proba -- BORRAR despues
 
     private static int lastContactId =0;
 
@@ -30,7 +30,7 @@ public class Chat {
         ArrayList<Chat> chatList = new ArrayList<Chat>();
 
         for (int i = 1; i <= numChats; i++) {
-            chatList.add(new Chat("Chat #" + ++lastContactId, numChats % 2 == 0 ));
+            chatList.add(new Chat("Chat #" + ++lastContactId, i % 2 == 0 ));
         }
 
         return chatList;

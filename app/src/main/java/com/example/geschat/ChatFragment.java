@@ -1,21 +1,23 @@
 package com.example.geschat;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import java.util.ArrayList;
 import com.example.geschat.chat.Chat;
+import com.example.geschat.chat.ChatActivity;
 import com.example.geschat.chat.ChatAdapter;
 
 
-public class ChatFragment extends Fragment {
+public class ChatFragment extends Fragment implements ChatAdapter.OnChatListListener{
 
     ArrayList<Chat> chats;
 
@@ -32,7 +34,7 @@ public class ChatFragment extends Fragment {
 
         // Se crea el adaptador pasando los chats de ejemplo
 
-        ChatAdapter adapter = new ChatAdapter(chats);
+        ChatAdapter adapter = new ChatAdapter(chats,this);
 
         //Unimos el adaptador y el RecyclerView
         rvChats.setAdapter(adapter);
@@ -44,8 +46,22 @@ public class ChatFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onChatClick(int position){
+
+        //Obtengo el chat que estoy tocando
+        Chat chat = chats.get(position);
+
+        //Navegaremos a nueva Activity cuando el user toque
+        Intent intent = new Intent(getActivity(), ChatActivity.class);
+
+        //Esto es para debuggear, se debe parsear y enviar un objeto chat
+        intent.putExtra("chatname", chat.getChatName());
 
 
+        startActivity(intent);
+
+    }
 
 
 }
