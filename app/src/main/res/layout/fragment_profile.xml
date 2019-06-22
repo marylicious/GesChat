@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -19,18 +20,18 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp"
-                android:background="@drawable/circle_border">
+                >
 
 
                 <ImageView
                     android:layout_width="125dp"
                     android:layout_height="120dp"
                     android:layout_margin="9dp"
-                    android:adjustViewBounds="true"
-                    android:background="@drawable/circle"
+
+
                     android:padding="3dp"
-                    android:scaleType="centerInside"
-                    android:src="@mipmap/ic_launcher_round"></ImageView>
+
+                    android:src="@drawable/icon_blanco_amarillo"/>
 
             </RelativeLayout>
 
@@ -51,7 +52,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/userProfileName"
                 android:layout_centerHorizontal="true"
-                android:layout_marginBottom="10sp"
+                android:layout_marginBottom="40dp"
                 android:text="@string/frag_prof_user_type"
                 android:textAllCaps="true"
                 android:textColor="@color/address"
@@ -59,139 +60,168 @@
 
         </RelativeLayout>
 
-        <LinearLayout
-            android:id="@+id/userProfileRecords"
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/userProfileRecordsCV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/fondo"
-            android:orientation="horizontal">
+            android:layout_below="@+id/fondo"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="-30dp"
+            android:elevation="10dp"
+            app:cardCornerRadius="5dp">
 
-            <RelativeLayout
+            <LinearLayout
+                android:id="@+id/userProfileRecords"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:background="@color/blue_light"
-                android:gravity="center"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp">
+                android:layout_below="@id/fondo"
+                android:orientation="horizontal">
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:orientation="vertical">
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp">
 
-                    <TextView
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/frag_prof_user_level"
-                        android:textColor="@color/white"
-                        android:textSize="25sp" />
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="level"
-                        android:textAllCaps="true"
-                        android:textColor="@color/white"
-                        android:textSize="13sp" />
-                </LinearLayout>
-            </RelativeLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/frag_prof_user_level"
+                            android:textColor="@color/yellow_logo"
+                            android:textSize="25sp" />
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:background="@color/green"
-                android:gravity="center"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="level"
+                            android:textAllCaps="true"
+                            android:textColor="@color/blue_logo"
+                            android:textSize="13sp" />
+                    </LinearLayout>
+                </RelativeLayout>
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:background="@color/grey"
+                    android:layout_marginVertical="15dp"
+                    android:padding="5dp"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:orientation="vertical">
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
 
-                    <TextView
+                    android:gravity="center"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp">
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/frag_prof_user_chats_score"
-                        android:textColor="@color/white"
-                        android:textSize="25sp" />
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="chats completed"
-                        android:textAllCaps="true"
-                        android:textColor="@color/white"
-                        android:textSize="13sp" />
-                </LinearLayout>
-            </RelativeLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/frag_prof_user_chats_score"
+                            android:textColor="@color/yellow_logo"
+                            android:textSize="25sp" />
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:background="@color/yellow_logo"
-                android:gravity="center"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="chats completed"
+                            android:textAllCaps="true"
+                            android:textColor="@color/blue_logo"
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
+                            android:textSize="13sp" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:background="@color/grey"
+                    android:layout_marginVertical="15dp"
+                    android:padding="5dp"/>
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:orientation="vertical">
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp">
 
-                    <TextView
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/frag_prof_user_chats_unfinished"
-                        android:textColor="@color/white"
-                        android:textSize="25sp" />
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Abandoned chats"
-                        android:textAllCaps="true"
-                        android:textColor="@color/white"
-                        android:textSize="13sp" />
-                </LinearLayout>
-            </RelativeLayout>
-        </LinearLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/frag_prof_user_chats_unfinished"
+                            android:textColor="@color/yellow_logo"
+                            android:textSize="25sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Abandoned chats"
+                            android:textAllCaps="true"
+                            android:textColor="@color/blue_logo"
+                            android:textSize="13sp" />
+                    </LinearLayout>
+                </RelativeLayout>
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
 
         <RelativeLayout
-            android:layout_below="@id/userProfileRecords"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_below="@id/userProfileRecordsCV">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
-                android:orientation="vertical"
-                android:layout_marginRight="30dp"
                 android:layout_marginTop="20dp"
-                >
+                android:layout_marginRight="30dp"
+                android:orientation="vertical">
+
                 <LinearLayout
-                    android:layout_height="wrap_content"
                     android:layout_width="match_parent"
-                    android:orientation="vertical"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    >
+                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:text="ID"
                         android:textColor="@color/headings"
-                        android:textSize="13sp"
-                        android:text="ID"/>
+                        android:textSize="13sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -205,22 +235,22 @@
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_marginTop="15dp"
-                        android:background="@color/grey"
-                        />
+                        android:background="@color/grey" />
 
                 </LinearLayout>
+
                 <LinearLayout
-                    android:layout_height="wrap_content"
                     android:layout_width="match_parent"
-                    android:orientation="vertical"
-                    android:layout_marginTop="10dp">
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:text="Birthday"
                         android:textColor="@color/headings"
-                        android:textSize="13sp"
-                        android:text="Birthday"/>
+                        android:textSize="13sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -228,317 +258,147 @@
                         android:fontFamily="sans-serif-light"
                         android:text="@string/frag_prof_user_birth"
                         android:textColor="#000000"
-                        android:textSize="18sp"/>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="15dp"
-                        android:background="@color/grey"
-                        />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_height="wrap_content"
-                    android:layout_width="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/headings"
-                        android:textSize="13sp"
-                        android:text="Next Chats"/>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="end"
-                        android:layout_marginTop="10dp"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif-light"
-                            android:text="@string/frag_prof_chat_name"
-                            android:drawableLeft="@drawable/ic_chat_dark"
-                            android:paddingRight="15dp"
-                            android:drawablePadding="10dp"
-                            android:layout_marginBottom="8dp"
-                            android:textColor="#000000"
-                            android:textSize="18sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif-light"
-                            android:text="@string/frag_prof_chat_date"
-                            android:drawablePadding="10dp"
-                            android:layout_marginBottom="8dp"
-                            android:textColor="@color/colorAccent"
-                            android:textSize="14sp" />
-
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="end"
-                        android:layout_marginTop="10dp"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif-light"
-                            android:text="@string/frag_prof_chat_name"
-                            android:drawableLeft="@drawable/ic_chat_dark"
-                            android:paddingRight="15dp"
-                            android:drawablePadding="10dp"
-                            android:layout_marginBottom="8dp"
-                            android:textColor="#000000"
-                            android:textSize="18sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif-light"
-                            android:text="@string/frag_prof_chat_date"
-                            android:drawablePadding="10dp"
-                            android:layout_marginBottom="8dp"
-                            android:textColor="@color/colorAccent"
-                            android:textSize="14sp" />
-
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="end"
-                        android:layout_marginTop="10dp"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif-light"
-                            android:text="@string/frag_prof_chat_name"
-                            android:drawableLeft="@drawable/ic_chat_dark"
-                            android:paddingRight="15dp"
-                            android:drawablePadding="10dp"
-                            android:layout_marginBottom="8dp"
-                            android:textColor="#000000"
-                            android:textSize="18sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif-light"
-                            android:text="@string/frag_prof_chat_date"
-                            android:drawablePadding="10dp"
-                            android:layout_marginBottom="8dp"
-                            android:textColor="@color/colorAccent"
-                            android:textSize="14sp" />
-
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="end"
-                        android:layout_marginTop="10dp"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif-light"
-                            android:text="@string/frag_prof_chat_name"
-                            android:drawableLeft="@drawable/ic_chat_dark"
-                            android:paddingRight="15dp"
-                            android:drawablePadding="10dp"
-                            android:layout_marginBottom="8dp"
-                            android:textColor="#000000"
-                            android:textSize="18sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif-light"
-                            android:text="@string/frag_prof_chat_date"
-                            android:drawablePadding="10dp"
-                            android:layout_marginBottom="8dp"
-                            android:textColor="@color/colorAccent"
-                            android:textSize="14sp" />
-
-                    </LinearLayout>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="15dp"
-                        android:background="@color/grey"
-                        />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_height="wrap_content"
-                    android:layout_width="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/headings"
-                        android:textSize="13sp"
-                        android:text="Lasts Chats"/>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="end"
-                        android:layout_marginTop="10dp"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif-light"
-                            android:text="@string/frag_prof_chat_name"
-                            android:drawableLeft="@drawable/ic_chat_dark"
-                            android:paddingRight="15dp"
-                            android:drawablePadding="10dp"
-                            android:layout_marginBottom="8dp"
-                            android:textColor="#000000"
-                            android:textSize="18sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif-light"
-                            android:text="@string/frag_prof_chat_date"
-                            android:drawablePadding="10dp"
-                            android:layout_marginBottom="8dp"
-                            android:textColor="@color/colorAccent"
-                            android:textSize="14sp" />
-
-                    </LinearLayout>
-                    <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="end"
-                    android:layout_marginTop="10dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif-light"
-                        android:text="@string/frag_prof_chat_name"
-                        android:drawableLeft="@drawable/ic_chat_dark"
-                        android:paddingRight="15dp"
-                        android:drawablePadding="10dp"
-                        android:layout_marginBottom="8dp"
-                        android:textColor="#000000"
                         android:textSize="18sp" />
 
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="15dp"
+                        android:background="@color/grey" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif-light"
-                        android:text="@string/frag_prof_chat_date"
-                        android:drawablePadding="10dp"
-                        android:layout_marginBottom="8dp"
-                        android:textColor="@color/colorAccent"
-                        android:textSize="14sp" />
+                        android:text="Next Chats"
+                        android:textColor="@color/headings"
+                        android:textSize="13sp" />
 
-                </LinearLayout>
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="end"
                         android:layout_marginTop="10dp"
+                        android:gravity="end"
                         android:orientation="horizontal">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif-light"
-                            android:text="@string/frag_prof_chat_name"
-                            android:drawableLeft="@drawable/ic_chat_dark"
-                            android:paddingRight="15dp"
-                            android:drawablePadding="10dp"
                             android:layout_marginBottom="8dp"
+                            android:drawableLeft="@drawable/ic_chat_dark"
+                            android:drawablePadding="10dp"
+                            android:fontFamily="sans-serif-light"
+                            android:paddingRight="15dp"
+                            android:text="@string/frag_prof_chat_name"
                             android:textColor="#000000"
                             android:textSize="18sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginBottom="8dp"
+                            android:drawablePadding="10dp"
                             android:fontFamily="sans-serif-light"
                             android:text="@string/frag_prof_chat_date"
-                            android:drawablePadding="10dp"
-                            android:layout_marginBottom="8dp"
                             android:textColor="@color/colorAccent"
                             android:textSize="14sp" />
 
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="end"
                         android:layout_marginTop="10dp"
+                        android:gravity="end"
                         android:orientation="horizontal">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif-light"
-                            android:text="@string/frag_prof_chat_name"
-                            android:drawableLeft="@drawable/ic_chat_dark"
-                            android:paddingRight="15dp"
-                            android:drawablePadding="10dp"
                             android:layout_marginBottom="8dp"
+                            android:drawableLeft="@drawable/ic_chat_dark"
+                            android:drawablePadding="10dp"
+                            android:fontFamily="sans-serif-light"
+                            android:paddingRight="15dp"
+                            android:text="@string/frag_prof_chat_name"
                             android:textColor="#000000"
                             android:textSize="18sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginBottom="8dp"
+                            android:drawablePadding="10dp"
                             android:fontFamily="sans-serif-light"
                             android:text="@string/frag_prof_chat_date"
-                            android:drawablePadding="10dp"
-                            android:layout_marginBottom="8dp"
                             android:textColor="@color/colorAccent"
                             android:textSize="14sp" />
 
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="end"
                         android:layout_marginTop="10dp"
+                        android:gravity="end"
                         android:orientation="horizontal">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif-light"
-                            android:text="@string/frag_prof_chat_name"
-                            android:drawableLeft="@drawable/ic_chat_dark"
-                            android:paddingRight="15dp"
-                            android:drawablePadding="10dp"
                             android:layout_marginBottom="8dp"
+                            android:drawableLeft="@drawable/ic_chat_dark"
+                            android:drawablePadding="10dp"
+                            android:fontFamily="sans-serif-light"
+                            android:paddingRight="15dp"
+                            android:text="@string/frag_prof_chat_name"
                             android:textColor="#000000"
                             android:textSize="18sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginBottom="8dp"
+                            android:drawablePadding="10dp"
                             android:fontFamily="sans-serif-light"
                             android:text="@string/frag_prof_chat_date"
-                            android:drawablePadding="10dp"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="end"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_marginBottom="8dp"
+                            android:drawableLeft="@drawable/ic_chat_dark"
+                            android:drawablePadding="10dp"
+                            android:fontFamily="sans-serif-light"
+                            android:paddingRight="15dp"
+                            android:text="@string/frag_prof_chat_name"
+                            android:textColor="#000000"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="8dp"
+                            android:drawablePadding="10dp"
+                            android:fontFamily="sans-serif-light"
+                            android:text="@string/frag_prof_chat_date"
                             android:textColor="@color/colorAccent"
                             android:textSize="14sp" />
 
@@ -548,8 +408,182 @@
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_marginTop="15dp"
-                        android:background="@color/grey"
-                        />
+                        android:background="@color/grey" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Lasts Chats"
+                        android:textColor="@color/headings"
+                        android:textSize="13sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="end"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="8dp"
+                            android:drawableLeft="@drawable/ic_chat_dark"
+                            android:drawablePadding="10dp"
+                            android:fontFamily="sans-serif-light"
+                            android:paddingRight="15dp"
+                            android:text="@string/frag_prof_chat_name"
+                            android:textColor="#000000"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="8dp"
+                            android:drawablePadding="10dp"
+                            android:fontFamily="sans-serif-light"
+                            android:text="@string/frag_prof_chat_date"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="end"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="8dp"
+                            android:drawableLeft="@drawable/ic_chat_dark"
+                            android:drawablePadding="10dp"
+                            android:fontFamily="sans-serif-light"
+                            android:paddingRight="15dp"
+                            android:text="@string/frag_prof_chat_name"
+                            android:textColor="#000000"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="8dp"
+                            android:drawablePadding="10dp"
+                            android:fontFamily="sans-serif-light"
+                            android:text="@string/frag_prof_chat_date"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="end"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="8dp"
+                            android:drawableLeft="@drawable/ic_chat_dark"
+                            android:drawablePadding="10dp"
+                            android:fontFamily="sans-serif-light"
+                            android:paddingRight="15dp"
+                            android:text="@string/frag_prof_chat_name"
+                            android:textColor="#000000"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="8dp"
+                            android:drawablePadding="10dp"
+                            android:fontFamily="sans-serif-light"
+                            android:text="@string/frag_prof_chat_date"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="end"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="8dp"
+                            android:drawableLeft="@drawable/ic_chat_dark"
+                            android:drawablePadding="10dp"
+                            android:fontFamily="sans-serif-light"
+                            android:paddingRight="15dp"
+                            android:text="@string/frag_prof_chat_name"
+                            android:textColor="#000000"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="8dp"
+                            android:drawablePadding="10dp"
+                            android:fontFamily="sans-serif-light"
+                            android:text="@string/frag_prof_chat_date"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="end"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="8dp"
+                            android:drawableLeft="@drawable/ic_chat_dark"
+                            android:drawablePadding="10dp"
+                            android:fontFamily="sans-serif-light"
+                            android:paddingRight="15dp"
+                            android:text="@string/frag_prof_chat_name"
+                            android:textColor="#000000"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="8dp"
+                            android:drawablePadding="10dp"
+                            android:fontFamily="sans-serif-light"
+                            android:text="@string/frag_prof_chat_date"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="15dp"
+                        android:background="@color/grey" />
 
                 </LinearLayout>
 

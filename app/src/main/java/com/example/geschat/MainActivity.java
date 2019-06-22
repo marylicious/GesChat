@@ -1,22 +1,17 @@
 package com.example.geschat;
 
-import android.content.ClipData;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.view.menu.MenuView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.TextView;
 
-import org.w3c.dom.Text;
+import com.example.geschat.ui.login.LoginActivity;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -51,8 +46,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
-
-
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch(menuItem.getItemId()){
@@ -68,10 +61,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new ProfileFragment()).commit();
                 break;
-            case R.id.nav_configuration:
+            case R.id.nav_chat_approval:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new ConfigFragment()).commit();
+                        new ChatApprovalFragment()).commit();
                 break;
+            case R.id.nav_close_session:
+                Intent intent = new Intent(this, LoginActivity.class);
+                startActivity(intent);
 
         }
 

@@ -4,10 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +26,20 @@ public class ChatFragment extends Fragment implements ChatAdapter.OnChatListList
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_chats, container,false);
 
+
+        //para abrir el add chat
+
+        FloatingActionButton floatingActionButton = (FloatingActionButton) view.findViewById(R.id.btn_addChat);
+
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in = new Intent(getActivity(), AddChatActivity.class);
+                startActivity(in);
+            }
+        });
+
+
         RecyclerView rvChats = (RecyclerView) view.findViewById(R.id.chatView);
 
         //Populamos unos ejemplos de chat
@@ -41,6 +55,8 @@ public class ChatFragment extends Fragment implements ChatAdapter.OnChatListList
 
         //Le agregamos un LayoutManager por defecto
         rvChats.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+
 
 
         return view;

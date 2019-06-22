@@ -11,8 +11,9 @@
         android:roundIcon="@mipmap/ic_launcherv2_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".chat.ChatActivity"></activity>
-        <activity android:name=".AddAnnouncementActivity" />
+        <activity android:name=".AddAnnouncementActivity"></activity>
+        <activity android:name=".AddChatActivity" />
+        <activity android:name=".chat.ChatActivity" />
         <activity android:name=".AnnouncementActivity" />
         <activity
             android:name=".MainActivity"
