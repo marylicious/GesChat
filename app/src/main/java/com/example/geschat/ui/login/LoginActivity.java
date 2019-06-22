@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.geschat.ForgotPasswordFragment;
 import com.example.geschat.MainActivity;
 import com.example.geschat.R;
 import com.example.geschat.RegisterFragment;
@@ -45,6 +46,17 @@ public class LoginActivity extends AppCompatActivity {
                 FragmentManager fM = getSupportFragmentManager();
                 RegisterFragment regFrag = new RegisterFragment();
                 fM.beginTransaction().replace(R.id.logContainer,regFrag).commit();
+            }
+        });
+
+        //Codigo para pasar de login page to forgot password
+        txt = (TextView) findViewById(R.id.logForgotPassword);
+        txt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fM = getSupportFragmentManager();
+                ForgotPasswordFragment forgFrag = new ForgotPasswordFragment();
+                fM.beginTransaction().replace(R.id.logContainer,forgFrag).commit();
             }
         });
 
