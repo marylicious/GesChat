@@ -6,200 +6,198 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/grad">
 
-
-        <TextView
-            android:layout_marginTop="50dp"
-            android:textAlignment="center"
-            android:id="@+id/regTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/frag_reg_title"
-            android:textColor="@color/white"
-            android:textSize="30sp"
-            android:textAllCaps="true"/>
-
     <ScrollView
-        android:layout_below="@id/regTitle"
+
         android:id="@+id/sv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="-10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="20dp">
+        android:layout_marginLeft="-10dp">
 
-        <RelativeLayout
-            android:id="@+id/boxContainer"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="-60dp"
-            android:layout_marginTop="70dp"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
 
-            android:layout_marginRight="80dp">
-
-            <android.support.v7.widget.CardView
-                android:id="@+id/cv"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="40dp"
-                android:layout_marginBottom="10dp"
-                app:cardCornerRadius="50dp"
-                app:cardElevation="3dp">
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/forgLogo"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="90dp"
+                    android:src="@drawable/icon_blanco_amarillo" />
+
+                <TextView
+                    android:layout_below="@id/forgLogo"
+                    android:layout_marginTop="20dp"
+                    android:textAlignment="center"
+                    android:id="@+id/regTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Register Page"
+                    android:textColor="@color/white"
+                    android:textSize="30sp"
+                    android:textAllCaps="true"/>
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/boxContainer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="-60dp"
+                android:layout_marginTop="70dp"
+
+                android:layout_marginRight="80dp">
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/cv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="40dp"
+                    android:layout_marginBottom="10dp"
+                    app:cardCornerRadius="50dp"
+                    app:cardElevation="3dp">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="50dp"
+                        android:padding="5dp">
+
+                        <EditText
+                            android:id="@+id/regFullName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:background="@android:color/transparent"
+                            android:drawableLeft="@drawable/ic_person"
+                            android:drawablePadding="30dp"
+                            android:hint="@string/frag_reg_name"
+                            android:inputType="text"
+                            android:padding="10dp"
+                            android:selectAllOnFocus="true" />
+
+                        <View
+                            android:id="@+id/regView1"
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_below="@+id/regFullName"
+                            android:background="#3E000000" />
+
+                        <EditText
+                            android:id="@+id/regId"
+                            android:layout_below="@id/regView1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:background="@android:color/transparent"
+                            android:drawableLeft="@drawable/ic_id"
+                            android:drawablePadding="30dp"
+                            android:hint="@string/frag_reg_id"
+                            android:inputType="number"
+                            android:padding="10dp"
+                            android:selectAllOnFocus="true" />
+
+                        <View
+                            android:id="@+id/regView2"
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_below="@+id/regId"
+                            android:background="#3E000000" />
+
+                        <EditText
+                            android:id="@+id/regEmail"
+                            android:layout_below="@id/regView2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:background="@android:color/transparent"
+                            android:drawableLeft="@drawable/ic_email"
+                            android:drawablePadding="30dp"
+                            android:hint="@string/frag_reg_email"
+                            android:inputType="textEmailAddress"
+                            android:padding="10dp"
+                            android:selectAllOnFocus="true" />
+
+                        <View
+                            android:id="@+id/regView3"
+                            android:layout_below="@+id/regEmail"
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:background="#3E000000" />
+
+                        <EditText
+                            android:id="@+id/regPassword"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/regView3"
+                            android:layout_margin="10dp"
+                            android:background="@android:color/transparent"
+                            android:drawableLeft="@drawable/ic_lock"
+                            android:drawablePadding="30dp"
+                            android:hint="@string/frag_reg_password"
+                            android:imeActionLabel="@string/action_sign_in_short"
+                            android:imeOptions="actionDone"
+                            android:inputType="textPassword"
+                            android:padding="10dp"
+                            android:selectAllOnFocus="true" />
+                        <View
+                            android:id="@+id/regView4"
+                            android:layout_below="@+id/regPassword"
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:background="#3E000000" />
+                        <EditText
+                            android:id="@+id/regconfPassword"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/regView4"
+                            android:layout_margin="10dp"
+                            android:background="@android:color/transparent"
+                            android:drawableLeft="@drawable/ic_lock"
+                            android:drawablePadding="30dp"
+                            android:hint="@string/frag_reg_conf_pass"
+                            android:imeActionLabel="@string/action_sign_in_short"
+                            android:imeOptions="actionDone"
+                            android:inputType="textPassword"
+                            android:padding="10dp"
+                            android:selectAllOnFocus="true" />
+
+
+                    </RelativeLayout>
+
+
+                </android.support.v7.widget.CardView>
+
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="50dp"
-                    android:padding="5dp">
+                    android:layout_alignRight="@+id/cv"
 
-                    <EditText
-                        android:id="@+id/regFullName"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:background="@android:color/transparent"
-                        android:drawableLeft="@drawable/ic_person"
-                        android:drawablePadding="30dp"
-                        android:hint="@string/frag_reg_name"
-                        android:inputType="text"
-                        android:padding="10dp"
-                        android:selectAllOnFocus="true" />
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="-30dp"
+                    android:elevation="10dp">
 
-                    <View
-                        android:id="@+id/regView1"
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:layout_below="@+id/regFullName"
-                        android:background="#3E000000" />
-
-                    <EditText
-                        android:id="@+id/regId"
-                        android:layout_below="@id/regView1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:background="@android:color/transparent"
-                        android:drawableLeft="@drawable/ic_id"
-                        android:drawablePadding="30dp"
-                        android:hint="@string/frag_reg_id"
-                        android:inputType="number"
-                        android:padding="10dp"
-                        android:selectAllOnFocus="true" />
-
-                    <View
-                        android:id="@+id/regView2"
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:layout_below="@+id/regId"
-                        android:background="#3E000000" />
-
-                    <EditText
-                        android:id="@+id/regEmail"
-                        android:layout_below="@id/regView2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:background="@android:color/transparent"
-                        android:drawableLeft="@drawable/ic_email"
-                        android:drawablePadding="30dp"
-                        android:hint="@string/frag_reg_email"
-                        android:inputType="textEmailAddress"
-                        android:padding="10dp"
-                        android:selectAllOnFocus="true" />
-
-                    <View
-                        android:id="@+id/regView3"
-                        android:layout_below="@+id/regEmail"
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:background="#3E000000" />
-
-                    <EditText
-                        android:id="@+id/regPassword"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/regView3"
-                        android:layout_margin="10dp"
-                        android:background="@android:color/transparent"
-                        android:drawableLeft="@drawable/ic_lock"
-                        android:drawablePadding="30dp"
-                        android:hint="@string/frag_reg_password"
-                        android:imeActionLabel="@string/action_sign_in_short"
-                        android:imeOptions="actionDone"
-                        android:inputType="textPassword"
-                        android:padding="10dp"
-                        android:selectAllOnFocus="true" />
-                    <View
-                        android:id="@+id/regView4"
-                        android:layout_below="@+id/regPassword"
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:background="#3E000000" />
-                    <EditText
-                        android:id="@+id/regconfPassword"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/regView4"
-                        android:layout_margin="10dp"
-                        android:background="@android:color/transparent"
-                        android:drawableLeft="@drawable/ic_lock"
-                        android:drawablePadding="30dp"
-                        android:hint="@string/frag_reg_conf_pass"
-                        android:imeActionLabel="@string/action_sign_in_short"
-                        android:imeOptions="actionDone"
-                        android:inputType="textPassword"
-                        android:padding="10dp"
-                        android:selectAllOnFocus="true" />
-
+                    <ImageButton
+                        android:id="@+id/regBtn"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/bt_ui"
+                        android:enabled="false"
+                        android:src="@drawable/ic_arrow" />
 
                 </RelativeLayout>
 
 
-            </android.support.v7.widget.CardView>
-
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignRight="@+id/cv"
-
-                android:layout_centerVertical="true"
-                android:layout_marginRight="-30dp"
-                android:elevation="10dp">
-
-                <ImageButton
-                    android:id="@+id/regBtn"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_centerVertical="true"
-                    android:background="@drawable/bt_ui"
-                    android:enabled="false"
-                    android:src="@drawable/ic_arrow" />
-
             </RelativeLayout>
 
+        </LinearLayout>
 
-        </RelativeLayout>
-
-        <!--<RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-
-            <EditText
-                android:id="@+id/fullName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Full Name "
-                android:drawableLeft="@drawable/ic_profile"
-                android:drawablePadding="15dp"
-                android:textColorHint="@color/white"
-                android:textColor="@color/white"
-                android:paddingTop="20dp"
-                android:paddingBottom="20dp"
-                android:textSize="20sp"
-                andro/>
-
-        </RelativeLayout>-->
 
 
     </ScrollView>
