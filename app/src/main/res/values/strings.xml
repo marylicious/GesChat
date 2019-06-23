@@ -27,7 +27,7 @@
 
 
     <!-- Strings related to fragment_profile-->
-    <string name="frag_prof_user_name">You Know Who</string>
+    <string name="frag_prof_user_name">GesChat</string>
     <string name="frag_prof_user_type">Scholarship Holder</string>  <!--Define si es becario/supervisor/facilitador-->
     <string name="frag_prof_user_level">Basic</string>
     <string name="frag_prof_user_chats_score">150</string>
@@ -52,13 +52,16 @@
         consectetur adispiscing elit, sed doLorem ipsum dolor sit amet, consectetur adispiscing elit, sed doLorem ipsum dolor sit amet, consectetur adispiscing elit, sed doLorem ipsum dolor sit amet, consectetur adispiscing elit, sed doLorem ipsum dolor sit amet, consectetur adispiscing elit, sed doLorem ipsum
         dolor sit amet, consectetur adispiscing elit, sed doLorem ipsum dolor sit amet, consectetur adispiscing elit, sed doLorem ipsum dolor sit amet, consectetur adispiscing elit, sed doLorem ipsum dolor sit amet, consectetur adispiscing elit, sed doLorem ipsum dolor sit amet, consectetur adispiscing elit,
         sed doLorem ipsum dolor sit amet, consectetur adispiscing elit, sed doLorem ipsum dolor sit amet, consectetur adispiscing elit, sed doLorem ipsum dolor sit amet, consectetur adispiscing elit, sed doLorem ipsum dolor sit amet, consectetur adispiscing elit, sed do</string>
-    <string name="frag_announcement_tittle">Gran Orgia el lunes por la tarde</string>
+    <string name="frag_announcement_tittle">Lorem ipsum dolor sit amet</string>
     <string name="frag_announcement_autor">Daniel San</string>
 
 
     <!--Strings related to drawer / Menu Board-->
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="title_activity_dashboard">DashboardActivity</string>
+    <string name="tab_text_1">Facilitador</string>
+    <string name="tab_text_2">Supervisor</string>
 
 
 </resources>

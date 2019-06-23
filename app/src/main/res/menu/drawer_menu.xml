@@ -21,9 +21,11 @@
             android:title="Chats" />
 
         <item
-            android:id="@+id/nav_chat_approval"
+            android:id="@+id/nav_dashboard"
             android:icon="@drawable/ic_approval"
-            android:title="Supervisor Dashboard" />
+            android:title="Dashboards" >
+
+        </item>
     </group>
 
     <item android:title="Communicate">

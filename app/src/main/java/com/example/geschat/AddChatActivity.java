@@ -1,9 +1,10 @@
 package com.example.geschat;
-
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.support.v7.widget.Toolbar;
+
 
 public class AddChatActivity extends AppCompatActivity {
 
@@ -21,5 +22,11 @@ public class AddChatActivity extends AppCompatActivity {
                 onBackPressed();
             }
         });
+
+        //header icon , color
+        Toolbar toolbar = findViewById(R.id.add_chat_Toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Create New Chat");
+
     }
 }
