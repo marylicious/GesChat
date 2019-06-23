@@ -142,7 +142,6 @@
                             android:layout_height="wrap_content"
                             android:text="completed chats"
                             android:textAllCaps="true"
-                            android:textAlignment="center"
                             android:textColor="@color/blue_logo"
                             android:layout_marginLeft="2dp"
                             android:textSize="12sp" />
@@ -187,7 +186,6 @@
                             android:layout_height="wrap_content"
                             android:text="Abandoned chats  "
                             android:textAllCaps="true"
-                            android:textAlignment="center"
                             android:layout_marginLeft="2dp"
                             android:textColor="@color/blue_logo"
                             android:textSize="12sp" />

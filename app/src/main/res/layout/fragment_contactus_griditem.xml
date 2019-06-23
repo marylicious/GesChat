@@ -5,20 +5,13 @@
     android:orientation="vertical" >
 
     <ImageView
-        android:id="@+id/imageView1"
+        android:id="@+id/gv_socialnetworkicon"
         android:layout_gravity="center"
         android:layout_width="88dp"
         android:layout_height="88dp"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
         android:src="@mipmap/ic_launcher" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:text="Probando"
-        android:layout_marginBottom="5dp"
-        android:id="@+id/gv_socialnetworkname"
-        />
+
 
 </LinearLayout>

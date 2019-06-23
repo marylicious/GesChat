@@ -6,45 +6,45 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 
 import com.example.geschat.ContactFragment;
 import com.example.geschat.MainActivity;
 import com.example.geschat.R;
 
 public class SocialNetworkGridAdapter extends BaseAdapter {
-    int count = 6;
+
+    int logos[];
     Context context;
-    private static LayoutInflater inflater=null;
+    LayoutInflater inflater=null;
 
-    public SocialNetworkGridAdapter(Context c) {
-        // TODO Auto-generated constructor stub
-        this.context=c;
-        inflater = ( LayoutInflater )context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
+    public SocialNetworkGridAdapter(Context appContext, int[] logos) {
+        this.context=appContext;
+        this.logos=logos;
+        this.inflater = (LayoutInflater) appContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
     public int getCount() {
-        // TODO Auto-generated method stub
-        return count;
+        return logos.length;
     }
 
     @Override
     public Object getItem(int position) {
-        // TODO Auto-generated method stub
         return position;
     }
 
     @Override
     public long getItemId(int position) {
-        // TODO Auto-generated method stub
         return position;
     }
+
     @Override
-    public View getView(final int position, View convertView, ViewGroup parent) {
-        // TODO Auto-generated method stub
-        View rowView = inflater.inflate(R.layout.fragment_contactus_griditem, null);
-        return rowView;
+    public View getView(int i, View view, ViewGroup viewGroup) {
+        view = inflater.inflate(R.layout.fragment_contactus, null); // inflate the layout
+        ImageView icon = (ImageView) view.findViewById(R.id.gv_socialnetworkicon); // get the reference of ImageView
+        icon.setImageResource(logos[i]); // set logo images
+        return view;
     }
 
 
