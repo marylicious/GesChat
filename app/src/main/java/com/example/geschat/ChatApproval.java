@@ -15,11 +15,6 @@ public class ChatApproval extends AppCompatActivity {
         TextView debugTextView= (TextView) findViewById(R.id.debugtv);
         Bundle bundle = getIntent().getExtras();
 
-        //header icon , color
-        Toolbar toolbar = findViewById(R.id.chat_Toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Chat Details");
-
         if(bundle != null) {
             String str =(String) bundle.getString("chatname");
             debugTextView.setText(str);

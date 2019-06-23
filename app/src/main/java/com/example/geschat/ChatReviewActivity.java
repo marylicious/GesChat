@@ -10,7 +10,7 @@ import com.example.geschat.models.Chat;
 
 import java.util.ArrayList;
 
-public class ChatReviewActivity extends AppCompatActivity /*implements ChatReviewAdapter.OnChatListListener*/{
+public class ChatReviewActivity extends AppCompatActivity implements ChatReviewAdapter.OnChatListListener{
 
     ArrayList<Chat> chats;
 
@@ -20,7 +20,7 @@ public class ChatReviewActivity extends AppCompatActivity /*implements ChatRevie
         setContentView(R.layout.activity_chat_review);
 
 
-       /* RecyclerView rvChats = (RecyclerView) findViewById(R.id.chatApprovalrv);
+        RecyclerView rvChats = (RecyclerView) findViewById(R.id.chatApprovalrv);
 
         //Populamos unos ejemplos de chat
 
@@ -34,10 +34,10 @@ public class ChatReviewActivity extends AppCompatActivity /*implements ChatRevie
         rvChats.setAdapter(adapter);
 
         //Le agregamos un LayoutManager por defecto
-        rvChats.setLayoutManager(new LinearLayoutManager(this));*/
+        rvChats.setLayoutManager(new LinearLayoutManager(this));
     }
 
-    /*@Override
+    @Override
     public void onChatClick(int position){
 
         //Obtengo el chat que estoy tocando
@@ -52,6 +52,6 @@ public class ChatReviewActivity extends AppCompatActivity /*implements ChatRevie
 
         startActivity(intent);
 
-    }*/
+    }
 
 }
