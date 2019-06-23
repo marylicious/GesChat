@@ -1,4 +1,4 @@
-package com.example.geschat.chat;
+package com.example.geschat.adapters;
 
 //La tarea del adaptador es convertir un objeto chat en un item columna de la lista de chats
 
@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.example.geschat.R;
+import com.example.geschat.models.Chat;
 import java.util.List;
 
 

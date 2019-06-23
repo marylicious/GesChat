@@ -1,4 +1,4 @@
-package com.example.geschat.chat;
+package com.example.geschat;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;

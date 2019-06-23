@@ -1,4 +1,4 @@
-package com.example.geschat.chat;
+package com.example.geschat.models;
 import java.util.ArrayList;
 
 //Adapter de RecyclerView del fragment de Chats

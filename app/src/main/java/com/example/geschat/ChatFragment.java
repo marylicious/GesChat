@@ -7,14 +7,12 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import java.util.ArrayList;
-import com.example.geschat.chat.Chat;
-import com.example.geschat.chat.ChatActivity;
-import com.example.geschat.chat.ChatAdapter;
+import com.example.geschat.models.Chat;
+import com.example.geschat.adapters.ChatAdapter;
 
 
 public class ChatFragment extends Fragment implements ChatAdapter.OnChatListListener{
