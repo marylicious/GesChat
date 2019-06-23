@@ -33,7 +33,9 @@
             android:background="@color/grey"
             android:layout_marginHorizontal="10dp"
             />
+
         <LinearLayout
+            android:id="@+id/dashHomeUpdate"
             android:layout_width="match_parent"
             android:orientation="horizontal"
             android:layout_height="wrap_content">

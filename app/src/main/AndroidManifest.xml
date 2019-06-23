@@ -11,9 +11,12 @@
         android:roundIcon="@mipmap/ic_launcherv2_round"
         android:supportsRtl="true">
         <activity
+            android:name=".HomePageUpdateActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
             android:name=".DashboardActivity"
             android:label="@string/title_activity_dashboard"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ChatActivity"
             android:theme="@style/AppTheme.NoActionBar" />
