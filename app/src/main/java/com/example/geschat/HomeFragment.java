@@ -18,7 +18,7 @@ import com.example.geschat.models.Announcement;
 import java.util.ArrayList;
 
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements AnnouncementAdapter.OnAnnListListener{
 
     ArrayList<Announcement> anns;
 
@@ -45,7 +45,7 @@ public class HomeFragment extends Fragment {
         //Falsos anuncios
         anns = Announcement.createAnnList(20);
 
-        AnnouncementAdapter annAdapter = new AnnouncementAdapter(anns);
+        AnnouncementAdapter annAdapter = new AnnouncementAdapter(anns,this);
 
         rvAnnouncements.setAdapter(annAdapter);
 
@@ -53,6 +53,16 @@ public class HomeFragment extends Fragment {
 
 
         return view;
+
+    }
+
+    @Override
+    public void onAnnClick(int position) {
+
+        Announcement ann = anns.get(position);
+        Intent intent = new Intent(getActivity(), AnnouncementActivity.class);
+
+        startActivity(intent);
 
     }
 }

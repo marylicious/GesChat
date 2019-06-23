@@ -1,7 +1,6 @@
 package com.example.geschat.adapters;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
 import android.view.LayoutInflater;
@@ -15,27 +14,48 @@ import java.util.List;
 public class AnnouncementAdapter extends RecyclerView.Adapter<AnnouncementAdapter.ViewHolder> {
 
     private List<Announcement> anns;
+    private OnAnnListListener onAnnListListener;
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+
+    public AnnouncementAdapter(List<Announcement> anns, OnAnnListListener onAnnListListener){
+        this.anns = anns;
+        this.onAnnListListener = onAnnListListener;
+    }
+
+
+    //Defino ViewHolder
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public TextView titleTextView,authorTextView,bodyTextView,dateTextView;
+        OnAnnListListener onAnnListener;
 
-        public ViewHolder(View itemView) {
+        public ViewHolder(View itemView, OnAnnListListener onAnnListener) {
 
             super(itemView);
 
             titleTextView = (TextView) itemView.findViewById(R.id.AnnRow_title);
             authorTextView = (TextView) itemView.findViewById(R.id.AnnRow_author);
             bodyTextView =(TextView) itemView.findViewById(R.id.AnnRow_textbody);
-            dateTextView = (TextView) itemView.findViewById(R.id.AnnRow_textbody);
+            dateTextView = (TextView) itemView.findViewById(R.id.AnnRow_date);
 
+            this.onAnnListener = onAnnListener;
+
+            itemView.setOnClickListener(this);
+
+        }
+
+        @Override
+        public void onClick(View view){
+            onAnnListener.onAnnClick(getAdapterPosition());
         }
 
     }
 
-    public AnnouncementAdapter(List<Announcement> anns){
-        this.anns = anns;
+
+    public interface OnAnnListListener{
+        void onAnnClick(int position);
     }
+
 
     @Override
     public AnnouncementAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -44,7 +64,7 @@ public class AnnouncementAdapter extends RecyclerView.Adapter<AnnouncementAdapte
         LayoutInflater inflater = LayoutInflater.from(context);
         View annView = inflater.inflate(R.layout.fragment_home_annrow, parent, false);
 
-        ViewHolder viewHolder = new ViewHolder(annView);
+        ViewHolder viewHolder = new ViewHolder(annView,onAnnListListener);
         return viewHolder;
     }
 
