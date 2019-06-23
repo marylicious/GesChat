@@ -10,7 +10,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.GridView;
 
+import com.example.geschat.adapters.SocialNetworkGridAdapter;
 import com.example.geschat.ui.login.LoginActivity;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -44,6 +46,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         toggle.syncState();
 
+
     }
 
     @Override
@@ -65,9 +68,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new ChatApprovalFragment()).commit();
                 break;
+
+            case R.id.nav_contact:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new ContactFragment()).commit();
+                break;
             case R.id.nav_close_session:
                 Intent intent = new Intent(this, LoginActivity.class);
                 startActivity(intent);
+                break;
+
 
         }
 

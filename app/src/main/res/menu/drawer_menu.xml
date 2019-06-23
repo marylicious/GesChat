@@ -23,7 +23,7 @@
         <item
             android:id="@+id/nav_chat_approval"
             android:icon="@drawable/ic_approval"
-            android:title="Chats Approval" />
+            android:title="Supervisor Dashboard" />
     </group>
 
     <item android:title="Communicate">

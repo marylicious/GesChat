@@ -28,7 +28,7 @@
 
     <!-- Strings related to fragment_profile-->
     <string name="frag_prof_user_name">You Know Who</string>
-    <string name="frag_prof_user_type">Scolarship Holder</string>  <!--Define si es becario/supervisor/facilitador-->
+    <string name="frag_prof_user_type">Scholarship Holder</string>  <!--Define si es becario/supervisor/facilitador-->
     <string name="frag_prof_user_level">Basic</string>
     <string name="frag_prof_user_chats_score">150</string>
     <string name="frag_prof_user_chats_unfinished">3</string>
@@ -39,10 +39,10 @@
 
 
     <!-- Strings related to fragment_home-->
-    <string name="frag_home_book">Kamasutra for dummys. M.V.O.R </string>
+    <string name="frag_home_book">Random book title </string>
     <string name="frag_home_phrase">Lorem ipsum </string>
     <string name="frag_home_word">Beauty</string>
-    <string name="frag_home_announcement_tittle">Gran Orgia el lunes por la tarde</string>
+    <string name="frag_home_announcement_tittle">Gran evento el lunes por la tarde</string>
     <string name="frag_home_announcement_autor">Daniel San</string>
     <string name="frag_home_announcement_preview">Lorem ipsum dolor sit amet, consectetur adispiscing elit, sed do ...</string>
 
