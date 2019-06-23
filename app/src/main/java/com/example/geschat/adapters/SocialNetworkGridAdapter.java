@@ -41,7 +41,7 @@ public class SocialNetworkGridAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        view = inflater.inflate(R.layout.fragment_contactus, null); // inflate the layout
+        view = inflater.inflate(R.layout.fragment_contactus_griditem, null); // inflate the layout
         ImageView icon = (ImageView) view.findViewById(R.id.gv_socialnetworkicon); // get the reference of ImageView
         icon.setImageResource(logos[i]); // set logo images
         return view;
