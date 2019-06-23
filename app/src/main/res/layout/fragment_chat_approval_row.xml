@@ -16,23 +16,12 @@
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
-            <TextView
-                android:layout_gravity="center_vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/ic_group"
-                android:layout_marginLeft="5dp"
-                android:text="8"
-                android:textAlignment="center"
-                android:width="70dp"
-                />
-
             <Button
                 android:id="@+id/confirmButton"
                 android:layout_width="4dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:background="@color/green"/>
+                android:background="@color/yellow_logo"/>
 
            <!-- <ImageView
                 android:layout_width="60dp"
@@ -43,7 +32,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:orientation="vertical">
 
                 <TextView
@@ -85,6 +74,17 @@
                     android:textSize="12sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/chatname_row" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="pending"
+                    android:padding="10dp"
+                    android:layout_marginRight="20dp"
+                    android:textAllCaps="true"
+                    android:textColor="@color/yellow_logo"
+                    android:textAlignment="textEnd"
+                    android:layout_gravity="end"/>
 
             </LinearLayout>
 

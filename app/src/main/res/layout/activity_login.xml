@@ -14,7 +14,7 @@
         android:layout_height="150dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="90dp"
-        android:src="@drawable/logo_login" />
+        android:src="@drawable/icon_blanco_amarillo" />
 
     <ScrollView
         android:id="@+id/logSv"

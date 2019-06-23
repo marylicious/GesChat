@@ -4,19 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ChatActivity">
+    tools:context=".chat.ChatActivity">
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         app:cardCornerRadius="10dp"
         android:layout_marginHorizontal="15dp"
         android:layout_marginVertical="20dp">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="30dp">
 
             <TextView
                 android:id="@+id/debugtv"
@@ -168,21 +169,26 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingVertical="10dp">
+                android:paddingVertical="10dp"
+                android:orientation="vertical">
 
                 <TextView
                     android:drawableLeft="@drawable/ic_done"
                     android:drawablePadding="15dp"
                     android:layout_marginLeft="15dp"
+                    android:paddingBottom="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Numero de participantes:" />
+                    android:text="Presentation Link:" />
 
                 <TextView
+                    android:layout_gravity="center"
+                    android:textAlignment="center"
                     android:layout_marginLeft="15dp"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="8" />
+                    android:textColor="@color/blue_logo"
+                    android:text="https://www.fakelink.com/fser45%$6f" />
 
             </LinearLayout>
 
@@ -192,39 +198,63 @@
                 android:background="@color/grey"
                 android:layout_marginHorizontal="15dp"/>
 
-         <Button
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/btn_green_border"
-                android:layout_marginTop="50dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginHorizontal="15dp"
-                android:text="Suscribirse"
-                android:textColor="@color/green"/>
+                android:paddingVertical="10dp"
+                android:orientation="vertical">
 
-                        <Button
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/btn_green_border"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginBottom="10dp"
-                            android:layout_marginHorizontal="15dp"
-                            android:text="Unirse a Llamada"
-                            android:textColor="@color/green"/>
+                <TextView
+                    android:drawableLeft="@drawable/ic_done"
+                    android:drawablePadding="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:paddingBottom="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Aditional Comments:" />
 
-                        <Button
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/btn_yellow_border"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginBottom="10dp"
-                            android:layout_marginHorizontal="15dp"
-                            android:text="Desuscribirse/Abandonar"
-                            android:textColor="@color/yellow_logo"/>
+                <TextView
+                    android:layout_marginHorizontal="40dp"
+                    android:layout_gravity="center"
+
+                    android:layout_marginLeft="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/frag_home_announcement_preview" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="20dp">
+
+
+                <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="@color/red_logo"
+                    android:text="Reject "
+                    android:textColor="@color/white"/>
+
+                <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="@color/green"
+                    android:text="Approve"
+                    android:textColor="@color/white"/>
+
+            </LinearLayout>
+
 
         </LinearLayout>
 
     </android.support.v7.widget.CardView>
+
 
 
 </RelativeLayout>

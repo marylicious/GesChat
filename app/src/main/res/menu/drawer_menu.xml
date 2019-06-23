@@ -21,9 +21,9 @@
             android:title="Chats" />
 
         <item
-            android:id="@+id/nav_configuration"
-            android:icon="@drawable/ic_config"
-            android:title="Configuration" />
+            android:id="@+id/nav_chat_approval"
+            android:icon="@drawable/ic_approval"
+            android:title="Chats Approval" />
     </group>
 
     <item android:title="Communicate">

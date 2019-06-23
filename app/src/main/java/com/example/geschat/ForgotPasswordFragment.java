@@ -8,12 +8,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class AnnouncementFragment extends Fragment {
+public class ForgotPasswordFragment extends Fragment {
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_announcement, container,false);
-
+        return inflater.inflate(R.layout.fragment_forgot_password, container,false);
     }
 }

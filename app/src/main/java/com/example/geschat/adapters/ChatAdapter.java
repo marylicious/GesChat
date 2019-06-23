@@ -3,6 +3,7 @@ package com.example.geschat.adapters;
 //La tarea del adaptador es convertir un objeto chat en un item columna de la lista de chats
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Button;
@@ -89,8 +90,10 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder>{
         TextView textView = viewHolder.chatNameTextView;
         textView.setText(chat1.getChatName());
         Button button = viewHolder.messageButton;
-        button.setText(chat1.isFinished() ? "Confirm" : "Finished");
+        //button.setText(chat1.isFinished() ? "Confirm" : "Finished");
+        button.setBackgroundColor(chat1.isFinished() ? Color.parseColor("#16cc4c") : Color.parseColor("#e5322e"));
         button.setEnabled(chat1.isFinished());
+
     }
 
     //Retorna el numero de chats en la lista
