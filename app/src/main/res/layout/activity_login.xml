@@ -8,137 +8,165 @@
     android:background="@drawable/grad"
     tools:context=".ui.login.LoginActivity">
 
-    <ImageView
-        android:id="@+id/logLogo"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="90dp"
-        android:src="@drawable/icon_blanco_amarillo" />
-
     <ScrollView
         android:id="@+id/logSv"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/logLogo">
+        android:layout_height="match_parent"
+        android:layout_marginLeft="-10dp">
 
-        <RelativeLayout
-            android:id="@+id/logBoxContainer"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="-60dp"
-            android:layout_marginTop="70dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="100dp">
 
-            android:layout_marginRight="80dp">
-
-            <android.support.v7.widget.CardView
-                android:id="@+id/logCv"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="40dp"
-                android:layout_marginBottom="10dp"
-                app:cardCornerRadius="50dp"
-                app:cardElevation="3dp">
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/forgLogo"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="90dp"
+                    android:src="@drawable/icon_blanco_amarillo" />
+
+                <TextView
+                    android:id="@+id/regTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/forgLogo"
+                    android:layout_marginTop="20dp"
+                    android:text="login Page"
+                    android:textAlignment="center"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white"
+                    android:textSize="30sp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/logBoxContainer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="-60dp"
+                android:layout_marginTop="70dp"
+                android:layout_marginRight="80dp">
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/logCv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="40dp"
+                    android:layout_marginBottom="10dp"
+                    app:cardCornerRadius="50dp"
+                    app:cardElevation="3dp">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="50dp"
+                        android:padding="5dp">
+
+                        <EditText
+                            android:id="@+id/logUsername"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:background="@android:color/transparent"
+                            android:drawableLeft="@drawable/ic_person"
+                            android:drawablePadding="30dp"
+                            android:hint="@string/prompt_email"
+                            android:inputType="textEmailAddress"
+                            android:padding="10dp"
+                            android:selectAllOnFocus="true" />
+
+                        <View
+                            android:id="@+id/logView1"
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_below="@+id/logUsername"
+                            android:background="#3E000000" />
+
+                        <EditText
+                            android:id="@+id/password"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/logView1"
+                            android:layout_margin="10dp"
+                            android:background="@android:color/transparent"
+                            android:drawableLeft="@drawable/ic_lock"
+                            android:drawablePadding="30dp"
+                            android:hint="@string/prompt_password"
+                            android:imeActionLabel="@string/action_sign_in_short"
+                            android:imeOptions="actionDone"
+                            android:inputType="textPassword"
+                            android:padding="10dp"
+                            android:selectAllOnFocus="true" />
+
+                    </RelativeLayout>
+
+
+                </android.support.v7.widget.CardView>
+
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="50dp"
-                    android:padding="5dp">
+                    android:layout_alignRight="@+id/logCv"
 
-                    <EditText
-                        android:id="@+id/logUsername"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:background="@android:color/transparent"
-                        android:drawableLeft="@drawable/ic_person"
-                        android:drawablePadding="30dp"
-                        android:hint="@string/prompt_email"
-                        android:inputType="textEmailAddress"
-                        android:padding="10dp"
-                        android:selectAllOnFocus="true" />
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="-30dp"
+                    android:elevation="10dp">
 
-                    <View
-                        android:id="@+id/logView1"
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:layout_below="@+id/logUsername"
-                        android:background="#3E000000" />
-
-                    <EditText
-                        android:id="@+id/password"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/logView1"
-                        android:layout_margin="10dp"
-                        android:background="@android:color/transparent"
-                        android:drawableLeft="@drawable/ic_lock"
-                        android:drawablePadding="30dp"
-                        android:hint="@string/prompt_password"
-                        android:imeActionLabel="@string/action_sign_in_short"
-                        android:imeOptions="actionDone"
-                        android:inputType="textPassword"
-                        android:padding="10dp"
-                        android:selectAllOnFocus="true" />
+                    <ImageButton
+                        android:id="@+id/logBtn"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/bt_ui"
+                        android:enabled="false"
+                        android:src="@drawable/ic_arrow" />
 
                 </RelativeLayout>
 
 
-            </android.support.v7.widget.CardView>
-
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignRight="@+id/logCv"
-
-                android:layout_centerVertical="true"
-                android:layout_marginRight="-30dp"
-                android:elevation="10dp">
-
-                <ImageButton
-                    android:id="@+id/logBtn"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_centerVertical="true"
-                    android:background="@drawable/bt_ui"
-                    android:enabled="false"
-                    android:src="@drawable/ic_arrow" />
-
             </RelativeLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/logSv"
+                android:orientation="horizontal">
 
-        </RelativeLayout>
+                <TextView
+                    android:id="@+id/logRegister"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Register"
+                    android:textColor="#fff"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/logForgotPassword"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Forgot password?"
+                    android:textColor="#fff"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+        </LinearLayout>
 
 
     </ScrollView>
 
-    <LinearLayout
-        android:layout_below="@id/logSv"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        >
-    <TextView
-        android:id="@+id/logRegister"
-        android:layout_marginTop="10dp"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:text="Register"
-        android:layout_marginLeft="20dp"
-        android:textColor="#fff"
-        android:textSize="15sp"/>
-    <TextView
-        android:id="@+id/logForgotPassword"
-        android:layout_marginTop="10dp"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:text="Forgot password?"
-        android:layout_marginLeft="20dp"
-        android:textColor="#fff"
-        android:textSize="15sp"/>
-    </LinearLayout>
+
 
     //PROBANDOOO
 
