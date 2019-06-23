@@ -69,8 +69,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 intent = new Intent(this, DashboardActivity.class);
                 startActivity(intent);
-                /*getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new ChatApprovalFragment()).commit();*/
+
                 break;
 
             case R.id.nav_contact:
