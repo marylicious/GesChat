@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        Intent intent;
         switch(menuItem.getItemId()){
             case R.id.nav_home:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
@@ -64,9 +65,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new ProfileFragment()).commit();
                 break;
-            case R.id.nav_chat_approval:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new ChatApprovalFragment()).commit();
+            case R.id.nav_dashboard:
+
+                intent = new Intent(this, DashboardActivity.class);
+                startActivity(intent);
+                /*getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new ChatApprovalFragment()).commit();*/
                 break;
 
             case R.id.nav_contact:
@@ -74,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         new ContactFragment()).commit();
                 break;
             case R.id.nav_close_session:
-                Intent intent = new Intent(this, LoginActivity.class);
+                intent = new Intent(this, LoginActivity.class);
                 startActivity(intent);
                 break;
 
