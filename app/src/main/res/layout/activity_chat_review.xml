@@ -5,11 +5,27 @@
     android:layout_height="match_parent"
     android:background="#f2f2f2">
 
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/chatApprovalrv"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        />
+        android:orientation="vertical">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/review_chat_Toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/grad"
+            android:elevation="10dp"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            app:navigationIcon="@mipmap/ic_launcherv2_round"
+            app:titleTextColor="@color/white" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/chatApprovalrv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp" />
+    </LinearLayout>
+
 
 </RelativeLayout>

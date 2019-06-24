@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+
 import com.example.geschat.adapters.ChatReviewAdapter;
 import com.example.geschat.models.Chat;
 
@@ -18,7 +20,10 @@ public class ChatReviewActivity extends AppCompatActivity implements ChatReviewA
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_review);
-
+        //header icon , color
+        Toolbar toolbar = findViewById(R.id.review_chat_Toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Pending Chats");
 
         RecyclerView rvChats = (RecyclerView) findViewById(R.id.chatApprovalrv);
 
