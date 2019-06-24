@@ -40,6 +40,18 @@ public class DashSupervisorFragment extends Fragment {
             }
         });
 
+        LinearLayout finishedChats = (LinearLayout) view.findViewById(R.id.dash_sup_finishedchats);
+
+
+        finishedChats.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in = new Intent(getActivity(), ChatReviewActivity.class);
+                startActivity(in);
+            }
+        });
+
+
         return view;
     }
 }

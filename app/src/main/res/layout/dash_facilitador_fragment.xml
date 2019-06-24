@@ -12,6 +12,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/dash_fac_incoming"
             android:orientation="horizontal">
 
             <TextView
@@ -39,6 +40,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/dash_fac_review"
             android:orientation="horizontal">
 
             <TextView
@@ -67,6 +69,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/dash_fac_finished"
             android:orientation="horizontal">
 
             <TextView
