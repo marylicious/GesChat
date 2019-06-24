@@ -174,7 +174,7 @@
         android:id="@+id/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Succesful Login" />
+        android:text="Presionar Aqui Para Acceder" />
 
     <ProgressBar
         android:id="@+id/loading"

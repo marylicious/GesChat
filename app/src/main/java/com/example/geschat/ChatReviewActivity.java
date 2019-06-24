@@ -23,7 +23,7 @@ public class ChatReviewActivity extends AppCompatActivity implements ChatReviewA
         //header icon , color
         Toolbar toolbar = findViewById(R.id.review_chat_Toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Pending Chats");
+        getSupportActionBar().setTitle("gesChat");
 
         RecyclerView rvChats = (RecyclerView) findViewById(R.id.chatApprovalrv);
 
