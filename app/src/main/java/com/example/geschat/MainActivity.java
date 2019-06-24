@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //Pagina de inicio
 
         if(savedInstanceState == null){
-
+            getSupportActionBar().setTitle("Home");
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                     new HomeFragment()).commit();
             navigationView.setCheckedItem(R.id.nav_home);
@@ -46,33 +46,38 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         toggle.syncState();
 
-
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         Intent intent;
+
         switch(menuItem.getItemId()){
             case R.id.nav_home:
+                getSupportActionBar().setTitle("Home");
+
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new HomeFragment()).commit();
                 break;
             case R.id.nav_chats:
+                getSupportActionBar().setTitle("Chats");
+
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new ChatFragment()).commit();
                 break;
             case R.id.nav_profile:
+                getSupportActionBar().setTitle("Profile");
+
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new ProfileFragment()).commit();
                 break;
             case R.id.nav_dashboard:
-
                 intent = new Intent(this, DashboardActivity.class);
                 startActivity(intent);
 
                 break;
-
             case R.id.nav_contact:
+                getSupportActionBar().setTitle("Contact Us");
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new ContactFragment()).commit();
                 break;
