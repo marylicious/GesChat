@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "115259378325",
-    "firebase_url": "https://geschat-app.firebaseio.com",
-    "project_id": "geschat-app",
-    "storage_bucket": "geschat-app.appspot.com"
+    "project_number": "104598027771",
+    "firebase_url": "https://geschatapp.firebaseio.com",
+    "project_id": "geschatapp",
+    "storage_bucket": "geschatapp.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:115259378325:android:2143f72aa0f1a2d9",
+        "mobilesdk_app_id": "1:104598027771:android:2143f72aa0f1a2d9",
         "android_client_info": {
           "package_name": "com.example.geschat"
         }
       },
       "oauth_client": [
         {
-          "client_id": "115259378325-9bk643t6g9e4pucoapbsqi89v79vllhh.apps.googleusercontent.com",
+          "client_id": "104598027771-vr6h68ak9khi0rqsdt9jgse94ekhs047.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDN3SsRV5GmhWs5nWtdBUGcUZ7q2p3KTpY"
+          "current_key": "AIzaSyBC2hpJNjgf74mfeQzRwLUKslpnoozH1vw"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "115259378325-9bk643t6g9e4pucoapbsqi89v79vllhh.apps.googleusercontent.com",
+              "client_id": "104598027771-vr6h68ak9khi0rqsdt9jgse94ekhs047.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
