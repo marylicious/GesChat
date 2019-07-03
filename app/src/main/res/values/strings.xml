@@ -24,6 +24,7 @@
     <string name="frag_reg_email">Email</string>
     <string name="frag_reg_password">Password</string>
     <string name="frag_reg_conf_pass">Confirm Password</string>
+    <string name="registration_success">Registered Successfully</string>
 
 
     <!-- Strings related to fragment_profile-->
@@ -62,6 +63,15 @@
     <string name="title_activity_dashboard">DashboardActivity</string>
     <string name="tab_text_1">Facilitador</string>
     <string name="tab_text_2">Supervisor</string>
+
+    <!--- Error Strings -->
+    <string name="input_error_name">name required</string>
+    <string name="input_error_email">email required</string>
+    <string name="input_error_password">password required</string>
+    <string name="input_error_passwordDontMatch">password must match confirmation</string>
+    <string name="input_error_Id">Id required</string>
+    <string name="input_error_password_length">password should be at least 6 characters long</string>
+    <string name="input_error_email_invalid">enter a valid email</string>
 
 
 </resources>

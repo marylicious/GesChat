@@ -17,6 +17,14 @@
             android:orientation="vertical"
             android:layout_height="match_parent">
 
+            <ProgressBar
+                android:id="@+id/regProgressBar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:progressDrawable="@android:drawable/progress_indeterminate_horizontal" />
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -42,6 +50,7 @@
                     android:textAllCaps="true"/>
 
             </RelativeLayout>
+
             <RelativeLayout
                 android:id="@+id/boxContainer"
                 android:layout_width="match_parent"
