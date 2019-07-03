@@ -2,37 +2,49 @@ package com.example.geschat.ui.login;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.geschat.ForgotPasswordFragment;
 import com.example.geschat.MainActivity;
 import com.example.geschat.R;
 import com.example.geschat.RegisterFragment;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginActivity extends AppCompatActivity {
 
-
-    private Button button; //Linea agregada para el cambio de abajo
-
-    private TextView txt; //Linea agregada para abrir el reg
+    private ImageButton logBtn;
+    private TextView txt, emailTv, passwordTv;
+    private FirebaseAuth auth;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        //Inicio de codigo para Cambiar de actividad(pasar de login a menu)
-        button = (Button) findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener() {
+        logBtn = findViewById(R.id.logBtn);
+        emailTv = findViewById(R.id.logUsername);
+        passwordTv = findViewById(R.id.logPassword);
+        auth = FirebaseAuth.getInstance();
+
+
+        logBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openHome();
+                logIn();
             }
         });
+
 
         //Codigo para pasar de login page to registration page
         txt = (TextView) findViewById(R.id.logRegister);
@@ -56,16 +68,59 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+
+
+        if(auth.getCurrentUser()!=null){
+            startActivity(new Intent(this,MainActivity.class));
+        }
+
     }
 
-    public void openHome(){
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
+
+    public void logIn(){
+        String email = emailTv.getText().toString().trim();
+        String password = passwordTv.getText().toString().trim();
+
+        //Validation
+        if (email.isEmpty()) {
+            emailTv.setError(getString(R.string.input_error_email));
+            emailTv.requestFocus();
+            return;
+        }
+
+        if (password.isEmpty()) {
+            passwordTv.setError(getString(R.string.input_error_password));
+            passwordTv.requestFocus();
+            return;
+        }
+
+        auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+
+                if (task.isSuccessful()) {
+                    finish();
+                    Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        if (auth.getCurrentUser() != null) {
+            finish();
+            startActivity(new Intent(this, MainActivity.class));
+        }
     }
 
 
 }
-        //FIN de cambiar actividad
-        // Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
 
 

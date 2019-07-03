@@ -90,7 +90,7 @@
                             android:background="#3E000000" />
 
                         <EditText
-                            android:id="@+id/password"
+                            android:id="@+id/logPassword"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_below="@id/logView1"
@@ -167,14 +167,7 @@
     </ScrollView>
 
 
-
     //PROBANDOOO
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Presionar Aqui Para Acceder" />
 
     <ProgressBar
         android:id="@+id/loading"
