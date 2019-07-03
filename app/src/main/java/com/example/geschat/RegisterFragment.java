@@ -1,6 +1,7 @@
 package com.example.geschat;
 
 
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -126,7 +127,17 @@ public class RegisterFragment extends Fragment {
 
         //Validation
         if(validateFields(name, email, idPerson, password, confPassword) == true){
+
+
             regProgressBar.setVisibility(View.VISIBLE);
+            regProgressBar.setIndeterminate(true);
+            regProgressBar.getIndeterminateDrawable().setColorFilter(0xFFFFFFFF, PorterDuff.Mode.MULTIPLY);
+            regFullName.setFocusable(false);
+            regEmail.setFocusable(false);
+            regId.setFocusable(false);
+            regPassword.setFocusable(false);
+            regConfPassword.setFocusable(false);
+
             this.auth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
@@ -141,7 +152,14 @@ public class RegisterFragment extends Fragment {
                                         .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
+
                                         regProgressBar.setVisibility(View.GONE);
+                                        regFullName.setFocusableInTouchMode(true);
+                                        regEmail.setFocusableInTouchMode(true);
+                                        regId.setFocusableInTouchMode(true);
+                                        regPassword.setFocusableInTouchMode(true);
+                                        regConfPassword.setFocusableInTouchMode(true);
+
                                         if (task.isSuccessful()) {
                                             Toast.makeText(getContext(), getString(R.string.registration_success), Toast.LENGTH_LONG).show();
                                         } else {

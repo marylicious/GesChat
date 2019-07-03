@@ -26,6 +26,8 @@ public class LoginActivity extends AppCompatActivity {
     private TextView txt, emailTv, passwordTv;
     private FirebaseAuth auth;
 
+    //TODO progressbar
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
