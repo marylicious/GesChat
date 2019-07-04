@@ -10,13 +10,29 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.geschat.models.User;
 import com.example.geschat.ui.login.LoginActivity;
+import com.google.firebase.FirebaseError;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout drawer;
+    private FirebaseUser user;
     private FirebaseAuth auth;
+    private DatabaseReference db;
+    private TextView usernameInDrawer, emailInDrawer;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +43,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setSupportActionBar(toolbar);
 
         drawer = findViewById(R.id.drawer_layout);
+
         auth = FirebaseAuth.getInstance();
+        user = auth.getCurrentUser();
+        db = FirebaseDatabase.getInstance().getReference();
+
 
 
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -37,8 +57,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close );
         drawer.addDrawerListener(toggle);
 
-        //Pagina de inicio
+        //Get the drawer name and email
+        View header = navigationView.getHeaderView(0);
+        usernameInDrawer = header.findViewById(R.id.drawerUsername);
+        emailInDrawer = header.findViewById(R.id.drawerEmail);
 
+
+
+        //Pagina de inicio
         if(savedInstanceState == null){
             getSupportActionBar().setTitle("Home");
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
@@ -48,6 +74,51 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         toggle.syncState();
 
+
+
+        loadUserInformation();
+
+
+    }
+
+    private void loadUserInformation(){
+
+        if (user != null) {
+        emailInDrawer.setText(user.getEmail());
+
+        //TODO cambiar por display name
+        DatabaseReference userRef = db.child("Users").child(user.getUid()).child("name");
+
+
+            userRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    String name = dataSnapshot.getValue(String.class);
+                    usernameInDrawer.setText(name);
+
+                }
+
+                @Override
+                public void onCancelled(DatabaseError error) {
+                    // Failed to read value
+                }
+            });
+
+
+         }
+
+
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        if (auth.getCurrentUser() == null) {
+            finish();
+            startActivity(new Intent(this, LoginActivity.class));
+        }
     }
 
     @Override

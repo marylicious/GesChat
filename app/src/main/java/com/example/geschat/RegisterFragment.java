@@ -34,7 +34,7 @@ public class RegisterFragment extends Fragment {
     private FirebaseAuth auth;
     private CardView cardView;
 
-    //TODO darken card view
+
 
     @Nullable
     @Override
