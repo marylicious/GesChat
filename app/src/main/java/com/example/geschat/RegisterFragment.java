@@ -1,11 +1,14 @@
 package com.example.geschat;
 
 
+import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,6 +32,9 @@ public class RegisterFragment extends Fragment {
     private ImageButton regBtn;
     private ProgressBar regProgressBar;
     private FirebaseAuth auth;
+    private CardView cardView;
+
+    //TODO darken card view
 
     @Nullable
     @Override
@@ -43,6 +49,7 @@ public class RegisterFragment extends Fragment {
         regPassword = view.findViewById(R.id.regPassword);
         regProgressBar = view.findViewById(R.id.regProgressBar);
         regProgressBar.setVisibility(View.GONE);
+        cardView = view.findViewById(R.id.cv);
 
         this.auth = FirebaseAuth.getInstance();
 
@@ -137,11 +144,22 @@ public class RegisterFragment extends Fragment {
             regId.setFocusable(false);
             regPassword.setFocusable(false);
             regConfPassword.setFocusable(false);
+            cardView.setCardBackgroundColor(Color.parseColor("#f0f3f7"));
 
             this.auth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
+
+
+                            regProgressBar.setVisibility(View.GONE);
+                            regFullName.setFocusableInTouchMode(true);
+                            regEmail.setFocusableInTouchMode(true);
+                            regId.setFocusableInTouchMode(true);
+                            regPassword.setFocusableInTouchMode(true);
+                            regConfPassword.setFocusableInTouchMode(true);
+                            cardView.setCardBackgroundColor(Color.parseColor("#ffffff"));
+
 
                             if (task.isSuccessful()) {
 
@@ -153,15 +171,9 @@ public class RegisterFragment extends Fragment {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
 
-                                        regProgressBar.setVisibility(View.GONE);
-                                        regFullName.setFocusableInTouchMode(true);
-                                        regEmail.setFocusableInTouchMode(true);
-                                        regId.setFocusableInTouchMode(true);
-                                        regPassword.setFocusableInTouchMode(true);
-                                        regConfPassword.setFocusableInTouchMode(true);
-
                                         if (task.isSuccessful()) {
                                             Toast.makeText(getContext(), getString(R.string.registration_success), Toast.LENGTH_LONG).show();
+                                            startActivity(new Intent(getContext(),MainActivity.class));
                                         } else {
                                             Toast.makeText(getContext(), task.getException().getMessage(), Toast.LENGTH_LONG).show();
                                         }
