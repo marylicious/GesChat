@@ -12,6 +12,8 @@
         android:supportsRtl="true">
         <activity android:name=".LoadUserInfo"
             android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".ChatFinishedActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".ChatApproval"
             android:theme="@style/AppTheme.NoActionBar" />
