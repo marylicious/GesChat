@@ -93,8 +93,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (user != null) {
         emailInDrawer.setText(user.getEmail());
 
-        //TODO cambiar users por user
-
             //cargar nombre del usuario
 
             if(user.getDisplayName() == null){
@@ -149,7 +147,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.cambiarFoto:
                 finish();
                 Intent intent = new Intent(this, LoadUserInfo.class);
-               // intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
                 return true;
             default:

@@ -33,8 +33,6 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth auth;
     private CardView cardView;
 
-    //TODO darken card view
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
 

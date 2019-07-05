@@ -23,6 +23,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GetTokenResult;
 import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -124,7 +125,7 @@ public class LoadUserInfo extends AppCompatActivity {
 
 
     private void saveUserInformation() {
-
+        button.setEnabled(false);
 
         String displayName = editText.getText().toString();
 
@@ -148,14 +149,30 @@ public class LoadUserInfo extends AppCompatActivity {
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
                                 Toast.makeText(getApplicationContext(), "Profile Updated", Toast.LENGTH_SHORT).show();
+                                refreshToken();
                             }
                         }
                     });
         }
 
-        Intent intent = new Intent(this, MainActivity.class);
+
+    }
+
+    private void refreshToken(){
+        FirebaseUser user = auth.getCurrentUser();
+        //force token to refresh with new data
+        user.getIdToken(true).addOnSuccessListener(new OnSuccessListener<GetTokenResult>() {
+            @Override
+            public void onSuccess(GetTokenResult result) {
+                String idToken = result.getToken();
+
+            }
+        });
+
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
+
     }
 
 
