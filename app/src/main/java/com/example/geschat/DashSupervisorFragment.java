@@ -25,7 +25,7 @@ public class DashSupervisorFragment extends Fragment {
         chatProposal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent in = new Intent(getActivity(), ChatReviewActivity.class);
+                Intent in = new Intent(getActivity(), ChatFinishedActivity.class);
                 startActivity(in);
             }
         });
@@ -46,7 +46,7 @@ public class DashSupervisorFragment extends Fragment {
         finishedChats.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent in = new Intent(getActivity(), ChatReviewActivity.class);
+                Intent in = new Intent(getActivity(), ChatFinishedActivity.class);
                 startActivity(in);
             }
         });
