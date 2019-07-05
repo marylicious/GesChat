@@ -65,6 +65,8 @@ public class RegisterFragment extends Fragment {
         return view;
     }
 
+
+
     public Boolean validateFields(String name, String email, String idPerson, String password, String confPassword){
 
         if (name.isEmpty()) {

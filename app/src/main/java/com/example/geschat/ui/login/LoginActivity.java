@@ -65,7 +65,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 FragmentManager fM = getSupportFragmentManager();
                 RegisterFragment regFrag = new RegisterFragment();
-                fM.beginTransaction().replace(R.id.logContainer,regFrag).commit();
+                fM.beginTransaction().replace(R.id.logContainer,regFrag).addToBackStack("Frag1").commit();
             }
         });
 
@@ -76,7 +76,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 FragmentManager fM = getSupportFragmentManager();
                 ForgotPasswordFragment forgFrag = new ForgotPasswordFragment();
-                fM.beginTransaction().replace(R.id.logContainer,forgFrag).commit();
+                fM.beginTransaction().replace(R.id.logContainer,forgFrag).addToBackStack("Frag2").commit();
             }
         });
 
@@ -143,6 +143,25 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(new Intent(this, MainActivity.class));
 
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+
+    if(getSupportFragmentManager().findFragmentByTag("Frag1")!= null){
+
+        getSupportFragmentManager().popBackStackImmediate("Frag1",0);
+
+    }else if(getSupportFragmentManager().findFragmentByTag("Frag2")!= null){
+
+        getSupportFragmentManager().popBackStackImmediate("Frag2",0);
+
+    }else{
+
+        super.onBackPressed();
+
+    }
+
     }
 
 
