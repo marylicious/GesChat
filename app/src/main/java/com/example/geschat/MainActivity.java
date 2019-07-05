@@ -11,9 +11,11 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.geschat.models.User;
 import com.example.geschat.ui.login.LoginActivity;
 import com.google.firebase.FirebaseError;
@@ -32,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private FirebaseAuth auth;
     private DatabaseReference db;
     private TextView usernameInDrawer, emailInDrawer;
+    private ImageView imageViewInDrawer;
 
 
     @Override
@@ -61,6 +64,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         View header = navigationView.getHeaderView(0);
         usernameInDrawer = header.findViewById(R.id.drawerUsername);
         emailInDrawer = header.findViewById(R.id.drawerEmail);
+        imageViewInDrawer = header.findViewById(R.id.drawerImageView);
+
 
 
 
@@ -87,26 +92,40 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         emailInDrawer.setText(user.getEmail());
 
         //TODO cambiar users por user
-        //TODO cambiar por display name
-        DatabaseReference userRef = db.child("Users").child(user.getUid()).child("name");
+
+            //cargar nombre del usuario
+
+            if(user.getDisplayName() == null){
+
+                DatabaseReference userRef = db.child("Users").child(user.getUid()).child("name");
 
 
-            userRef.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    String name = dataSnapshot.getValue(String.class);
-                    usernameInDrawer.setText(name);
+                userRef.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        String name = dataSnapshot.getValue(String.class);
+                        usernameInDrawer.setText(name);
+                    }
 
-                }
+                    @Override
+                    public void onCancelled(DatabaseError error) {
+                    }
+                });
 
-                @Override
-                public void onCancelled(DatabaseError error) {
-                    // Failed to read value
-                }
-            });
+             } else {
+                usernameInDrawer.setText(user.getDisplayName());
+            }
 
+            //cargar foto del usuario
+            if(user.getPhotoUrl() != null){
+                Glide.with(this)
+                        .load(user.getPhotoUrl().toString())
+                        //.fitCenter()
+                        .centerCrop()
+                        .into(imageViewInDrawer);
+            }
 
-         }
+        }
 
 
 
@@ -119,10 +138,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (auth.getCurrentUser() == null) {
             finish();
             startActivity(new Intent(this, LoginActivity.class));
-        } else if (auth.getCurrentUser()!=null && (auth.getCurrentUser().getDisplayName() == null || auth.getCurrentUser().getPhotoUrl() ==null)){
+        }
+
+        /*else if (auth.getCurrentUser()!=null && (auth.getCurrentUser().getDisplayName() == null || auth.getCurrentUser().getPhotoUrl() ==null)){
             finish();
             startActivity(new Intent(this, LoadUserInfo.class));
-        }
+        }*/
 
 
     }

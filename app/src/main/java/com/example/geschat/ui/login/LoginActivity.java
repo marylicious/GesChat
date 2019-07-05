@@ -140,11 +140,8 @@ public class LoginActivity extends AppCompatActivity {
 
         if (auth.getCurrentUser() != null) {
             finish();
+            startActivity(new Intent(this, MainActivity.class));
 
-            if(auth.getCurrentUser().getPhotoUrl() != null && auth.getCurrentUser().getDisplayName()!= null)
-                startActivity(new Intent(this, MainActivity.class));
-            else
-                startActivity(new Intent(this, LoadUserInfo.class));
         }
     }
 
