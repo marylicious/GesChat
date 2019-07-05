@@ -59,7 +59,7 @@
                         android:layout_marginLeft="40dp"
                         android:paddingTop="10sp"
                         android:paddingBottom="10sp"
-                        android:text="@string/frag_home_book"
+                        android:id="@+id/suggBook"
                         android:textSize="15sp" />
 
                     <TextView
@@ -78,7 +78,7 @@
                         android:layout_marginLeft="40dp"
                         android:paddingTop="10sp"
                         android:paddingBottom="10sp"
-                        android:text="@string/frag_home_phrase"
+                        android:id="@+id/suggPhrase"
                         android:textSize="15sp" />
 
                     <TextView
@@ -96,7 +96,7 @@
                         android:layout_gravity="end"
                         android:paddingTop="10sp"
                         android:paddingBottom="10sp"
-                        android:text="@string/frag_home_word"
+                        android:id="@+id/suggWord"
                         android:textSize="15sp" />
 
                 </LinearLayout>

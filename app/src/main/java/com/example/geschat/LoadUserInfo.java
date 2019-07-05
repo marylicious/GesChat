@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -38,6 +39,7 @@ public class LoadUserInfo extends AppCompatActivity {
     ProgressBar progressBar;
     String profileImageUrl;
     FirebaseAuth auth;
+    Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +50,7 @@ public class LoadUserInfo extends AppCompatActivity {
         editText = findViewById(R.id.loadInfEditTextDisplayName);
         imageView = findViewById(R.id.loadInfImageView);
         progressBar = findViewById(R.id.loadInfProgressbar);
+        button = findViewById(R.id.loadInfButtonSave);
 
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,7 +62,7 @@ public class LoadUserInfo extends AppCompatActivity {
 
         loadUserInformation();
 
-        findViewById(R.id.loadInfButtonSave).setOnClickListener(new View.OnClickListener() {
+        button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 saveUserInformation();
@@ -149,18 +152,25 @@ public class LoadUserInfo extends AppCompatActivity {
                         }
                     });
         }
+
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
     }
+
 
     private void uploadImageToFirebaseStorage() {
         final StorageReference profileImageRef = FirebaseStorage.getInstance().getReference("profilePhotos/" + System.currentTimeMillis() + ".jpg");
 
         if (uriProfileImage != null) {
             progressBar.setVisibility(View.VISIBLE);
+            button.setEnabled(false);
             profileImageRef.putFile(uriProfileImage)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             progressBar.setVisibility(View.GONE);
+                            button.setEnabled(true);
                             //profileImageUrl = taskSnapshot.getDownloadUrl().toString();
                             profileImageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                 @Override

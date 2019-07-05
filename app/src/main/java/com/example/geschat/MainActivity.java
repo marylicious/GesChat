@@ -82,8 +82,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toggle.syncState();
 
 
-
         loadUserInformation();
+
 
 
     }
@@ -147,10 +147,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()){
             case R.id.cambiarFoto:
-                //AGREGAR AQUI LA FUNCION O WTVr <<<<<<<<<<<<<<<<<<<<<<<------------------------------------------------------------------------------------
-
-                Toast.makeText(this,"CAMBIA FOTO", Toast.LENGTH_LONG).show();
-
+                finish();
+                Intent intent = new Intent(this, LoadUserInfo.class);
+               // intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -166,11 +166,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             finish();
             startActivity(new Intent(this, LoginActivity.class));
         }
-
-        /*else if (auth.getCurrentUser()!=null && (auth.getCurrentUser().getDisplayName() == null || auth.getCurrentUser().getPhotoUrl() ==null)){
-            finish();
-            startActivity(new Intent(this, LoadUserInfo.class));
-        }*/
 
 
     }
