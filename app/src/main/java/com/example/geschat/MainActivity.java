@@ -201,7 +201,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_dashboard:
                 intent = new Intent(this, DashboardActivity.class);
                 startActivity(intent);
-
+                break;
+            case R.id.nav_rolChange:
+                intent = new Intent(this, RolChangeActivity.class);
+                startActivity(intent);
                 break;
             case R.id.nav_contact:
                 getSupportActionBar().setTitle("Contact Us");
