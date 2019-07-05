@@ -86,6 +86,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (user != null) {
         emailInDrawer.setText(user.getEmail());
 
+        //TODO cambiar users por user
         //TODO cambiar por display name
         DatabaseReference userRef = db.child("Users").child(user.getUid()).child("name");
 
@@ -118,7 +119,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (auth.getCurrentUser() == null) {
             finish();
             startActivity(new Intent(this, LoginActivity.class));
+        } else if (auth.getCurrentUser()!=null && (auth.getCurrentUser().getDisplayName() == null || auth.getCurrentUser().getPhotoUrl() ==null)){
+            finish();
+            startActivity(new Intent(this, LoadUserInfo.class));
         }
+
+
     }
 
     @Override

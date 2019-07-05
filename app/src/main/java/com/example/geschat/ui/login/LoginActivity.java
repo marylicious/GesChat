@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.geschat.ForgotPasswordFragment;
+import com.example.geschat.LoadUserInfo;
 import com.example.geschat.MainActivity;
 import com.example.geschat.R;
 import com.example.geschat.RegisterFragment;
@@ -108,17 +109,17 @@ public class LoginActivity extends AppCompatActivity {
         progressBar.setVisibility(View.VISIBLE);
         progressBar.setIndeterminate(true);
         progressBar.getIndeterminateDrawable().setColorFilter(0xFFFFFFFF, PorterDuff.Mode.MULTIPLY);
-       cardView.setCardBackgroundColor(Color.parseColor("#f0f3f7"));
+        cardView.setCardBackgroundColor(Color.parseColor("#f0f3f7"));
         passwordTv.setFocusable(false);
-       emailTv.setFocusable(false);
+        emailTv.setFocusable(false);
 
         auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 progressBar.setVisibility(View.GONE);
                 cardView.setCardBackgroundColor(Color.parseColor("#ffffff"));
-               passwordTv.setFocusableInTouchMode(true);
-               emailTv.setFocusableInTouchMode(true);
+                passwordTv.setFocusableInTouchMode(true);
+                emailTv.setFocusableInTouchMode(true);
 
                 if (task.isSuccessful()) {
 
@@ -139,7 +140,11 @@ public class LoginActivity extends AppCompatActivity {
 
         if (auth.getCurrentUser() != null) {
             finish();
-            startActivity(new Intent(this, MainActivity.class));
+
+            if(auth.getCurrentUser().getPhotoUrl() != null && auth.getCurrentUser().getDisplayName()!= null)
+                startActivity(new Intent(this, MainActivity.class));
+            else
+                startActivity(new Intent(this, LoadUserInfo.class));
         }
     }
 

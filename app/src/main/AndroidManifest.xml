@@ -10,6 +10,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcherv2_round"
         android:supportsRtl="true">
+        <activity android:name=".LoadUserInfo"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".ChatApproval"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -18,8 +20,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".HomePageUpdateActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".DashboardActivity"
             android:label="@string/title_activity_dashboard"
