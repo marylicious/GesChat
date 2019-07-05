@@ -3,37 +3,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <group android:checkableBehavior="single">
+            <group android:checkableBehavior="single" >
 
-        <item
-            android:id="@+id/nav_home"
-            android:icon="@drawable/ic_home"
-            android:title="Home" />
+                <item
+                    android:id="@+id/nav_home"
+                    android:icon="@drawable/ic_home"
+                    android:title="Home" />
 
-        <item
-            android:id="@+id/nav_profile"
-            android:icon="@drawable/ic_profile"
-            android:title="Profile" />
+                <item
+                    android:id="@+id/nav_profile"
+                    android:icon="@drawable/ic_profile"
+                    android:title="Profile" />
 
-        <item
-            android:id="@+id/nav_chats"
-            android:icon="@drawable/ic_chat"
-            android:title="Chats" />
+                <item
+                    android:id="@+id/nav_chats"
+                    android:icon="@drawable/ic_chat"
+                    android:title="Chats" />
 
-        <item
-            android:id="@+id/nav_dashboard"
-            android:icon="@drawable/ic_approval"
-            android:title="Dashboards" >
+                <item
+                    android:id="@+id/nav_contact"
+                    android:icon="@drawable/ic_page"
+                    android:title="Contact us"/>
 
-        </item>
-    </group>
+            </group>
 
-    <item android:title="Communicate">
+    <item android:title="Admin" >
         <menu>
             <item
-                android:id="@+id/nav_contact"
-                android:icon="@drawable/ic_page"
-                android:title="Contact us"></item>
+                android:id="@+id/nav_dashboard"
+                android:icon="@drawable/ic_approval"
+                android:title="Dashboards" ></item>
+
+        </menu>
+    </item>
+
+    <item android:title="Account">
+        <menu>
             <item
                 android:id="@+id/nav_close_session"
                 android:icon="@drawable/ic_finish"
