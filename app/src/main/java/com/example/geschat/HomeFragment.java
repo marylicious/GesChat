@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.geschat.adapters.AnnouncementAdapter;
 import com.example.geschat.models.Announcement;
@@ -28,8 +29,11 @@ import java.util.ArrayList;
 public class HomeFragment extends Fragment implements AnnouncementAdapter.OnAnnListListener{
 
     ArrayList<Announcement> anns;
-    DatabaseReference suggestionRef, db;
+    DatabaseReference suggestionRef, AnnRef, db;
     TextView bookTxt, wordTxt, phraseTxt;
+    RecyclerView rvAnnouncements;
+    AnnouncementAdapter annAdapter;
+
 
 
     @Nullable
@@ -53,17 +57,38 @@ public class HomeFragment extends Fragment implements AnnouncementAdapter.OnAnnL
             }
         });
 
-        //RecyclerView
-        RecyclerView rvAnnouncements = (RecyclerView) view.findViewById(R.id.rvAnnouncements);
-        //Falsos anuncios
-        anns = Announcement.createAnnList(20);
-        AnnouncementAdapter annAdapter = new AnnouncementAdapter(anns,this);
-        rvAnnouncements.setAdapter(annAdapter);
-        rvAnnouncements.setLayoutManager(new LinearLayoutManager(getActivity()));
-
-        //Conectando con DB
         db = FirebaseDatabase.getInstance().getReference();
         suggestionRef = db.child("Suggestion");
+        AnnRef = db.child("Announcement");
+
+
+        //RecyclerView
+        rvAnnouncements = view.findViewById(R.id.rvAnnouncements);
+        rvAnnouncements.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+
+
+        AnnRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                anns = new ArrayList<>();
+                for(DataSnapshot dataSnapshotAnn: dataSnapshot.getChildren())
+                {
+                    Announcement ann = dataSnapshotAnn.getValue(Announcement.class);
+                    anns.add(ann);
+                }
+
+                setAnnRvAdapter();
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(getContext(), "There was an error", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
         populateSuggestions();
 
 
@@ -102,4 +127,10 @@ public class HomeFragment extends Fragment implements AnnouncementAdapter.OnAnnL
         });
 
     }
+
+    private void setAnnRvAdapter(){
+        annAdapter = new AnnouncementAdapter(anns,this);
+        rvAnnouncements.setAdapter(annAdapter);
+    }
+
 }

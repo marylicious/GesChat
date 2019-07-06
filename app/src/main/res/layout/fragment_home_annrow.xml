@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-light"
             android:paddingRight="10sp"
-            android:text="Anuncio:"
+            android:text="Announcement:"
             android:textColor="@color/colorAccent"
             android:textSize="20sp"
             android:textStyle="bold" />

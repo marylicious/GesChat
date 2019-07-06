@@ -33,10 +33,10 @@ public class AnnouncementAdapter extends RecyclerView.Adapter<AnnouncementAdapte
 
             super(itemView);
 
-            titleTextView = (TextView) itemView.findViewById(R.id.AnnRow_title);
-            authorTextView = (TextView) itemView.findViewById(R.id.AnnRow_author);
-            bodyTextView =(TextView) itemView.findViewById(R.id.AnnRow_textbody);
-            dateTextView = (TextView) itemView.findViewById(R.id.AnnRow_date);
+            titleTextView =  itemView.findViewById(R.id.AnnRow_title);
+            authorTextView =  itemView.findViewById(R.id.AnnRow_author);
+            bodyTextView = itemView.findViewById(R.id.AnnRow_textbody);
+            dateTextView =  itemView.findViewById(R.id.AnnRow_date);
 
             this.onAnnListener = onAnnListener;
 
@@ -83,8 +83,9 @@ public class AnnouncementAdapter extends RecyclerView.Adapter<AnnouncementAdapte
         TextView dateTV = viewHolder.dateTextView;
         dateTV.setText(ann.getDate());
 
+
         TextView bodyTV = viewHolder.bodyTextView;
-        bodyTV.setText(ann.getBody());
+        bodyTV.setText(ann.getPreview());
 
     }
 
