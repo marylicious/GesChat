@@ -33,7 +33,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder>{
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        public TextView chatNameTextView;
+        public TextView chatNameTextView, facilitatorNameTv, levelTv,dateTv, numTv;
         public Button messageButton;
         OnChatListListener onChatListener;
 
@@ -42,8 +42,14 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder>{
 
             super(itemView);
 
-            chatNameTextView = (TextView) itemView.findViewById(R.id.chatname_row);
-            messageButton = (Button) itemView.findViewById(R.id.confirmButton);
+            chatNameTextView = itemView.findViewById(R.id.chatname_row);
+            messageButton =  itemView.findViewById(R.id.confirmButton);
+            facilitatorNameTv = itemView.findViewById(R.id.facilitador_chatrow);
+            levelTv = itemView.findViewById(R.id.chatrow_level);
+            dateTv = itemView.findViewById(R.id.chatrow_date);
+            numTv = itemView.findViewById(R.id.chatrow_num);
+
+
             this.onChatListener = onChatListener;
 
             itemView.setOnClickListener(this);
@@ -86,13 +92,21 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder>{
         // Get the data model based on position
         Chat chat1 = chats.get(position);
 
-        // Set item views based on your views and data model
         TextView textView = viewHolder.chatNameTextView;
-        textView.setText(chat1.getChatName());
+        TextView facilitator = viewHolder.facilitatorNameTv;
+        TextView level = viewHolder.levelTv;
+        TextView date = viewHolder.dateTv;
+        TextView num = viewHolder.numTv;
         Button button = viewHolder.messageButton;
-        //button.setText(chat1.isFinished() ? "Confirm" : "Finished");
-        button.setBackgroundColor(chat1.isFinished() ? Color.parseColor("#16cc4c") : Color.parseColor("#e5322e"));
-        button.setEnabled(chat1.isFinished());
+
+
+        button.setBackgroundColor(chat1.getFilled() ? Color.parseColor("#16cc4c") : Color.parseColor("#e5322e"));
+        button.setEnabled(false);
+        textView.setText(chat1.getChatName());
+        facilitator.setText("Facilitator "+chat1.getFacilitator());
+        level.setText("Level "+chat1.getLevel());
+        num.setText(chat1.getAmountPeople());
+        date.setText("Date"+ chat1.getDateEpoch());
 
     }
 

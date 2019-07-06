@@ -1,21 +1,19 @@
 package com.example.geschat;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
-import com.example.geschat.R;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
 
 public class ChatActivity extends AppCompatActivity {
 
-    private TextView debugTextView;
+    private TextView chatTitleTv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
 
-        debugTextView= (TextView) findViewById(R.id.debugtv);
+        chatTitleTv= (TextView) findViewById(R.id.chat_title_name);
         Bundle bundle = getIntent().getExtras();
 
         //header icon , color
@@ -25,7 +23,7 @@ public class ChatActivity extends AppCompatActivity {
 
         if(bundle != null) {
             String str =(String) bundle.getString("chatname");
-            debugTextView.setText(str);
+            chatTitleTv.setText(str);
         }
 
     }

@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.example.geschat.adapters.AnnouncementAdapter;
 import com.example.geschat.models.Announcement;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -34,6 +35,8 @@ public class HomeFragment extends Fragment implements AnnouncementAdapter.OnAnnL
     TextView bookTxt, wordTxt, phraseTxt;
     RecyclerView rvAnnouncements;
     AnnouncementAdapter annAdapter;
+    String role;
+    FloatingActionButton floatingActionButton;
 
 //TODO agregar progressbar
 
@@ -48,7 +51,7 @@ public class HomeFragment extends Fragment implements AnnouncementAdapter.OnAnnL
         phraseTxt = view.findViewById(R.id.suggPhrase);
 
         //Boton
-        FloatingActionButton floatingActionButton = (FloatingActionButton) view.findViewById(R.id.btn_addAnnouncement);
+        floatingActionButton = view.findViewById(R.id.btn_addAnnouncement);
 
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,6 +60,9 @@ public class HomeFragment extends Fragment implements AnnouncementAdapter.OnAnnL
                 startActivity(in);
             }
         });
+
+        floatingActionButton.hide();
+
 
         db = FirebaseDatabase.getInstance().getReference();
         suggestionRef = db.child("Suggestion");
@@ -92,6 +98,7 @@ public class HomeFragment extends Fragment implements AnnouncementAdapter.OnAnnL
 
 
         populateSuggestions();
+        fetchRole();
 
 
         return view;
@@ -114,6 +121,7 @@ public class HomeFragment extends Fragment implements AnnouncementAdapter.OnAnnL
     }
 
     private void populateSuggestions(){
+
 
         suggestionRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -139,6 +147,30 @@ public class HomeFragment extends Fragment implements AnnouncementAdapter.OnAnnL
         Collections.reverse(anns);
         annAdapter = new AnnouncementAdapter(anns,this);
         rvAnnouncements.setAdapter(annAdapter);
+    }
+
+    private void setVisibleToSupervisor(){
+        floatingActionButton.show();
+
+    }
+
+    private void fetchRole(){
+        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        db.child("Users").child(uid).child("role").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                role = dataSnapshot.getValue(String.class);
+                if(role.equals("supervisor")){
+                    setVisibleToSupervisor();
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError error) {
+            }
+        });
+
+
     }
 
 }

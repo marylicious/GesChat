@@ -2,7 +2,6 @@ package com.example.geschat;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
 
 public class ChatApproval extends AppCompatActivity {
@@ -12,7 +11,7 @@ public class ChatApproval extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_approval);
 
-        TextView debugTextView= (TextView) findViewById(R.id.debugtv);
+        TextView debugTextView= (TextView) findViewById(R.id.chat_title_name);
         Bundle bundle = getIntent().getExtras();
 
         if(bundle != null) {

@@ -11,14 +11,26 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
 import java.util.ArrayList;
+
+import com.example.geschat.models.Announcement;
 import com.example.geschat.models.Chat;
 import com.example.geschat.adapters.ChatAdapter;
+import com.example.geschat.models.User;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 
 public class ChatFragment extends Fragment implements ChatAdapter.OnChatListListener{
 
     ArrayList<Chat> chats;
+    DatabaseReference chatRef;
+    RecyclerView rvChats;
 
     @Nullable
     @Override
@@ -39,27 +51,59 @@ public class ChatFragment extends Fragment implements ChatAdapter.OnChatListList
         });
 
 
-        RecyclerView rvChats = (RecyclerView) view.findViewById(R.id.chatView);
-
-        //Populamos unos ejemplos de chat
-
-        chats = Chat.createChatList(20);
-
-        // Se crea el adaptador pasando los chats de ejemplo
-
-        ChatAdapter adapter = new ChatAdapter(chats,this);
-
-        //Unimos el adaptador y el RecyclerView
-        rvChats.setAdapter(adapter);
-
-        //Le agregamos un LayoutManager por defecto
+         rvChats = view.findViewById(R.id.chatView);
         rvChats.setLayoutManager(new LinearLayoutManager(getActivity()));
 
+        chatRef = FirebaseDatabase.getInstance().getReference().child("Chat");
 
+        //Load from DB
+        chatRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                chats = new ArrayList<>();
+
+                for(DataSnapshot dataSnapshotChat: dataSnapshot.getChildren())
+                {
+
+                    ArrayList<String> assistanceListKeys = new ArrayList<>();
+                    Boolean approvedProposal = dataSnapshotChat.child("approvedProposal").getValue(Boolean.class);
+                    String dateEpoch = dataSnapshotChat.child("date").getValue(String.class);
+                    String facilitator= dataSnapshotChat.child("facilitator").getValue(String.class);
+                    String comments = dataSnapshotChat.child("comments").getValue(String.class);
+                    Boolean finished = dataSnapshotChat.child("finished").getValue(Boolean.class);
+                    Boolean isFilled = dataSnapshotChat.child("isFilled").getValue(Boolean.class);
+                    String presentation = dataSnapshotChat.child("presentation").getValue(String.class);
+                    String chatName = dataSnapshotChat.child("title").getValue(String.class);
+                    String level = dataSnapshotChat.child("level").getValue(String.class);
+
+                    for(DataSnapshot userUID: dataSnapshot.child("assistanceList").getChildren()){
+                        String userKey = userUID.getValue(String.class);
+                        assistanceListKeys.add(userKey);
+                    }
+
+                    int amountPeople = assistanceListKeys.size();
+                    //fetchFacilitator name
+                    //convert date to date legible
+
+                    Chat chat = new Chat(assistanceListKeys,approvedProposal,dateEpoch,facilitator,comments,finished,isFilled,presentation,chatName,level, amountPeople);
+                    chat.setKeyDB(dataSnapshotChat.getKey());
+                    chats.add(chat);
+                }
+
+               setChatAdapter();
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(getContext(), "There was an error fetching chats", Toast.LENGTH_SHORT).show();
+            }
+        });
 
 
         return view;
     }
+
 
     @Override
     public void onChatClick(int position){
@@ -76,6 +120,11 @@ public class ChatFragment extends Fragment implements ChatAdapter.OnChatListList
 
         startActivity(intent);
 
+    }
+
+    private void setChatAdapter(){
+        ChatAdapter adapter = new ChatAdapter(chats,this);
+        rvChats.setAdapter(adapter);
     }
 
 

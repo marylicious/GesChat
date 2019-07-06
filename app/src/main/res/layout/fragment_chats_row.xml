@@ -23,6 +23,7 @@
                 android:drawableLeft="@drawable/ic_group"
                 android:layout_marginLeft="5dp"
                 android:text="8"
+                android:id="@+id/chatrow_num"
                 android:textAlignment="center"
                 android:width="70dp"
                 />
@@ -59,25 +60,23 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/textView"
+                    android:id="@+id/facilitador_chatrow"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="40dp"
-                    android:text="Facilitador: blablablah"
                     android:textSize="12sp" />
 
                 <TextView
-                    android:id="@+id/textView2"
+                    android:id="@+id/chatrow_level"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="40dp"
-                    android:text="Nivel: Basico"
                     android:textSize="12sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/chatname_row" />
 
                 <TextView
-                    android:id="@+id/textView3"
+                    android:id="@+id/chatrow_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="40dp"
