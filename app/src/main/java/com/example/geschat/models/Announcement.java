@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Announcement {
 
-    private String title, author,body,date;
+    private String title, author,body,date,keyDB;
 
     public Announcement (String title, String author, String body, String date){
         this.title=title;
@@ -14,6 +14,14 @@ public class Announcement {
     }
 
     public Announcement() {
+    }
+
+    public String getKeyDB() {
+        return keyDB;
+    }
+
+    public void setKeyDB(String keyDB) {
+        this.keyDB = keyDB;
     }
 
     public void setTitle(String title) {

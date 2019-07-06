@@ -24,6 +24,7 @@ import com.google.firebase.database.ValueEventListener;
 
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 
 public class HomeFragment extends Fragment implements AnnouncementAdapter.OnAnnListListener{
@@ -75,6 +76,7 @@ public class HomeFragment extends Fragment implements AnnouncementAdapter.OnAnnL
                 for(DataSnapshot dataSnapshotAnn: dataSnapshot.getChildren())
                 {
                     Announcement ann = dataSnapshotAnn.getValue(Announcement.class);
+                    ann.setKeyDB(dataSnapshotAnn.getKey());
                     anns.add(ann);
                 }
 
@@ -105,6 +107,7 @@ public class HomeFragment extends Fragment implements AnnouncementAdapter.OnAnnL
         intent.putExtra("title", ann.getTitle());
         intent.putExtra("body", ann.getBody());
         intent.putExtra("author", ann.getAuthor());
+        intent.putExtra("keyDB", ann.getKeyDB());
 
         startActivity(intent);
 
@@ -133,6 +136,7 @@ public class HomeFragment extends Fragment implements AnnouncementAdapter.OnAnnL
     }
 
     private void setAnnRvAdapter(){
+        Collections.reverse(anns);
         annAdapter = new AnnouncementAdapter(anns,this);
         rvAnnouncements.setAdapter(annAdapter);
     }

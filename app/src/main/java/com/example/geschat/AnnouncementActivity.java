@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class AnnouncementActivity extends AppCompatActivity {
 
@@ -24,6 +25,8 @@ public class AnnouncementActivity extends AppCompatActivity {
             String title = bundle.getString("title");
             String body = bundle.getString("body");
             String author = bundle.getString("author");
+            String key = bundle.getString("keyDB");
+            //String annKey = Long.toString(key);
 
             TextView titleTV = findViewById(R.id.acann_title);
             TextView bodyTV = findViewById(R.id.acann_body);
@@ -33,6 +36,9 @@ public class AnnouncementActivity extends AppCompatActivity {
             titleTV.setText(title);
             bodyTV.setText(body);
             authorTV.setText(author);
+
+            Toast.makeText(getApplicationContext(), "ann key "+key, Toast.LENGTH_LONG).show();
+
 
         }
 

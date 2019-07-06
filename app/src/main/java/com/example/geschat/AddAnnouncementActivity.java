@@ -21,8 +21,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 public class AddAnnouncementActivity extends AppCompatActivity {
     private FloatingActionButton cancelbtn,sendbtn;
@@ -83,26 +84,54 @@ public class AddAnnouncementActivity extends AppCompatActivity {
 
     }
 
+    //TODO chequear cada campo
+
     public void sendInfoToDB(){
-        /*enableInput(false);
+        enableInput(false);
         progressBar.setVisibility(View.VISIBLE);
 
-        String title = titleTV.getText().toString();
-        String author = authorTV.getText().toString();
-        String body = bodyTV.getText().toString() ;
+        final String title = titleTV.getText().toString();
+        final String author = authorTV.getText().toString();
+        final String body = bodyTV.getText().toString() ;
+
+
+        Date currentDate = Calendar.getInstance().getTime();
+        SimpleDateFormat sdf = new SimpleDateFormat("MMM dd, yyyy");
+        final String date= sdf.format(currentDate);
 
         if(title.replaceAll("\\s+","").isEmpty() || author.replaceAll("\\s+","").isEmpty() || body.replaceAll("\\s+","").isEmpty()){
             Toast.makeText(getApplicationContext(), "All fields must be filled", Toast.LENGTH_SHORT).show();
             progressBar.setVisibility(View.GONE);
             enableInput(true);
 
-        } else {*/
+        } else {
 
-            AnnRef.addValueEventListener(new ValueEventListener() {
+            AnnRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 long numChild = dataSnapshot.getChildrenCount();
-                Toast.makeText(getApplicationContext(), "num of child"+numChild, Toast.LENGTH_LONG).show();
+                numChild++;
+                String annKey = Long.toString(numChild);
+
+
+                Announcement newAnn = new Announcement(title,author,body,date);
+
+                AnnRef.child(annKey).setValue(newAnn).addOnCompleteListener(new OnCompleteListener<Void>() {
+
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        progressBar.setVisibility(View.GONE);
+                        enableInput(true);
+
+                        if (task.isSuccessful()) {
+                            Toast.makeText(getApplicationContext(), "Announcement added successfully", Toast.LENGTH_LONG).show();
+
+
+                        } else {
+                            Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
@@ -110,26 +139,7 @@ public class AddAnnouncementActivity extends AppCompatActivity {
         });
 
 
-
-            /*Announcement newAnn = new Announcement(title,author,body,date);
-
-            AnnRef.child().setValue(newAnn).addOnCompleteListener(new OnCompleteListener<Void>() {
-                @Override
-                public void onComplete(@NonNull Task<Void> task) {
-
-                    if (task.isSuccessful()) {
-                        Toast.makeText(getApplicationContext(), "Ann added successfully", Toast.LENGTH_LONG).show();
-                        progressBar.setVisibility(View.GONE);
-                        enableInput(true);
-
-                    } else {
-                        Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_LONG).show();
-                    }
-                }
-            });*/
-
-
-       // }
+        }
 
 
     }
