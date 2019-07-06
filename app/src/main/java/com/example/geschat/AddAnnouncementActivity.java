@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.example.geschat.models.Announcement;
 import com.example.geschat.models.Suggestion;
+import com.example.geschat.ui.login.LoginActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
@@ -22,6 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -30,12 +32,14 @@ public class AddAnnouncementActivity extends AppCompatActivity {
     private TextView titleTV,bodyTV,authorTV;
     private ProgressBar progressBar;
     DatabaseReference AnnRef;
+    private String keyDB;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_announcement);
+        Bundle bundle = getIntent().getExtras();
 
         //header icon , color
         Toolbar toolbar = findViewById(R.id.announcementToolbar);
@@ -49,6 +53,7 @@ public class AddAnnouncementActivity extends AppCompatActivity {
         cancelbtn = findViewById(R.id.addann_cancel);
         progressBar = findViewById(R.id.addann_progressBar);
         AnnRef= FirebaseDatabase.getInstance().getReference().child("Announcement");
+        keyDB = Long.toString(System.currentTimeMillis()); //inicializa la keyDB
 
         cancelbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,6 +68,11 @@ public class AddAnnouncementActivity extends AppCompatActivity {
                 sendInfoToDB();
             }
         });
+
+        if(bundle != null && bundle.getBoolean("edit")==true) {
+            keyDB = bundle.getString("keyDB");
+            loadAnnInformation();
+        }
 
     }
 
@@ -106,17 +116,9 @@ public class AddAnnouncementActivity extends AppCompatActivity {
 
         } else {
 
-            AnnRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                long numChild = dataSnapshot.getChildrenCount();
-                numChild++;
-                String annKey = Long.toString(numChild);
-
-
                 Announcement newAnn = new Announcement(title,author,body,date);
 
-                AnnRef.child(annKey).setValue(newAnn).addOnCompleteListener(new OnCompleteListener<Void>() {
+                AnnRef.child(keyDB).setValue(newAnn).addOnCompleteListener(new OnCompleteListener<Void>() {
 
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
@@ -124,23 +126,39 @@ public class AddAnnouncementActivity extends AppCompatActivity {
                         enableInput(true);
 
                         if (task.isSuccessful()) {
-                            Toast.makeText(getApplicationContext(), "Announcement added successfully", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), "Process completed successfully", Toast.LENGTH_LONG).show();
 
 
                         } else {
                             Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_LONG).show();
                         }
+
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
                     }
                 });
             }
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-            }
-        });
-
-
-        }
-
 
     }
-}
+
+    private void loadAnnInformation(){
+
+        AnnRef.child(keyDB).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Announcement ann = dataSnapshot.getValue(Announcement.class);
+                titleTV.setText(ann.getTitle());
+                authorTV.setText(ann.getAuthor());
+                bodyTV.setText(ann.getBody());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(getApplicationContext(), "There was an error fetching announcements", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+
+} //fin clase
