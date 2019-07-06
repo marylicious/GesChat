@@ -126,7 +126,7 @@ public class RegisterFragment extends Fragment {
 
        //Fields
         final String name = regFullName.getText().toString().trim();
-        final String email = regEmail.getText().toString().trim();
+        final String email = regEmail.getText().toString().trim().toLowerCase();
         final String idPerson = regId.getText().toString().trim();
         String password = regPassword.getText().toString().trim();
         String confPassword = regConfPassword.getText().toString().trim();

@@ -125,6 +125,7 @@
         android:layout_marginRight="8dp"
         android:src="@drawable/ic_add"
         app:backgroundTint="@color/yellow_logo"
+        android:visibility="gone"
         app:elevation="10dp"
         app:fabSize="normal" />
 
