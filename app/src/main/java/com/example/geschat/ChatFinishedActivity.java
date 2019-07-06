@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 
 import com.example.geschat.adapters.ChatFinishedAdapter;
+import com.example.geschat.adapters.ChatReviewAdapter;
 import com.example.geschat.models.Chat;
 
 import java.util.ArrayList;
@@ -34,6 +35,7 @@ public class ChatFinishedActivity extends AppCompatActivity implements ChatFinis
         // Se crea el adaptador pasando los chats de ejemplo
 
         ChatFinishedAdapter adapter = new ChatFinishedAdapter(chats,this);
+
 
         //Unimos el adaptador y el RecyclerView
         rvChats.setAdapter(adapter);
