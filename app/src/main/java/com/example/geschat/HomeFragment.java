@@ -34,7 +34,7 @@ public class HomeFragment extends Fragment implements AnnouncementAdapter.OnAnnL
     RecyclerView rvAnnouncements;
     AnnouncementAdapter annAdapter;
 
-
+//TODO agregar progressbar
 
     @Nullable
     @Override
@@ -84,7 +84,7 @@ public class HomeFragment extends Fragment implements AnnouncementAdapter.OnAnnL
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(getContext(), "There was an error", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "There was an error fetching announcements", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -100,7 +100,11 @@ public class HomeFragment extends Fragment implements AnnouncementAdapter.OnAnnL
     public void onAnnClick(int position) {
 
         Announcement ann = anns.get(position);
+
         Intent intent = new Intent(getActivity(), AnnouncementActivity.class);
+        intent.putExtra("title", ann.getTitle());
+        intent.putExtra("body", ann.getBody());
+        intent.putExtra("author", ann.getAuthor());
 
         startActivity(intent);
 

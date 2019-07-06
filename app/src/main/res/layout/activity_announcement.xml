@@ -64,7 +64,7 @@
                                     android:layout_height="wrap_content"
                                     android:fontFamily="sans-serif-light"
                                     android:paddingRight="10sp"
-                                    android:text="Anuncio:"
+                                    android:text="Announcement"
                                     android:textColor="@color/colorAccent"
                                     android:textSize="20sp"
                                     android:textStyle="bold" />
@@ -73,7 +73,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:fontFamily="sans-serif-light"
-                                    android:text="@string/frag_announcement_tittle"
+                                    android:id="@+id/acann_title"
                                     android:textColor="#000000"
                                     android:textSize="20sp"
                                     android:textStyle="bold" />
@@ -97,12 +97,13 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:fontFamily="sans-serif-light"
-                                    android:text="@string/frag_announcement_autor"
+                                    android:id="@+id/acann_author"
                                     android:textColor="#000000"
                                     android:textSize="18sp" />
                             </LinearLayout>
 
                             <TextView
+                                android:id="@+id/acann_body"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="10dp"
@@ -110,7 +111,6 @@
                                 android:layout_marginRight="10dp"
                                 android:fontFamily="sans-serif-light"
                                 android:paddingTop="10sp"
-                                android:text="@string/frag_announcement_msj_body"
                                 android:textColor="#000000"
                                 android:textSize="18sp" />
 
