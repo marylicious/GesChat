@@ -137,11 +137,20 @@ public class LoadUserInfo extends AppCompatActivity {
 
         FirebaseUser user = auth.getCurrentUser();
 
-        if (user != null && profileImageUrl != null) {
-            UserProfileChangeRequest profile = new UserProfileChangeRequest.Builder()
-                    .setDisplayName(displayName)
-                    .setPhotoUri(Uri.parse(profileImageUrl))
-                    .build();
+        if(user!=null ){
+            UserProfileChangeRequest profile;
+
+            if (profileImageUrl != null) {
+                    profile = new UserProfileChangeRequest.Builder()
+                        .setDisplayName(displayName)
+                        .setPhotoUri(Uri.parse(profileImageUrl))
+                        .build();
+
+            } else {
+                profile = new UserProfileChangeRequest.Builder()
+                        .setDisplayName(displayName)
+                        .build();
+            }
 
             user.updateProfile(profile)
                     .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -188,7 +197,6 @@ public class LoadUserInfo extends AppCompatActivity {
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             progressBar.setVisibility(View.GONE);
                             button.setEnabled(true);
-                            //profileImageUrl = taskSnapshot.getDownloadUrl().toString();
                             profileImageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                 @Override
                                 public void onSuccess(Uri uri) {
