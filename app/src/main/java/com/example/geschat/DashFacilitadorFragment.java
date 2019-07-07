@@ -23,7 +23,7 @@ public class DashFacilitadorFragment extends Fragment {
         incoming.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent in = new Intent(getActivity(), ChatReviewActivity.class);
+                Intent in = new Intent(getActivity(), ChatIncomingActivity.class);
                 startActivity(in);
             }
         });
@@ -34,7 +34,7 @@ public class DashFacilitadorFragment extends Fragment {
         revision.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent in = new Intent(getActivity(), ChatReviewActivity.class);
+                Intent in = new Intent(getActivity(), FacChatRevisionStatusActivity.class);
                 startActivity(in);
             }
         });
@@ -45,7 +45,7 @@ public class DashFacilitadorFragment extends Fragment {
         finished.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent in = new Intent(getActivity(), ChatReviewActivity.class);
+                Intent in = new Intent(getActivity(), FacChatsCompleted.class);
                 startActivity(in);
             }
         });
