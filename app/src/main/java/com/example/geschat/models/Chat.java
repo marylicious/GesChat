@@ -20,11 +20,18 @@ public class Chat {
 
     private String chatName,keyDB;
     private Boolean finished,proposalApproved, isFilled;
-    private String level,facilitator,presentation,comments,date,facilitatorName;
+    private String level,facilitator,presentation,comments,date,facilitatorName,status;
     int amountPeople;
     private ArrayList<String> waitList, assistanceList;
     private String startTime, endTime;
 
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getStatus() {
+        return status;
+    }
 
     public String getKeyDB() {
         return keyDB;
@@ -80,6 +87,33 @@ public class Chat {
         this.presentation = presentation;
         this.comments = comments;
         this.date = date;
+    }
+
+    //CHATREVIEW CONSTRUCTOR
+    public Chat(String chatName, Boolean finished, String facilitador, String nivel, String fecha ){
+        this.chatName = chatName;
+        this.finished = finished;
+        this.facilitatorName = facilitador;
+        this.level = nivel;
+        this.date = fecha;
+    }
+
+    //IncomingChat - FacChatCompleted
+    public Chat(int inscritos, String nombreChat, String nombreFacilitador, String nivel, String fecha) {
+        this.amountPeople = inscritos;
+        this.chatName = nombreChat;
+        this.facilitatorName = nombreFacilitador;
+        this.level = nivel;
+        this.date = fecha;
+    }
+
+    //ChatRevisionStatus
+    public Chat(String chatNombre, String facNombre, String fecha, String status, String nivel) {
+        this.chatName = chatNombre;
+        this.facilitatorName = facNombre;
+        this.date = fecha;
+        this.status = status;
+        this.level = nivel;
     }
 
 
@@ -183,7 +217,10 @@ public class Chat {
         ArrayList<Chat> chatList = new ArrayList<Chat>();
 
         for (int i = 1; i <= numChats; i++) {
+            //CHAT HOME PAGE
             chatList.add(new Chat("Chat #" + ++lastContactId, i % 2 == 0 ));
+            //REVIEW MODEL
+            chatList.add(new Chat("Chat #" + ++lastContactId, i % 2 == 0 ,"Random", "HardCore","01/6/2079"));
         }
 
         return chatList;

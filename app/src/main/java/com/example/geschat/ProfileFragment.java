@@ -14,16 +14,14 @@ import android.view.ViewGroup;
 
 import com.example.geschat.adapters.ProfileNextChatAdapter;
 import com.example.geschat.adapters.ProfilePreviousChatAdapter;
-import com.example.geschat.models.ProfileNextChatModel;
-import com.example.geschat.models.ProfilePreviousChatModel;
+import com.example.geschat.models.ProfileNextPrevChat;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class ProfileFragment extends Fragment {
 
-    ArrayList<ProfileNextChatModel> listaNext;
-    ArrayList<ProfilePreviousChatModel> listaPrev;
+    ArrayList<ProfileNextPrevChat> listaNext;
+    ArrayList<ProfileNextPrevChat> listaPrev;
 
 
     @Nullable
@@ -56,13 +54,13 @@ public class ProfileFragment extends Fragment {
 
     public void llenar(){
         for(int i = 1; i <= 6; i++){
-            listaNext.add(new ProfileNextChatModel("Chat # "+ i, "01/05/2000"));
+            listaNext.add(new ProfileNextPrevChat("Chat # "+ i, "01/05/2000"));
         }
 
     }
     public void llenar2(){
         for(int i = 1; i <= 6; i++){
-            listaPrev.add(new ProfilePreviousChatModel("asd","asd"));
+            listaPrev.add(new ProfileNextPrevChat("asd","asd"));
         }
 
     }

@@ -1,7 +1,6 @@
 package com.example.geschat.adapters;
 
 
-import android.media.Image;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,17 +10,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.geschat.R;
-import com.example.geschat.models.IncomingChatDetailsModel;
-
-import org.w3c.dom.Text;
+import com.example.geschat.models.UserListChatDetailsModel;
 
 import java.util.ArrayList;
 
 public class IncomingChatDetailsAdapter extends RecyclerView.Adapter<IncomingChatDetailsAdapter.ViewHolderCDIncoming> {
 
-    ArrayList<IncomingChatDetailsModel> listaIncoming;
+    ArrayList<UserListChatDetailsModel> listaIncoming;
 
-    public IncomingChatDetailsAdapter(ArrayList<IncomingChatDetailsModel> listaIncoming) {
+    public IncomingChatDetailsAdapter(ArrayList<UserListChatDetailsModel> listaIncoming) {
         this.listaIncoming = listaIncoming;
     }
 
@@ -34,8 +31,8 @@ public class IncomingChatDetailsAdapter extends RecyclerView.Adapter<IncomingCha
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolderCDIncoming viewHolderCDIncoming, int i) {
-        viewHolderCDIncoming.idUser.setText(listaIncoming.get(i).getIdUser());
-        viewHolderCDIncoming.pictUser.setImageResource(listaIncoming.get(i).getImg());
+        viewHolderCDIncoming.idUser.setText(listaIncoming.get(i).getId());
+        viewHolderCDIncoming.pictUser.setImageResource(listaIncoming.get(i).getFoto());
     }
 
     @Override

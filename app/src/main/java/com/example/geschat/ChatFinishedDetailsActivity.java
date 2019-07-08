@@ -8,7 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
 
 import com.example.geschat.adapters.FinishedDetailsUserListAdapter;
-import com.example.geschat.models.FinishedDetailsUserList;
+import com.example.geschat.models.UserListChatDetailsModel;
 
 import java.util.ArrayList;
 
@@ -16,7 +16,7 @@ public class ChatFinishedDetailsActivity extends AppCompatActivity {
 
     private TextView debugTextView;
 
-    ArrayList<FinishedDetailsUserList> listaUsuarios;
+    ArrayList<UserListChatDetailsModel> listaUsuarios;
     RecyclerView rv;
 
 
@@ -53,7 +53,7 @@ public class ChatFinishedDetailsActivity extends AppCompatActivity {
 
     private void llenarLista(){
         for (int i = 1; i <= 5; i++) {
-            listaUsuarios.add(new FinishedDetailsUserList("123" + i, R.mipmap.ic_launcherv2_round));
+            listaUsuarios.add(new UserListChatDetailsModel("123" + i, R.mipmap.ic_launcherv2_round));
         }
 
     }

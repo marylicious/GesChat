@@ -8,13 +8,13 @@ import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
 
 import com.example.geschat.adapters.FacChatCompletedDetailsAdapter;
-import com.example.geschat.models.FacChatCompletedDetailsModel;
+import com.example.geschat.models.UserListChatDetailsModel;
 
 import java.util.ArrayList;
 
 public class FacChatCompletedDetailsActivity extends AppCompatActivity {
 
-    ArrayList<FacChatCompletedDetailsModel> listaCompletados;
+    ArrayList<UserListChatDetailsModel> listaCompletados;
     RecyclerView rcv;
 
     @Override
@@ -63,7 +63,7 @@ public class FacChatCompletedDetailsActivity extends AppCompatActivity {
 
     public void llenar(){
         for(int i = 1; i <= 15 ; i++){
-            listaCompletados.add(new FacChatCompletedDetailsModel("123", R.mipmap.ic_launcherv2_round));
+            listaCompletados.add(new UserListChatDetailsModel("123", R.mipmap.ic_launcherv2_round));
         }
 
     }

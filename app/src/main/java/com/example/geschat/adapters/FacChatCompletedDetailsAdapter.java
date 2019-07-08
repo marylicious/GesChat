@@ -9,15 +9,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.geschat.R;
-import com.example.geschat.models.FacChatCompletedDetailsModel;
+import com.example.geschat.models.UserListChatDetailsModel;
 
 import java.util.ArrayList;
 
 public class FacChatCompletedDetailsAdapter extends RecyclerView.Adapter<FacChatCompletedDetailsAdapter.ViewHolderCompDetails> {
 
-    ArrayList<FacChatCompletedDetailsModel> listaDetail;
+    ArrayList<UserListChatDetailsModel> listaDetail;
 
-    public FacChatCompletedDetailsAdapter(ArrayList<FacChatCompletedDetailsModel> listaDetail) {
+    public FacChatCompletedDetailsAdapter(ArrayList<UserListChatDetailsModel> listaDetail) {
         this.listaDetail = listaDetail;
     }
 

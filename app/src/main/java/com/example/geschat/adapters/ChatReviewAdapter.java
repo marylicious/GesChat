@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.example.geschat.R;
 import com.example.geschat.models.Chat;
-import com.example.geschat.models.ChatReviewModel;
 
 import java.util.List;
 
@@ -21,11 +20,11 @@ import java.util.List;
 public class ChatReviewAdapter extends RecyclerView.Adapter<ChatReviewAdapter.ViewHolder>{
 
 
-    private List<ChatReviewModel> chats;
+    private List<Chat> chats;
     private OnChatListListener onChatListListener;
 
 
-    public ChatReviewAdapter(List<ChatReviewModel> chats, OnChatListListener onChatListListener) {
+    public ChatReviewAdapter(List<Chat> chats, OnChatListListener onChatListListener) {
         this.chats = chats;
         this.onChatListListener = onChatListListener;
     }
@@ -89,15 +88,15 @@ public class ChatReviewAdapter extends RecyclerView.Adapter<ChatReviewAdapter.Vi
     @Override
     public void onBindViewHolder(ChatReviewAdapter.ViewHolder viewHolder, int position) {
         // Get the data model based on position
-        ChatReviewModel chat1 = chats.get(position);
+        Chat chat1 = chats.get(position);
 
         // Set item views based on your views and data model
         TextView textView = viewHolder.chatNameTextView;
         textView.setText(chat1.getChatName());
 
-        viewHolder.facName.setText(chats.get(position).getFacilitador());
-        viewHolder.fecha.setText(chats.get(position).getFecha());
-        viewHolder.nivel.setText(chats.get(position).getNivel());
+        viewHolder.facName.setText(chats.get(position).getFacilitatorName());
+        viewHolder.fecha.setText(chats.get(position).getDate());
+        viewHolder.nivel.setText(chats.get(position).getLevel());
 
 
 

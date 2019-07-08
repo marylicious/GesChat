@@ -8,13 +8,13 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 
 import com.example.geschat.adapters.FacChatCompletedAdapter;
-import com.example.geschat.models.FacChatCompletedModel;
+import com.example.geschat.models.Chat;
 
 import java.util.ArrayList;
 
 public class FacChatsCompleted extends AppCompatActivity implements FacChatCompletedAdapter.OnCompletedListener {
 
-    ArrayList<FacChatCompletedModel> listaCompletados;
+    ArrayList<Chat> listaCompletados;
     RecyclerView rcv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,20 +38,20 @@ public class FacChatsCompleted extends AppCompatActivity implements FacChatCompl
 
     public void llenar(){
         for(int i = 1; i<= 20 ;i++){
-            listaCompletados.add(new FacChatCompletedModel("Chat # ", "Tu", "Basico", "1234543","6"));
+            listaCompletados.add(new Chat(6,"Chat # ", "Tu", "Basico", "1234543"));
         }
     }
 
     @Override
     public void onCompletedClick(int position) {
-        FacChatCompletedModel fCC = listaCompletados.get(position);
+        Chat fCC = listaCompletados.get(position);
 
         Intent intent = new Intent(this, FacChatCompletedDetailsActivity.class);
         intent.putExtra("title", fCC.getChatName());
-        intent.putExtra("facilitador", fCC.getFacName());
-        intent.putExtra("fecha", fCC.getFecha());
-        intent.putExtra("nivel", fCC.getNivel());
-        intent.putExtra("inscritos", fCC.getInscritos());
+        intent.putExtra("facilitador", fCC.getFacilitatorName());
+        intent.putExtra("fecha", fCC.getDate());
+        intent.putExtra("nivel", fCC.getLevel());
+        intent.putExtra("inscritos", Integer.toString(fCC.getAmountPeople()));
 
 
 

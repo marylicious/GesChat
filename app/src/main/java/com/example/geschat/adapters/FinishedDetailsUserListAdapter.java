@@ -9,15 +9,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.geschat.R;
-import com.example.geschat.models.FinishedDetailsUserList;
+import com.example.geschat.models.UserListChatDetailsModel;
 
 import java.util.ArrayList;
 
 public class FinishedDetailsUserListAdapter extends RecyclerView.Adapter<FinishedDetailsUserListAdapter.ViewHolderUserList> {
 
-    ArrayList<FinishedDetailsUserList> listaUsuario;
+    ArrayList<UserListChatDetailsModel> listaUsuario;
 
-    public FinishedDetailsUserListAdapter(ArrayList<FinishedDetailsUserList> listaUsuario) {
+    public FinishedDetailsUserListAdapter(ArrayList<UserListChatDetailsModel> listaUsuario) {
         this.listaUsuario = listaUsuario;
     }
 

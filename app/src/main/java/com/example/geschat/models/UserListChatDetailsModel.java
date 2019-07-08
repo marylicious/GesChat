@@ -1,18 +1,15 @@
 package com.example.geschat.models;
 
-public class FinishedDetailsUserList {
-
+public class UserListChatDetailsModel {
     private String id;
     private int foto;
 
-    public FinishedDetailsUserList(String id, int foto) {
+    public UserListChatDetailsModel(String id, int foto) {
         this.id = id;
         this.foto = foto;
     }
 
-    public FinishedDetailsUserList(){
-
-    }
+    public UserListChatDetailsModel(){}
 
     public String getId() {
         return id;

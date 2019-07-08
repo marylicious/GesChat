@@ -8,17 +8,15 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.geschat.R;
-import com.example.geschat.models.FacChatRevisionStatusModel;
-
-import org.w3c.dom.Text;
+import com.example.geschat.models.Chat;
 
 import java.util.ArrayList;
 
 public class FacChatRevisionStatusAdapter extends RecyclerView.Adapter<FacChatRevisionStatusAdapter.ViewHolderFCRS> {
-   ArrayList<FacChatRevisionStatusModel> listaStatus;
+   ArrayList<Chat> listaStatus;
    private OnStatusListener onStatusListener;
 
-    public FacChatRevisionStatusAdapter(ArrayList<FacChatRevisionStatusModel> listaStatus, OnStatusListener onStatusListener) {
+    public FacChatRevisionStatusAdapter(ArrayList<Chat> listaStatus, OnStatusListener onStatusListener) {
         this.listaStatus = listaStatus;
         this.onStatusListener = onStatusListener;
     }
@@ -32,11 +30,11 @@ public class FacChatRevisionStatusAdapter extends RecyclerView.Adapter<FacChatRe
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolderFCRS viewHolderFCRS, int i) {
-        viewHolderFCRS.chatNombre.setText(listaStatus.get(i).getChatNombre());
-        viewHolderFCRS.facNombre.setText(listaStatus.get(i).getFacNombre());
+        viewHolderFCRS.chatNombre.setText(listaStatus.get(i).getChatName());
+        viewHolderFCRS.facNombre.setText(listaStatus.get(i).getFacilitatorName());
         viewHolderFCRS.status.setText(listaStatus.get(i).getStatus());
-        viewHolderFCRS.nivel.setText(listaStatus.get(i).getNivel());
-        viewHolderFCRS.fecha.setText(listaStatus.get(i).getFecha());
+        viewHolderFCRS.nivel.setText(listaStatus.get(i).getLevel());
+        viewHolderFCRS.fecha.setText(listaStatus.get(i).getDate());
     }
 
     @Override
