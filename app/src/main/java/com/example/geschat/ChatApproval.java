@@ -12,12 +12,25 @@ public class ChatApproval extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_approval);
 
-        TextView debugTextView= (TextView) findViewById(R.id.debugtv);
+
         Bundle bundle = getIntent().getExtras();
 
         if(bundle != null) {
             String str =(String) bundle.getString("chatname");
+            String facilitador = bundle.getString("facilitador");
+            String fecha = bundle.getString("fecha");
+            String nivel = bundle.getString("nivel");
+
+            TextView debugTextView= (TextView) findViewById(R.id.debugtv);
+            TextView facilitadortv = findViewById(R.id.chat_approval_facilitador);
+            TextView fechatv = findViewById(R.id.chat_approval_fecha);
+            TextView niveltv = findViewById(R.id.chat_approval_nivel);
+
             debugTextView.setText(str);
+            facilitadortv.setText(facilitador);
+            fechatv.setText(fecha);
+            niveltv.setText(nivel);
+
         }
 
 

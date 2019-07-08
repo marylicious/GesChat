@@ -49,8 +49,19 @@ public class ChatIncomingActivity extends AppCompatActivity implements IncomingC
 
     @Override
     public void onIncomingChatClick(int position) {
-        listaChatsProximos.get(position);
+
         Intent intent = new Intent(this, IncomingChatDetailsActivity.class);
+
+        IncomingChatModel prox = listaChatsProximos.get(position);
+        intent.putExtra("title", prox.getNombreChat());
+        intent.putExtra("fecha", prox.getFecha());
+        intent.putExtra("inscritos", prox.getInscritos());
+        intent.putExtra("nivel", prox.getNivel());
+        intent.putExtra("facilitador", prox.getNombreFacilitador());
+
+
+
+
         startActivity(intent);
     }
 }

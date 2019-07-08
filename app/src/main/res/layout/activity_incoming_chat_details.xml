@@ -68,6 +68,7 @@
                             android:text="Dificultad:" />
 
                         <TextView
+                            android:id="@+id/chat_incoming_details_nivel"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="15dp"
@@ -95,6 +96,7 @@
                             android:text="Facilitador:" />
 
                         <TextView
+                            android:id="@+id/chat_incoming_details_facilitador"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="15dp"
@@ -122,6 +124,7 @@
                             android:text="Fecha:" />
 
                         <TextView
+                            android:id="@+id/chat_incoming_details_fecha"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="15dp"
@@ -203,6 +206,7 @@
                             android:text="Numero de participantes:" />
 
                         <TextView
+                            android:id="@+id/chat_incoming_details_inscritos"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="15dp"

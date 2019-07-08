@@ -5,12 +5,14 @@ public class FacChatCompletedModel {
     private String facName;
     private String nivel;
     private String fecha;
+    private String inscritos;
 
-    public FacChatCompletedModel(String chatName, String facName, String nivel, String fecha) {
+    public FacChatCompletedModel(String chatName, String facName, String nivel, String fecha, String inscritos) {
         this.chatName = chatName;
         this.facName = facName;
         this.nivel = nivel;
         this.fecha = fecha;
+        this.inscritos = inscritos;
     }
     public FacChatCompletedModel(){}
 
@@ -44,5 +46,13 @@ public class FacChatCompletedModel {
 
     public void setFecha(String fecha) {
         this.fecha = fecha;
+    }
+
+    public String getInscritos() {
+        return inscritos;
+    }
+
+    public void setInscritos(String inscritos) {
+        this.inscritos = inscritos;
     }
 }

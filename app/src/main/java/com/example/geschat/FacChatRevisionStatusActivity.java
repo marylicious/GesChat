@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 
 import com.example.geschat.adapters.FacChatRevisionStatusAdapter;
+import com.example.geschat.models.FacChatCompletedDetailsModel;
 import com.example.geschat.models.FacChatRevisionStatusModel;
 
 import java.util.ArrayList;
@@ -44,8 +45,14 @@ public class FacChatRevisionStatusActivity extends AppCompatActivity implements 
 
     @Override
     public void onStatusClick(int position) {
-        listaStatus.get(position);
+        FacChatRevisionStatusModel Fc = listaStatus.get(position);
+
         Intent intent = new Intent(this,FacChatRevisionStatusDetails.class);
+        intent.putExtra("title", Fc.getChatNombre());
+        intent.putExtra("facilitador", Fc.getFacNombre());
+        intent.putExtra("fecha", Fc.getFecha());
+        intent.putExtra("nivel", Fc.getNivel());
+
         startActivity(intent);
     }
 }

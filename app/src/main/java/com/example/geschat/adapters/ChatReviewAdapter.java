@@ -12,6 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.example.geschat.R;
 import com.example.geschat.models.Chat;
+import com.example.geschat.models.ChatReviewModel;
+
 import java.util.List;
 
 
@@ -19,11 +21,11 @@ import java.util.List;
 public class ChatReviewAdapter extends RecyclerView.Adapter<ChatReviewAdapter.ViewHolder>{
 
 
-    private List<Chat> chats;
+    private List<ChatReviewModel> chats;
     private OnChatListListener onChatListListener;
 
 
-    public ChatReviewAdapter(List<Chat> chats, OnChatListListener onChatListListener) {
+    public ChatReviewAdapter(List<ChatReviewModel> chats, OnChatListListener onChatListListener) {
         this.chats = chats;
         this.onChatListListener = onChatListListener;
     }
@@ -36,12 +38,16 @@ public class ChatReviewAdapter extends RecyclerView.Adapter<ChatReviewAdapter.Vi
 
         OnChatListListener onChatListener;
 
+        TextView facName, fecha, nivel;
 
         public ViewHolder(View itemView, OnChatListListener onChatListener) {
 
             super(itemView);
 
             chatNameTextView = (TextView) itemView.findViewById(R.id.chatname_row);
+            facName = (TextView) itemView.findViewById(R.id.chat_review_facilitador);
+            fecha = (TextView) itemView.findViewById(R.id.chat_review_fecha);
+            nivel = (TextView) itemView.findViewById(R.id.chat_review_nivel);
 
             this.onChatListener = onChatListener;
 
@@ -83,11 +89,15 @@ public class ChatReviewAdapter extends RecyclerView.Adapter<ChatReviewAdapter.Vi
     @Override
     public void onBindViewHolder(ChatReviewAdapter.ViewHolder viewHolder, int position) {
         // Get the data model based on position
-        Chat chat1 = chats.get(position);
+        ChatReviewModel chat1 = chats.get(position);
 
         // Set item views based on your views and data model
         TextView textView = viewHolder.chatNameTextView;
         textView.setText(chat1.getChatName());
+
+        viewHolder.facName.setText(chats.get(position).getFacilitador());
+        viewHolder.fecha.setText(chats.get(position).getFecha());
+        viewHolder.nivel.setText(chats.get(position).getNivel());
 
 
 

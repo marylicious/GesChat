@@ -49,6 +49,7 @@
                     android:text="Dificultad:" />
 
                 <TextView
+                    android:id="@+id/chat_approval_nivel"
                     android:layout_marginLeft="15dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -76,6 +77,7 @@
                     android:text="Facilitador:" />
 
                 <TextView
+                    android:id="@+id/chat_approval_facilitador"
                     android:layout_marginLeft="15dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -103,6 +105,7 @@
                     android:text="Fecha:" />
 
                 <TextView
+                    android:id="@+id/chat_approval_fecha"
                     android:layout_marginLeft="15dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

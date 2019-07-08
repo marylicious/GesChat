@@ -38,14 +38,23 @@ public class FacChatsCompleted extends AppCompatActivity implements FacChatCompl
 
     public void llenar(){
         for(int i = 1; i<= 20 ;i++){
-            listaCompletados.add(new FacChatCompletedModel("Chat # ", "Tu", "Basico", "1234543"));
+            listaCompletados.add(new FacChatCompletedModel("Chat # ", "Tu", "Basico", "1234543","6"));
         }
     }
 
     @Override
     public void onCompletedClick(int position) {
-        listaCompletados.get(position);
+        FacChatCompletedModel fCC = listaCompletados.get(position);
+
         Intent intent = new Intent(this, FacChatCompletedDetailsActivity.class);
+        intent.putExtra("title", fCC.getChatName());
+        intent.putExtra("facilitador", fCC.getFacName());
+        intent.putExtra("fecha", fCC.getFecha());
+        intent.putExtra("nivel", fCC.getNivel());
+        intent.putExtra("inscritos", fCC.getInscritos());
+
+
+
         startActivity(intent);
     }
 }

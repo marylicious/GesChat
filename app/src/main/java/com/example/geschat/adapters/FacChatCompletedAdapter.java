@@ -37,6 +37,7 @@ public class FacChatCompletedAdapter extends RecyclerView.Adapter<FacChatComplet
         viewHolderCompleted.facName.setText(listaCompletados.get(i).getFacName());
         viewHolderCompleted.fecha.setText(listaCompletados.get(i).getFecha());
         viewHolderCompleted.nivel.setText(listaCompletados.get(i).getNivel());
+        viewHolderCompleted.inscritos.setText(listaCompletados.get(i).getInscritos());
     }
 
     @Override
@@ -46,7 +47,7 @@ public class FacChatCompletedAdapter extends RecyclerView.Adapter<FacChatComplet
 
     public class ViewHolderCompleted extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        TextView chatName, facName, fecha,nivel;
+        TextView chatName, facName, fecha,nivel,inscritos;
         OnCompletedListener onCompletedListener;
 
         public ViewHolderCompleted(@NonNull View itemView,OnCompletedListener onCompletedListener) {
@@ -55,6 +56,7 @@ public class FacChatCompletedAdapter extends RecyclerView.Adapter<FacChatComplet
             facName = (TextView) itemView.findViewById(R.id.completedChat_name);
             fecha = (TextView) itemView.findViewById(R.id.completedChat_date);
             nivel = (TextView) itemView.findViewById(R.id.completedChat_level);
+            inscritos = (TextView) itemView.findViewById(R.id.completedChat_inscritos);
             this.onCompletedListener = onCompletedListener;
 
             itemView.setOnClickListener(this);
