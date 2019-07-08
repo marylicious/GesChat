@@ -51,7 +51,7 @@ public class ChatFinishedActivity extends AppCompatActivity implements ChatFinis
         Chat chat = chats.get(position);
 
         //Navegaremos a nueva Activity cuando el user toque
-        Intent intent = new Intent(this, ChatActivity.class);
+        Intent intent = new Intent(this, ChatFinishedDetailsActivity.class);
 
         //Esto es para debuggear, se debe parsear y enviar un objeto chat
         intent.putExtra("chatname", chat.getChatName());

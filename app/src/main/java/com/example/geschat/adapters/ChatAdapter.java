@@ -13,6 +13,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.example.geschat.R;
 import com.example.geschat.models.Chat;
+
+
 import java.util.List;
 
 
@@ -33,7 +35,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder>{
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        public TextView chatNameTextView, facilitatorNameTv, levelTv,dateTv, numTv;
+        public TextView chatNameTextView, facilitatorNameTv, levelTv,dateTv,numTv;
         public Button messageButton;
         OnChatListListener onChatListener;
 
@@ -103,10 +105,11 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder>{
         button.setBackgroundColor(chat1.getFilled() ? Color.parseColor("#16cc4c") : Color.parseColor("#e5322e"));
         button.setEnabled(false);
         textView.setText(chat1.getChatName());
-        facilitator.setText("Facilitator "+chat1.getFacilitator());
-        level.setText("Level "+chat1.getLevel());
-        num.setText(chat1.getAmountPeople());
-        date.setText("Date"+ chat1.getDateEpoch());
+
+        facilitator.setText("Facilitator: "+chat1.getFacilitatorName());
+        level.setText("Level: "+chat1.getLevel());
+        num.setText(Integer.toString(chat1.getAmountPeople()));
+        date.setText("Date:  "+ chat1.getDate());
 
     }
 
@@ -116,6 +119,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder>{
     public int getItemCount() {
         return chats.size();
     }
+
 
 
 }

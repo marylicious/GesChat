@@ -67,20 +67,16 @@ public class RolChangeActivity extends AppCompatActivity {
         emailQuery.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if(dataSnapshot!=null) {
+                if(dataSnapshot.exists()) {
                     for (DataSnapshot data : dataSnapshot.getChildren()) {
-                        if (data != null) {
                             String keys = data.getKey();
                             changeRoleUserWithKey(keys, newRole);
-                        } else {
-
-                            Toast.makeText(getApplicationContext(), "Error fetching user, please introduce a valid email", Toast.LENGTH_LONG).show();
-                        }
-
                     }
-                } else {
+                }
+                else {
                     Toast.makeText(getApplicationContext(), "Error fetching user, please introduce a valid email", Toast.LENGTH_LONG).show();
                 }
+
                 btn.setEnabled(true);
             }
 

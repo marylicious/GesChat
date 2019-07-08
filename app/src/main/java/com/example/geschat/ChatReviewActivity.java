@@ -9,12 +9,13 @@ import android.support.v7.widget.Toolbar;
 
 import com.example.geschat.adapters.ChatReviewAdapter;
 import com.example.geschat.models.Chat;
+import com.example.geschat.models.ChatReviewModel;
 
 import java.util.ArrayList;
 
 public class ChatReviewActivity extends AppCompatActivity implements ChatReviewAdapter.OnChatListListener{
 
-    ArrayList<Chat> chats;
+    ArrayList<ChatReviewModel> chats;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +30,7 @@ public class ChatReviewActivity extends AppCompatActivity implements ChatReviewA
 
         //Populamos unos ejemplos de chat
 
-        chats = Chat.createChatList(20);
+        chats = ChatReviewModel.createChatList(20);
 
         // Se crea el adaptador pasando los chats de ejemplo
 
@@ -46,13 +47,17 @@ public class ChatReviewActivity extends AppCompatActivity implements ChatReviewA
     public void onChatClick(int position){
 
         //Obtengo el chat que estoy tocando
-        Chat chat = chats.get(position);
+        ChatReviewModel chat = chats.get(position);
 
         //Navegaremos a nueva Activity cuando el user toque
         Intent intent = new Intent(this, ChatApproval.class);
 
         //Esto es para debuggear, se debe parsear y enviar un objeto chat
         intent.putExtra("chatname", chat.getChatName());
+        intent.putExtra("facilitador",chat.getFacilitador());
+        intent.putExtra("fecha",chat.getFecha());
+        intent.putExtra("nivel",chat.getNivel());
+
 
 
         startActivity(intent);

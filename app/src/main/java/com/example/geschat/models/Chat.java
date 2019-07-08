@@ -1,4 +1,11 @@
 package com.example.geschat.models;
+import android.support.annotation.NonNull;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -13,11 +20,10 @@ public class Chat {
 
     private String chatName,keyDB;
     private Boolean finished,proposalApproved, isFilled;
-    private String level,facilitator,presentation,comments,dateEpoch;
-    private Date date;
+    private String level,facilitator,presentation,comments,date,facilitatorName;
     int amountPeople;
     private ArrayList<String> waitList, assistanceList;
-    private String day, startTime, endTime;
+    private String startTime, endTime;
 
 
     public String getKeyDB() {
@@ -28,17 +34,17 @@ public class Chat {
         this.keyDB = keyDB;
     }
 
-    public String getDateEpoch() {
-        return dateEpoch;
-    }
-
-    public void setDateEpoch(String dateEpoch) {
-        this.dateEpoch = dateEpoch;
-    }
-
     public Chat(String chatName, Boolean finished){
         this.chatName = chatName;
         this.finished = finished;
+    }
+
+    public String getFacilitatorName() {
+        return facilitatorName;
+    }
+
+    public void setFacilitatorName(String facilitatorName) {
+        this.facilitatorName = facilitatorName;
     }
 
     public int getAmountPeople() {
@@ -49,11 +55,11 @@ public class Chat {
         this.amountPeople = amountPeople;
     }
 
-    //Chat chat = new Chat(assistanceListKeys,approvedProposal,dateEpoch,facilitator,comments,finished,isFilled,presentation,chatName);
-    public Chat(ArrayList<String> assistanceList, Boolean proposalApproved, String dateEpoch, String facilitator, String comments, Boolean finished, Boolean isFilled, String presentation, String chatName, String level, int amountPeople){
+
+    public Chat(ArrayList<String> assistanceList, Boolean proposalApproved, String date, String facilitator, String comments, Boolean finished, Boolean isFilled, String presentation, String chatName, String level, int amountPeople){
         this.assistanceList = assistanceList;
         this.proposalApproved = proposalApproved;
-        this.dateEpoch = dateEpoch;
+        this.date = date;
         this.facilitator = facilitator;
         this.comments = comments;
         this.finished = finished;
@@ -64,7 +70,7 @@ public class Chat {
         this.amountPeople = amountPeople;
     }
 
-    public Chat(String chatName, Boolean finished, Boolean proposalApproved, Boolean isFilled, String level, String facilitator, String presentation, String comments, Date date) {
+    public Chat(String chatName, Boolean finished, Boolean proposalApproved, Boolean isFilled, String level, String facilitator, String presentation, String comments, String date) {
         this.chatName = chatName;
         this.finished = finished;
         this.proposalApproved = proposalApproved;
@@ -137,11 +143,11 @@ public class Chat {
         this.comments = comments;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -183,30 +189,39 @@ public class Chat {
         return chatList;
     }
 
-    public void convertToLegibleDate(){
-        int hour = 3600*1000;
-
-        int oldHour= Integer.parseInt(dateEpoch);
-
-        int newHour = hour + oldHour;
-
-        Date date = new Date(oldHour);
-        DateFormat formatDay = new SimpleDateFormat("dd/MM/yyyy");
-        DateFormat formatHour =  new SimpleDateFormat("HH:mm:ss");
-        Date newDate = new Date(newHour);
-
-
-        formatDay.setTimeZone(TimeZone.getTimeZone("Venezuela Standard Time"));
-        formatHour.setTimeZone(TimeZone.getTimeZone("Venezuela Standard Time"));
-        day = formatDay.format(date);
-        startTime= formatHour.format(date);
-        endTime = formatHour.format(newDate);
-
-
-        //formatDay.setTimeZone(TimeZone.getTimeZone("Australia/Sydney"));
-        //formatted = formatDay.format(date);
-        //System.out.println(formatted);
+    public String getStartTime() {
+        return startTime;
     }
+
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
+    }
+
+    public String getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
+    }
+
+
+    /*public void setFacilitatorNameFromDB(){
+
+        FirebaseDatabase.getInstance().getReference().child("Users").child(facilitator).child("name").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                facilitatorName = dataSnapshot.getValue(String.class);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+    }*/
+
 
 
 

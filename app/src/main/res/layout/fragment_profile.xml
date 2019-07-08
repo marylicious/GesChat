@@ -273,143 +273,27 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:paddingTop="15dp"
+                        android:paddingBottom="15dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Next Chats"
                         android:textColor="@color/headings"
                         android:textSize="13sp" />
-
-                    <LinearLayout
+                    <android.support.v7.widget.RecyclerView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:gravity="end"
-                        android:orientation="horizontal">
+                        android:id="@+id/profile_next_rv">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="8dp"
-                            android:drawableLeft="@drawable/ic_chat_dark"
-                            android:drawablePadding="10dp"
-                            android:fontFamily="sans-serif-light"
-                            android:paddingRight="15dp"
-                            android:text="@string/frag_prof_chat_name"
-                            android:textColor="#000000"
-                            android:textSize="18sp" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="8dp"
-                            android:drawablePadding="10dp"
-                            android:fontFamily="sans-serif-light"
-                            android:text="@string/frag_prof_chat_date"
-                            android:textColor="@color/colorAccent"
-                            android:textSize="14sp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:gravity="end"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="8dp"
-                            android:drawableLeft="@drawable/ic_chat_dark"
-                            android:drawablePadding="10dp"
-                            android:fontFamily="sans-serif-light"
-                            android:paddingRight="15dp"
-                            android:text="@string/frag_prof_chat_name"
-                            android:textColor="#000000"
-                            android:textSize="18sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="8dp"
-                            android:drawablePadding="10dp"
-                            android:fontFamily="sans-serif-light"
-                            android:text="@string/frag_prof_chat_date"
-                            android:textColor="@color/colorAccent"
-                            android:textSize="14sp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:gravity="end"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="8dp"
-                            android:drawableLeft="@drawable/ic_chat_dark"
-                            android:drawablePadding="10dp"
-                            android:fontFamily="sans-serif-light"
-                            android:paddingRight="15dp"
-                            android:text="@string/frag_prof_chat_name"
-                            android:textColor="#000000"
-                            android:textSize="18sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="8dp"
-                            android:drawablePadding="10dp"
-                            android:fontFamily="sans-serif-light"
-                            android:text="@string/frag_prof_chat_date"
-                            android:textColor="@color/colorAccent"
-                            android:textSize="14sp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:gravity="end"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="8dp"
-                            android:drawableLeft="@drawable/ic_chat_dark"
-                            android:drawablePadding="10dp"
-                            android:fontFamily="sans-serif-light"
-                            android:paddingRight="15dp"
-                            android:text="@string/frag_prof_chat_name"
-                            android:textColor="#000000"
-                            android:textSize="18sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="8dp"
-                            android:drawablePadding="10dp"
-                            android:fontFamily="sans-serif-light"
-                            android:text="@string/frag_prof_chat_date"
-                            android:textColor="@color/colorAccent"
-                            android:textSize="14sp" />
-
-                    </LinearLayout>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="15dp"
-                        android:background="@color/grey" />
+                    </android.support.v7.widget.RecyclerView>
 
                 </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/grey" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -417,172 +301,21 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:paddingTop="15dp"
+                        android:paddingBottom="15dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Lasts Chats"
+                        android:text="Previous Chats"
                         android:textColor="@color/headings"
                         android:textSize="13sp" />
 
-                    <LinearLayout
+                    <android.support.v7.widget.RecyclerView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:gravity="end"
-                        android:orientation="horizontal">
+                        android:id="@+id/profile_previous_rv">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="8dp"
-                            android:drawableLeft="@drawable/ic_chat_dark"
-                            android:drawablePadding="10dp"
-                            android:fontFamily="sans-serif-light"
-                            android:paddingRight="15dp"
-                            android:text="@string/frag_prof_chat_name"
-                            android:textColor="#000000"
-                            android:textSize="18sp" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="8dp"
-                            android:drawablePadding="10dp"
-                            android:fontFamily="sans-serif-light"
-                            android:text="@string/frag_prof_chat_date"
-                            android:textColor="@color/colorAccent"
-                            android:textSize="14sp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:gravity="end"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="8dp"
-                            android:drawableLeft="@drawable/ic_chat_dark"
-                            android:drawablePadding="10dp"
-                            android:fontFamily="sans-serif-light"
-                            android:paddingRight="15dp"
-                            android:text="@string/frag_prof_chat_name"
-                            android:textColor="#000000"
-                            android:textSize="18sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="8dp"
-                            android:drawablePadding="10dp"
-                            android:fontFamily="sans-serif-light"
-                            android:text="@string/frag_prof_chat_date"
-                            android:textColor="@color/colorAccent"
-                            android:textSize="14sp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:gravity="end"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="8dp"
-                            android:drawableLeft="@drawable/ic_chat_dark"
-                            android:drawablePadding="10dp"
-                            android:fontFamily="sans-serif-light"
-                            android:paddingRight="15dp"
-                            android:text="@string/frag_prof_chat_name"
-                            android:textColor="#000000"
-                            android:textSize="18sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="8dp"
-                            android:drawablePadding="10dp"
-                            android:fontFamily="sans-serif-light"
-                            android:text="@string/frag_prof_chat_date"
-                            android:textColor="@color/colorAccent"
-                            android:textSize="14sp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:gravity="end"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="8dp"
-                            android:drawableLeft="@drawable/ic_chat_dark"
-                            android:drawablePadding="10dp"
-                            android:fontFamily="sans-serif-light"
-                            android:paddingRight="15dp"
-                            android:text="@string/frag_prof_chat_name"
-                            android:textColor="#000000"
-                            android:textSize="18sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="8dp"
-                            android:drawablePadding="10dp"
-                            android:fontFamily="sans-serif-light"
-                            android:text="@string/frag_prof_chat_date"
-                            android:textColor="@color/colorAccent"
-                            android:textSize="14sp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:gravity="end"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="8dp"
-                            android:drawableLeft="@drawable/ic_chat_dark"
-                            android:drawablePadding="10dp"
-                            android:fontFamily="sans-serif-light"
-                            android:paddingRight="15dp"
-                            android:text="@string/frag_prof_chat_name"
-                            android:textColor="#000000"
-                            android:textSize="18sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="8dp"
-                            android:drawablePadding="10dp"
-                            android:fontFamily="sans-serif-light"
-                            android:text="@string/frag_prof_chat_date"
-                            android:textColor="@color/colorAccent"
-                            android:textSize="14sp" />
-
-                    </LinearLayout>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="15dp"
-                        android:background="@color/grey" />
+                    </android.support.v7.widget.RecyclerView>
 
                 </LinearLayout>
 

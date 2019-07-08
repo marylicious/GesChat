@@ -13,7 +13,7 @@ public class ChatActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
 
-        chatTitleTv= (TextView) findViewById(R.id.chat_title_name);
+        chatTitleTv= findViewById(R.id.chat_title_name);
         Bundle bundle = getIntent().getExtras();
 
         //header icon , color

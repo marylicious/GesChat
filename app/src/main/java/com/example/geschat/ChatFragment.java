@@ -61,11 +61,10 @@ public class ChatFragment extends Fragment implements ChatAdapter.OnChatListList
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 chats = new ArrayList<>();
+                ArrayList<String> assistanceListKeys = new ArrayList<>();
 
                 for(DataSnapshot dataSnapshotChat: dataSnapshot.getChildren())
                 {
-
-                    ArrayList<String> assistanceListKeys = new ArrayList<>();
                     Boolean approvedProposal = dataSnapshotChat.child("approvedProposal").getValue(Boolean.class);
                     String dateEpoch = dataSnapshotChat.child("date").getValue(String.class);
                     String facilitator= dataSnapshotChat.child("facilitator").getValue(String.class);
@@ -81,16 +80,30 @@ public class ChatFragment extends Fragment implements ChatAdapter.OnChatListList
                         assistanceListKeys.add(userKey);
                     }
 
-                    int amountPeople = assistanceListKeys.size();
-                    //fetchFacilitator name
-                    //convert date to date legible
+                    //int amountPeople = assistanceListKeys.size();
+                    int amountPeople = 9;
 
-                    Chat chat = new Chat(assistanceListKeys,approvedProposal,dateEpoch,facilitator,comments,finished,isFilled,presentation,chatName,level, amountPeople);
+
+
+
+                    final Chat chat = new Chat(assistanceListKeys,approvedProposal,dateEpoch,facilitator,comments,finished,isFilled,presentation,chatName,level, amountPeople);
                     chat.setKeyDB(dataSnapshotChat.getKey());
-                    chats.add(chat);
-                }
 
-               setChatAdapter();
+                    FirebaseDatabase.getInstance().getReference().child("Users").child(facilitator).child("name").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            chat.setFacilitatorName(dataSnapshot.getValue(String.class));
+                            chats.add(chat);
+                            setChatAdapter();
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+
+                }
 
             }
 
@@ -126,6 +139,7 @@ public class ChatFragment extends Fragment implements ChatAdapter.OnChatListList
         ChatAdapter adapter = new ChatAdapter(chats,this);
         rvChats.setAdapter(adapter);
     }
+
 
 
 }
