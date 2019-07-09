@@ -1,5 +1,6 @@
 package com.example.geschat.models;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 //Adapter de RecyclerView del fragment de Chats
 
@@ -249,6 +250,15 @@ public class Chat {
     }*/
 
 
+
+    //TESTING
+   public static Comparator<Chat> ByStatus = new Comparator<Chat>() {
+        @Override
+        public int compare(Chat o1, Chat o2) {
+
+            return (o1.finished).compareTo(true);
+        }
+    };
 
 
 

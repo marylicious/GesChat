@@ -125,6 +125,7 @@ public class ChatFragment extends Fragment implements ChatAdapter.OnChatListList
             }
         });
 
+       // sortview();
 
         return view;
     }
@@ -156,6 +157,10 @@ public class ChatFragment extends Fragment implements ChatAdapter.OnChatListList
         Collections.reverse(chats);
         ChatAdapter adapter = new ChatAdapter(chats,this);
         rvChats.setAdapter(adapter);
+    }
+
+    public void sortview(){
+        Collections.sort(chats,Chat.ByStatus);
     }
 
 
