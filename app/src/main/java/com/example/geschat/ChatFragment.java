@@ -81,7 +81,7 @@ public class ChatFragment extends Fragment implements ChatAdapter.OnChatListList
 
                     int amountPeople;
 
-                    if(dataSnapshot.child("assistanceList").exists()){
+                    if(dataSnapshot.hasChild("assistanceList")){
 
                         for(DataSnapshot userUID: dataSnapshot.child("assistanceList").getChildren()){
                             String userKey = userUID.getValue(String.class);
@@ -91,7 +91,7 @@ public class ChatFragment extends Fragment implements ChatAdapter.OnChatListList
                         amountPeople = assistanceListKeys.size();
 
                     } else {
-                        amountPeople=0;
+                        amountPeople=13;
                     }
 
 

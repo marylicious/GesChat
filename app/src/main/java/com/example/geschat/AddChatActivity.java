@@ -29,7 +29,7 @@ public class AddChatActivity extends AppCompatActivity {
     String title,level,facilitator,date,startHour,endHour,presentation,comments, facilitatorUID;
     FloatingActionButton sendbtn;
     Boolean newChat;
-    DatabaseReference db, chatRef;
+    DatabaseReference db, chatRef, chatPush;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -161,10 +161,12 @@ public class AddChatActivity extends AppCompatActivity {
         presentation = presentationTV.getText().toString().trim();
         comments = commentsTV.getText().toString().trim();
 
+        //deshabilitar input
 
 
-        Boolean valid = validateInput();
-        //Boolean valid = true;
+
+        //Boolean valid = validateInput();
+        Boolean valid = true;
 
         if(valid){
 
@@ -180,8 +182,6 @@ public class AddChatActivity extends AppCompatActivity {
                             facilitatorUID = data.getKey();
                         }
 
-
-
                         Boolean approvedProposal = false;
                         Boolean finished = false;
                         Boolean isFilled = false;
@@ -191,24 +191,42 @@ public class AddChatActivity extends AppCompatActivity {
                         }*/
 
                         ChatFirebaseStyled chat = new ChatFirebaseStyled(approvedProposal,finished,isFilled,comments,date,endHour,facilitatorUID,level,presentation,startHour,title);
-                        chatRef.push().setValue(chat).addOnCompleteListener(new OnCompleteListener<Void>() {
+
+                        chatPush = chatRef.push();
+
+                        chatPush.setValue(chat).addOnCompleteListener(new OnCompleteListener<Void>() {
 
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
 
                                 if (task.isSuccessful()) {
 
-                                    /* agregar nodo de lista de asistentes*/
-                                    Toast.makeText(getApplicationContext(), "Process completed successfully", Toast.LENGTH_LONG).show();
+
+                                    String chatID = chatPush.getKey();
+
+                                    //Agregar chat a la lista de chats de facilitador
+
+                                    db.child("Users").child(facilitatorUID).child("chatsToModerate").push().setValue(chatID).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if(task.isSuccessful()){
+
+                                                Toast.makeText(getApplicationContext(), "Process completed successfully", Toast.LENGTH_LONG).show();
+                                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                                startActivity(intent);
+
+                                            }
+
+                                        }
+                                    });
 
 
                                 } else {
                                     Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_LONG).show();
                                 }
 
-                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                startActivity(intent);
+
                             }
                         });
 
@@ -229,4 +247,11 @@ public class AddChatActivity extends AppCompatActivity {
         }
 
     }
+
 }
+
+
+
+
+
+
