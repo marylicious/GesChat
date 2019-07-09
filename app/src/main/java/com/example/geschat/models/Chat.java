@@ -1,18 +1,5 @@
 package com.example.geschat.models;
-import android.support.annotation.NonNull;
-
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.TimeZone;
-
-import static java.lang.Integer.parseInt;
 
 //Adapter de RecyclerView del fragment de Chats
 
@@ -55,8 +42,8 @@ public class Chat {
         this.amountPeople = amountPeople;
     }
 
-
-    public Chat(ArrayList<String> assistanceList, Boolean proposalApproved, String date, String facilitator, String comments, Boolean finished, Boolean isFilled, String presentation, String chatName, String level, int amountPeople){
+    //Constructor principal
+    public Chat(ArrayList<String> assistanceList, Boolean proposalApproved, String date, String facilitator, String comments, Boolean finished, Boolean isFilled, String presentation, String chatName, String level, int amountPeople, String startTime, String endTime){
         this.assistanceList = assistanceList;
         this.proposalApproved = proposalApproved;
         this.date = date;
@@ -68,6 +55,8 @@ public class Chat {
         this.chatName = chatName;
         this.level = level;
         this.amountPeople = amountPeople;
+        this.startTime = startTime;
+        this.endTime = endTime;
     }
 
     public Chat(String chatName, Boolean finished, Boolean proposalApproved, Boolean isFilled, String level, String facilitator, String presentation, String comments, String date) {

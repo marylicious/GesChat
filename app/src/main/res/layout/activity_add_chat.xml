@@ -57,6 +57,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="15dp"
+                            android:id="@+id/add_chat_title"
                             android:background="@null"
                             android:hint="Insert Title"
                             android:textSize="15sp" />
@@ -81,13 +82,14 @@
                             android:layout_marginLeft="15dp"
                             android:drawableLeft="@drawable/ic_done"
                             android:drawablePadding="15dp"
-                            android:text="Dificultad:" />
+                            android:text="Level :" />
 
                         <EditText
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="15dp"
                             android:background="@null"
+                            android:id="@+id/add_chat_level"
                             android:hint="Insert Level"
                             android:textSize="15sp" />
 
@@ -110,14 +112,15 @@
                             android:layout_marginLeft="15dp"
                             android:drawableLeft="@drawable/ic_done"
                             android:drawablePadding="15dp"
-                            android:text="Facilitador:" />
+                            android:text="Facilitator:" />
 
                         <EditText
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="15dp"
                             android:background="@null"
-                            android:hint="Insert Name"
+                            android:hint="Insert facilitator's email"
+                            android:id="@+id/add_chat_facilitator"
                             android:textSize="15sp" />
 
                     </LinearLayout>
@@ -139,14 +142,15 @@
                             android:layout_marginLeft="15dp"
                             android:drawableLeft="@drawable/ic_done"
                             android:drawablePadding="15dp"
-                            android:text="Fecha:" />
+                            android:text="Date:" />
 
                         <EditText
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="15dp"
                             android:background="@null"
-                            android:hint="Insert Date"
+                            android:id="@+id/add_chat_date"
+                            android:hint="dd/mm/yyyy"
                             android:textSize="15sp" />
 
                     </LinearLayout>
@@ -168,14 +172,15 @@
                             android:layout_marginLeft="15dp"
                             android:drawableLeft="@drawable/ic_done"
                             android:drawablePadding="15dp"
-                            android:text="Hora de Inicio:" />
+                            android:text="Starting time:" />
 
                         <EditText
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="15dp"
                             android:background="@null"
-                            android:hint="Insert Start time"
+                            android:id="@+id/add_chat_hourstart"
+                            android:hint="hh:mm am"
                             android:textSize="15sp" />
 
                     </LinearLayout>
@@ -197,14 +202,15 @@
                             android:layout_marginLeft="15dp"
                             android:drawableLeft="@drawable/ic_done"
                             android:drawablePadding="15dp"
-                            android:text="Hora de Finalización:" />
+                            android:text="Ending Time:" />
 
                         <EditText
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="15dp"
                             android:background="@null"
-                            android:hint="Insert Finish Time"
+                            android:id="@+id/add_chat_hourend"
+                            android:hint="hh:mm am"
                             android:textSize="15sp" />
 
                     </LinearLayout>
@@ -238,6 +244,7 @@
                             android:layout_marginLeft="15dp"
                             android:background="@null"
                             android:hint="Insert Presentation Link"
+                            android:id="@+id/add_chat_presentation"
                             android:textAlignment="center"
                             android:textSize="15sp" />
 
@@ -262,7 +269,7 @@
                             android:drawableLeft="@drawable/ic_done"
                             android:drawablePadding="15dp"
                             android:paddingBottom="10dp"
-                            android:text="Aditional Comments:" />
+                            android:text="Additional Comments:" />
 
 
                         <EditText
@@ -272,6 +279,7 @@
                             android:layout_marginHorizontal="40dp"
                             android:layout_marginLeft="15dp"
                             android:background="@null"
+                            android:id="@+id/add_chat_comments"
                             android:hint="Insert Comments..."
                             android:textSize="15sp" />
 
@@ -288,7 +296,7 @@
     </LinearLayout>
 
         <android.support.design.widget.FloatingActionButton
-            android:id="@+id/hup_sendSugg"
+            android:id="@+id/add_chat_send_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"

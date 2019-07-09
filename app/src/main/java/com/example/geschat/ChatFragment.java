@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import com.example.geschat.models.Announcement;
 import com.example.geschat.models.Chat;
@@ -51,7 +52,7 @@ public class ChatFragment extends Fragment implements ChatAdapter.OnChatListList
         });
 
 
-         rvChats = view.findViewById(R.id.chatView);
+        rvChats = view.findViewById(R.id.chatView);
         rvChats.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         chatRef = FirebaseDatabase.getInstance().getReference().child("Chat");
@@ -64,29 +65,40 @@ public class ChatFragment extends Fragment implements ChatAdapter.OnChatListList
                 ArrayList<String> assistanceListKeys = new ArrayList<>();
 
                 for(DataSnapshot dataSnapshotChat: dataSnapshot.getChildren())
-                {
+
+                {   //Reading chat info
                     Boolean approvedProposal = dataSnapshotChat.child("approvedProposal").getValue(Boolean.class);
                     String dateEpoch = dataSnapshotChat.child("date").getValue(String.class);
                     String facilitator= dataSnapshotChat.child("facilitator").getValue(String.class);
                     String comments = dataSnapshotChat.child("comments").getValue(String.class);
                     Boolean finished = dataSnapshotChat.child("finished").getValue(Boolean.class);
-                    Boolean isFilled = dataSnapshotChat.child("isFilled").getValue(Boolean.class);
+                    Boolean isFilled = dataSnapshotChat.child("filled").getValue(Boolean.class);
                     String presentation = dataSnapshotChat.child("presentation").getValue(String.class);
                     String chatName = dataSnapshotChat.child("title").getValue(String.class);
                     String level = dataSnapshotChat.child("level").getValue(String.class);
+                    String startHour = dataSnapshotChat.child("startHour").getValue(String.class);
+                    String endHour = dataSnapshotChat.child("endHour").getValue(String.class);
 
-                    for(DataSnapshot userUID: dataSnapshot.child("assistanceList").getChildren()){
-                        String userKey = userUID.getValue(String.class);
-                        assistanceListKeys.add(userKey);
+                    int amountPeople;
+
+                    if(dataSnapshot.child("assistanceList").exists()){
+
+                        for(DataSnapshot userUID: dataSnapshot.child("assistanceList").getChildren()){
+                            String userKey = userUID.getValue(String.class);
+                            assistanceListKeys.add(userKey);
+                        }
+
+                        amountPeople = assistanceListKeys.size();
+
+                    } else {
+                        amountPeople=0;
                     }
 
-                    //int amountPeople = assistanceListKeys.size();
-                    int amountPeople = 9;
 
 
 
 
-                    final Chat chat = new Chat(assistanceListKeys,approvedProposal,dateEpoch,facilitator,comments,finished,isFilled,presentation,chatName,level, amountPeople);
+                    final Chat chat = new Chat(assistanceListKeys,approvedProposal,dateEpoch,facilitator,comments,finished,isFilled,presentation,chatName,level, amountPeople,startHour,endHour);
                     chat.setKeyDB(dataSnapshotChat.getKey());
 
                     FirebaseDatabase.getInstance().getReference().child("Users").child(facilitator).child("name").addListenerForSingleValueEvent(new ValueEventListener() {
@@ -129,17 +141,22 @@ public class ChatFragment extends Fragment implements ChatAdapter.OnChatListList
 
         //Esto es para debuggear, se debe parsear y enviar un objeto chat
         intent.putExtra("chatname", chat.getChatName());
-
-
+        intent.putExtra("level", chat.getLevel() );
+        intent.putExtra("facilitatorName", chat.getFacilitatorName());
+        intent.putExtra("date", chat.getDate());
+        intent.putExtra("startHour", chat.getStartTime());
+        intent.putExtra("endHour",chat.getEndTime());
+        intent.putExtra("amountPeople", Integer.toString(chat.getAmountPeople()));
+        intent.putExtra("keyDB", chat.getKeyDB());
         startActivity(intent);
 
     }
 
     private void setChatAdapter(){
+        Collections.reverse(chats);
         ChatAdapter adapter = new ChatAdapter(chats,this);
         rvChats.setAdapter(adapter);
     }
-
 
 
 }

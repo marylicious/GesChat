@@ -101,8 +101,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder>{
         TextView num = viewHolder.numTv;
         Button button = viewHolder.messageButton;
 
-
-        button.setBackgroundColor(chat1.getFilled() ? Color.parseColor("#16cc4c") : Color.parseColor("#e5322e"));
+        button.setBackgroundColor(chat1.getFilled() ? Color.parseColor("#e5322e") : Color.parseColor("#16cc4c"));
         button.setEnabled(false);
         textView.setText(chat1.getChatName());
 
