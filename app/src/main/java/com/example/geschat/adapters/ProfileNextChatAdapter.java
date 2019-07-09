@@ -8,15 +8,15 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.geschat.R;
-import com.example.geschat.models.ProfileNextChatModel;
+import com.example.geschat.models.ProfileNextPrevChat;
 
 import java.util.ArrayList;
 
 public class ProfileNextChatAdapter extends RecyclerView.Adapter<ProfileNextChatAdapter.ViewHolderPNextC> {
 
-    ArrayList<ProfileNextChatModel> listaNext;
+    ArrayList<ProfileNextPrevChat> listaNext;
 
-    public ProfileNextChatAdapter(ArrayList<ProfileNextChatModel> listaNext) {
+    public ProfileNextChatAdapter(ArrayList<ProfileNextPrevChat> listaNext) {
         this.listaNext = listaNext;
     }
 

@@ -1,14 +1,14 @@
 package com.example.geschat.models;
 
-public class ProfileNextChatModel {
+public class ProfileNextPrevChat {
     private String nombreChat;
     private String fecha;
 
-    public ProfileNextChatModel(String nombreChat, String fecha) {
+    public ProfileNextPrevChat(String nombreChat, String fecha) {
         this.nombreChat = nombreChat;
         this.fecha = fecha;
     }
-    public ProfileNextChatModel(){}
+    public ProfileNextPrevChat(){}
 
     public String getNombreChat() {
         return nombreChat;

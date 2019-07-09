@@ -8,14 +8,13 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 
 import com.example.geschat.adapters.FacChatRevisionStatusAdapter;
-import com.example.geschat.models.FacChatCompletedDetailsModel;
-import com.example.geschat.models.FacChatRevisionStatusModel;
+import com.example.geschat.models.Chat;
 
 import java.util.ArrayList;
 
 public class FacChatRevisionStatusActivity extends AppCompatActivity implements FacChatRevisionStatusAdapter.OnStatusListener {
 
-    ArrayList<FacChatRevisionStatusModel> listaStatus;
+    ArrayList<Chat> listaStatus;
     RecyclerView recyclerView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,19 +38,19 @@ public class FacChatRevisionStatusActivity extends AppCompatActivity implements 
 
     public void llenarStatus(){
         for(int i = 1;i <= 20; i++)
-            listaStatus.add(new FacChatRevisionStatusModel("a","a","a","a","a"));
+            listaStatus.add(new Chat("a","a","a","a","a"));
     }
 
 
     @Override
     public void onStatusClick(int position) {
-        FacChatRevisionStatusModel Fc = listaStatus.get(position);
+        Chat Fc = listaStatus.get(position);
 
         Intent intent = new Intent(this,FacChatRevisionStatusDetails.class);
-        intent.putExtra("title", Fc.getChatNombre());
-        intent.putExtra("facilitador", Fc.getFacNombre());
-        intent.putExtra("fecha", Fc.getFecha());
-        intent.putExtra("nivel", Fc.getNivel());
+        intent.putExtra("title", Fc.getChatName());
+        intent.putExtra("facilitador", Fc.getFacilitatorName());
+        intent.putExtra("fecha", Fc.getDate());
+        intent.putExtra("nivel", Fc.getLevel());
 
         startActivity(intent);
     }

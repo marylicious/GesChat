@@ -23,6 +23,7 @@
 
 
                 <ImageView
+                    android:id="@+id/userProfilePict"
                     android:layout_width="125dp"
                     android:layout_height="120dp"
                     android:layout_margin="9dp"

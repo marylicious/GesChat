@@ -8,15 +8,13 @@ import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
 
 import com.example.geschat.adapters.IncomingChatDetailsAdapter;
-import com.example.geschat.models.IncomingChatDetailsModel;
-
-import org.w3c.dom.Text;
+import com.example.geschat.models.UserListChatDetailsModel;
 
 import java.util.ArrayList;
 
 public class IncomingChatDetailsActivity extends AppCompatActivity {
 
-    ArrayList<IncomingChatDetailsModel> listaIncoming;
+    ArrayList<UserListChatDetailsModel> listaIncoming;
     RecyclerView rv;
 
     @Override
@@ -65,7 +63,7 @@ public class IncomingChatDetailsActivity extends AppCompatActivity {
 
     public void llenarLista(){
         for (int i = 1; i <=8; i++){
-            listaIncoming.add(new IncomingChatDetailsModel("123456" ,R.mipmap.ic_launcherv2_round));
+            listaIncoming.add(new UserListChatDetailsModel("123456" ,R.mipmap.ic_launcherv2_round));
 
         }
 

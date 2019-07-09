@@ -8,18 +8,16 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.geschat.R;
-import com.example.geschat.models.FacChatCompletedModel;
-
-import org.w3c.dom.Text;
+import com.example.geschat.models.Chat;
 
 import java.util.ArrayList;
 
 public class FacChatCompletedAdapter extends RecyclerView.Adapter<FacChatCompletedAdapter.ViewHolderCompleted> {
 
-    ArrayList<FacChatCompletedModel> listaCompletados;
+    ArrayList<Chat> listaCompletados;
     private OnCompletedListener onCompletedListener;
 
-    public FacChatCompletedAdapter(ArrayList<FacChatCompletedModel> listaCompletados, OnCompletedListener onCompletedListener) {
+    public FacChatCompletedAdapter(ArrayList<Chat> listaCompletados, OnCompletedListener onCompletedListener) {
         this.listaCompletados = listaCompletados;
         this.onCompletedListener = onCompletedListener;
     }
@@ -34,10 +32,10 @@ public class FacChatCompletedAdapter extends RecyclerView.Adapter<FacChatComplet
     @Override
     public void onBindViewHolder(@NonNull ViewHolderCompleted viewHolderCompleted, int i) {
         viewHolderCompleted.chatName.setText(listaCompletados.get(i).getChatName());
-        viewHolderCompleted.facName.setText(listaCompletados.get(i).getFacName());
-        viewHolderCompleted.fecha.setText(listaCompletados.get(i).getFecha());
-        viewHolderCompleted.nivel.setText(listaCompletados.get(i).getNivel());
-        viewHolderCompleted.inscritos.setText(listaCompletados.get(i).getInscritos());
+        viewHolderCompleted.facName.setText(listaCompletados.get(i).getFacilitatorName());
+        viewHolderCompleted.fecha.setText(listaCompletados.get(i).getDate());
+        viewHolderCompleted.nivel.setText(listaCompletados.get(i).getLevel());
+        viewHolderCompleted.inscritos.setText(Integer.toString(listaCompletados.get(i).getAmountPeople()));
     }
 
     @Override

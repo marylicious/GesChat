@@ -6,16 +6,15 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 
 import com.example.geschat.adapters.IncomingChatAdapter;
-import com.example.geschat.models.IncomingChatModel;
+import com.example.geschat.models.Chat;
 
 import java.util.ArrayList;
 
 public class ChatIncomingActivity extends AppCompatActivity implements IncomingChatAdapter.OnIncomingChatListener {
 
-    ArrayList<IncomingChatModel> listaChatsProximos;
+    ArrayList<Chat> listaChatsProximos;
     RecyclerView rv;
 
     @Override
@@ -43,7 +42,7 @@ public class ChatIncomingActivity extends AppCompatActivity implements IncomingC
 
     private void llenarListaIncoming(){
         for (int i = 1; i <= 5; i++) {
-            listaChatsProximos.add(new IncomingChatModel("2", "chat Num "+i, "Useless", "BASICO", "14/20019"));
+            listaChatsProximos.add(new Chat(5, "chat Num "+i, "Useless", "BASICO", "14/20019"));
         }
     }
 
@@ -52,12 +51,12 @@ public class ChatIncomingActivity extends AppCompatActivity implements IncomingC
 
         Intent intent = new Intent(this, IncomingChatDetailsActivity.class);
 
-        IncomingChatModel prox = listaChatsProximos.get(position);
-        intent.putExtra("title", prox.getNombreChat());
-        intent.putExtra("fecha", prox.getFecha());
-        intent.putExtra("inscritos", prox.getInscritos());
-        intent.putExtra("nivel", prox.getNivel());
-        intent.putExtra("facilitador", prox.getNombreFacilitador());
+        Chat prox = listaChatsProximos.get(position);
+        intent.putExtra("title", prox.getChatName());
+        intent.putExtra("fecha", prox.getDate());
+        intent.putExtra("inscritos", Integer.toString(prox.getAmountPeople()));
+        intent.putExtra("nivel", prox.getLevel());
+        intent.putExtra("facilitador", prox.getFacilitatorName());
 
 
 

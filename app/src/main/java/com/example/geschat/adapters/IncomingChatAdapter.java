@@ -8,16 +8,16 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.geschat.R;
-import com.example.geschat.models.IncomingChatModel;
+import com.example.geschat.models.Chat;
 
 import java.util.ArrayList;
 
 public class IncomingChatAdapter extends RecyclerView.Adapter<IncomingChatAdapter.HolderIncomingChat>{
 
-    ArrayList<IncomingChatModel> listaChatsProximos;
+    ArrayList<Chat> listaChatsProximos;
     private OnIncomingChatListener onIncomingChatListener;
 
-    public IncomingChatAdapter(ArrayList<IncomingChatModel> listaChatsProximos, OnIncomingChatListener onIncomingChatListener) {
+    public IncomingChatAdapter(ArrayList<Chat> listaChatsProximos, OnIncomingChatListener onIncomingChatListener) {
         this.listaChatsProximos = listaChatsProximos;
         this.onIncomingChatListener = onIncomingChatListener;
     }
@@ -31,11 +31,11 @@ public class IncomingChatAdapter extends RecyclerView.Adapter<IncomingChatAdapte
 
     @Override
     public void onBindViewHolder(@NonNull HolderIncomingChat holderIncomingChat, int i) {
-        holderIncomingChat.numInscritos.setText(listaChatsProximos.get(i).getInscritos());
-        holderIncomingChat.chatNombre.setText(listaChatsProximos.get(i).getNombreChat());
-        holderIncomingChat.facilitadorNombre.setText(listaChatsProximos.get(i).getNombreFacilitador());
-        holderIncomingChat.fecha.setText(listaChatsProximos.get(i).getFecha());
-        holderIncomingChat.nivel.setText(listaChatsProximos.get(i).getNivel());
+        holderIncomingChat.numInscritos.setText(Integer.toString(listaChatsProximos.get(i).getAmountPeople()));
+        holderIncomingChat.chatNombre.setText(listaChatsProximos.get(i).getChatName());
+        holderIncomingChat.facilitadorNombre.setText(listaChatsProximos.get(i).getFacilitatorName());
+        holderIncomingChat.fecha.setText(listaChatsProximos.get(i).getDate());
+        holderIncomingChat.nivel.setText(listaChatsProximos.get(i).getLevel());
     }
 
     @Override
