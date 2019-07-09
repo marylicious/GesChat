@@ -165,9 +165,9 @@ public class ChatFragment extends Fragment implements ChatAdapter.OnChatListList
         intent.putExtra("endHour",chat.getEndTime());
         intent.putExtra("amountPeople", Integer.toString(chat.getAmountPeople()));
         intent.putExtra("keyDB", chat.getKeyDB());
-        intent.putExtra("assistanceList", chat.getAssistanceList());
         intent.putExtra("presentation", chat.getPresentation());
         intent.putExtra("comments", chat.getComments());
+        intent.putExtra("filled", chat.getFilled());
 
 
         startActivity(intent);

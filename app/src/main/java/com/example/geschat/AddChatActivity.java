@@ -16,6 +16,7 @@ import com.example.geschat.models.DateValidator;
 import com.example.geschat.models.Time12HoursValidator;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -29,13 +30,14 @@ import java.util.ArrayList;
 public class AddChatActivity extends AppCompatActivity {
 
     TextView chatTitleTV, levelTV,facilitatorTV,dateTV, startHourTV,endHourTV,presentationTV,commentsTV;
-    String title,level,facilitator,date,startHour,endHour,presentation,comments, facilitatorUID,editedChatKeyDB;
+    String title,level,facilitator,date,startHour,endHour,presentation,comments, facilitatorUID,editedChatKeyDB,userRole,chatID;
     FloatingActionButton sendbtn;
     Boolean newChat,approvedProposal,finished,isFilled;
     DatabaseReference db, chatRef, chatPush;
     ArrayList<String> assistanceList;
 
 
+//TODO retrieve assistanceList
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +54,7 @@ public class AddChatActivity extends AppCompatActivity {
          presentationTV = findViewById(R.id.add_chat_presentation);
          commentsTV = findViewById(R.id.add_chat_comments);
          sendbtn = findViewById(R.id.add_chat_send_button);
+
 
 
 
@@ -73,22 +76,24 @@ public class AddChatActivity extends AppCompatActivity {
             date = bundle.getString("date");
             startHour = bundle.getString("startHour");
             endHour = bundle.getString("endHour");
-            assistanceList = bundle.getStringArrayList("assistanceList");
             presentation = bundle.getString("presentation");
             comments = bundle.getString("comments");
             facilitatorUID = bundle.getString("facilitatorDB");
+            isFilled = bundle.getBoolean("filled");
             newChat=false;
             getSupportActionBar().setTitle("Edit Chat");
             loadChatInformation();
 
         } else {
             newChat = true;
+            isFilled = false;
             getSupportActionBar().setTitle("Add New Chat");
         }
 
         approvedProposal = false;
+        setApproved();
         finished = false;
-        isFilled = false; // pull de db
+
 
 
         sendbtn.setOnClickListener(new View.OnClickListener() {
@@ -108,9 +113,41 @@ public class AddChatActivity extends AppCompatActivity {
             }
         });
 
+        if(!newChat){
+            retrieveAssList();
+        }
 
 
     }
+
+    public void retrieveAssList(){
+        assistanceList = new ArrayList<>();
+
+        db.child("Chat").child(editedChatKeyDB).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                if(dataSnapshot.child("assistanceList").exists()){
+                    String userKey;
+                    ArrayList<String> helper = new ArrayList<>();
+                    for (DataSnapshot userInChat : dataSnapshot.child("assistanceList").getChildren()) {
+                        userKey = userInChat.getValue(String.class);
+                        helper.add(userKey);
+                    }
+                    assistanceList = helper;
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
+
 
     private Boolean validateInput(){
 
@@ -183,7 +220,24 @@ public class AddChatActivity extends AppCompatActivity {
 
     }
 
-    private void disableInput(){
+
+    private void setApproved(){
+        //Si eres supervisor automaticamente esta aprobado
+
+            String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+            db.child("Users").child(uid).child("role").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    userRole = dataSnapshot.getValue(String.class);
+                    if(userRole.equals("supervisor")){
+                        approvedProposal = true;
+                    }
+                }
+                @Override
+                public void onCancelled(DatabaseError error) {
+                }
+            });
 
     }
 
@@ -249,8 +303,8 @@ public class AddChatActivity extends AppCompatActivity {
                 public void onComplete(@NonNull Task<Void> task) {
 
                     if (task.isSuccessful()) {
-                        String chatID = chatPush.getKey();
-                        addToFacilitatorChatToModerate(chatID);
+                        chatID = chatPush.getKey();
+                        addToFacilitatorChatToModerate();
 
                     } else {
                         Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_LONG).show();
@@ -266,6 +320,7 @@ public class AddChatActivity extends AppCompatActivity {
                 public void onComplete(@NonNull Task<Void> task) {
 
                     if (task.isSuccessful()) {
+                        addAssListToChat();
                         redirectToMain();
 
                     } else {
@@ -279,6 +334,15 @@ public class AddChatActivity extends AppCompatActivity {
 
     }
 
+
+    private void addAssListToChat(){
+
+        /*for(String userID: assistanceList){
+            chatRef.child(editedChatKeyDB).child("assistanceList").child(userID).setValue(userID);
+        }*/
+
+    }
+
     private void redirectToMain(){
         Toast.makeText(getApplicationContext(), "Process completed successfully", Toast.LENGTH_LONG).show();
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
@@ -287,18 +351,20 @@ public class AddChatActivity extends AppCompatActivity {
 
     }
 
-    private void addToFacilitatorChatToModerate(String chatID){
+    private void addToFacilitatorChatToModerate(){
 
         db.child("Users").child(facilitatorUID).child("chatsToModerate").child(chatID).setValue(chatID).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()){
-                   redirectToMain();
+                    redirectToMain();
                 }
 
             }
         });
     }
+
+
 
     private void loadChatInformation(){
 
@@ -320,6 +386,7 @@ public class AddChatActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 facilitator = dataSnapshot.getValue(String.class);
                 facilitatorTV.setText(facilitator);
+                facilitatorTV.setFocusableInTouchMode(false);
 
             }
 

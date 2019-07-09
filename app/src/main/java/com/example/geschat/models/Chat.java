@@ -241,23 +241,6 @@ public class Chat {
     }
 
 
-    /*public void setFacilitatorNameFromDB(){
-
-        FirebaseDatabase.getInstance().getReference().child("Users").child(facilitator).child("name").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                facilitatorName = dataSnapshot.getValue(String.class);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-    }*/
-
-
 
     //TESTING
    public static Comparator<Chat> ByStatus = new Comparator<Chat>() {
