@@ -59,19 +59,20 @@ public class ChatFragment extends Fragment implements ChatAdapter.OnChatListList
 
         //Load from DB
         chatRef.addValueEventListener(new ValueEventListener() {
+
+
+
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 chats = new ArrayList<>();
 
-                //validacion para despues if datasnapshot exists()
+                if(dataSnapshot.exists()){
 
-                for(DataSnapshot dataSnapshotChat: dataSnapshot.getChildren())
-
-                {   //Reading chat info
+                for (DataSnapshot dataSnapshotChat : dataSnapshot.getChildren()) {   //Reading chat info
                     ArrayList<String> assistanceListKeys = new ArrayList<>();
                     Boolean approvedProposal = dataSnapshotChat.child("approvedProposal").getValue(Boolean.class);
                     String dateEpoch = dataSnapshotChat.child("date").getValue(String.class);
-                    String facilitator= dataSnapshotChat.child("facilitator").getValue(String.class);
+                    String facilitator = dataSnapshotChat.child("facilitator").getValue(String.class);
                     String comments = dataSnapshotChat.child("comments").getValue(String.class);
                     Boolean finished = dataSnapshotChat.child("finished").getValue(Boolean.class);
                     Boolean isFilled = dataSnapshotChat.child("filled").getValue(Boolean.class);
@@ -85,10 +86,10 @@ public class ChatFragment extends Fragment implements ChatAdapter.OnChatListList
 
                     //este query no va aqui pero lo deje para usarlo cuando necesite la lista de asistencia
 
-                    if(dataSnapshotChat.hasChild("assistanceList")){
+                    if (dataSnapshotChat.hasChild("assistanceList")) {
 
 
-                        for(DataSnapshot userUID: dataSnapshotChat.child("assistanceList").getChildren()){
+                        for (DataSnapshot userUID : dataSnapshotChat.child("assistanceList").getChildren()) {
                             String userKey = userUID.getValue(String.class);
                             assistanceListKeys.add(userKey);
                         }
@@ -96,14 +97,12 @@ public class ChatFragment extends Fragment implements ChatAdapter.OnChatListList
                         amountPeople = (int) dataSnapshotChat.child("assistanceList").getChildrenCount();
 
 
-
                     } else {
-                        amountPeople=0;
+                        amountPeople = 0;
                     }
 
 
-
-                    final Chat chat = new Chat(assistanceListKeys,approvedProposal,dateEpoch,facilitator,comments,finished,isFilled,presentation,chatName,level, amountPeople,startHour,endHour);
+                    final Chat chat = new Chat(assistanceListKeys, approvedProposal, dateEpoch, facilitator, comments, finished, isFilled, presentation, chatName, level, amountPeople, startHour, endHour);
                     chat.setKeyDB(dataSnapshotChat.getKey());
 
 
@@ -123,13 +122,22 @@ public class ChatFragment extends Fragment implements ChatAdapter.OnChatListList
 
                 }
 
-            }
+            } else {
+                    setChatAdapter();
+                }
+
+            } //here
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 Toast.makeText(getContext(), "There was an error fetching chats", Toast.LENGTH_SHORT).show();
             }
         });
+
+
+
+
+
 
        // sortview();
 
@@ -146,16 +154,21 @@ public class ChatFragment extends Fragment implements ChatAdapter.OnChatListList
         //Navegaremos a nueva Activity cuando el user toque
         Intent intent = new Intent(getActivity(), ChatActivity.class);
 
-        //Esto es para debuggear, se debe parsear y enviar un objeto chat
+
+
         intent.putExtra("chatname", chat.getChatName());
         intent.putExtra("level", chat.getLevel() );
         intent.putExtra("facilitatorName", chat.getFacilitatorName());
         intent.putExtra("date", chat.getDate());
+        intent.putExtra("facilitator", chat.getFacilitator());
         intent.putExtra("startHour", chat.getStartTime());
         intent.putExtra("endHour",chat.getEndTime());
         intent.putExtra("amountPeople", Integer.toString(chat.getAmountPeople()));
         intent.putExtra("keyDB", chat.getKeyDB());
         intent.putExtra("assistanceList", chat.getAssistanceList());
+        intent.putExtra("presentation", chat.getPresentation());
+        intent.putExtra("comments", chat.getComments());
+
 
         startActivity(intent);
 

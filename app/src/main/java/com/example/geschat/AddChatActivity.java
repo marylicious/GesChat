@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.geschat.models.Chat;
 import com.example.geschat.models.ChatFirebaseStyled;
 import com.example.geschat.models.DateValidator;
 import com.example.geschat.models.Time12HoursValidator;
@@ -22,19 +23,25 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+
 
 public class AddChatActivity extends AppCompatActivity {
 
     TextView chatTitleTV, levelTV,facilitatorTV,dateTV, startHourTV,endHourTV,presentationTV,commentsTV;
-    String title,level,facilitator,date,startHour,endHour,presentation,comments, facilitatorUID;
+    String title,level,facilitator,date,startHour,endHour,presentation,comments, facilitatorUID,editedChatKeyDB;
     FloatingActionButton sendbtn;
-    Boolean newChat;
+    Boolean newChat,approvedProposal,finished,isFilled;
     DatabaseReference db, chatRef, chatPush;
+    ArrayList<String> assistanceList;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_chat);
+        Bundle bundle = getIntent().getExtras();
 
          chatTitleTV = findViewById(R.id.add_chat_title);
          levelTV = findViewById(R.id.add_chat_level);
@@ -46,16 +53,48 @@ public class AddChatActivity extends AppCompatActivity {
          commentsTV = findViewById(R.id.add_chat_comments);
          sendbtn = findViewById(R.id.add_chat_send_button);
 
+
+
          db = FirebaseDatabase.getInstance().getReference();
          chatRef = db.child("Chat");
 
-         newChat = true;
+        //header icon , color
+        Toolbar toolbar = findViewById(R.id.add_chat_Toolbar);
+        setSupportActionBar(toolbar);
+
+
+
+
+        if(bundle != null && bundle.getBoolean("edit")==true) {
+
+            editedChatKeyDB = bundle.getString("keyDB");
+            title = bundle.getString("title");
+            level = bundle.getString("level");
+            date = bundle.getString("date");
+            startHour = bundle.getString("startHour");
+            endHour = bundle.getString("endHour");
+            assistanceList = bundle.getStringArrayList("assistanceList");
+            presentation = bundle.getString("presentation");
+            comments = bundle.getString("comments");
+            facilitatorUID = bundle.getString("facilitatorDB");
+            newChat=false;
+            getSupportActionBar().setTitle("Edit Chat");
+            loadChatInformation();
+
+        } else {
+            newChat = true;
+            getSupportActionBar().setTitle("Add New Chat");
+        }
+
+        approvedProposal = false;
+        finished = false;
+        isFilled = false; // pull de db
 
 
         sendbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sendChatToDB();
+                prepareChatToDB();
             }
         });
 
@@ -69,10 +108,7 @@ public class AddChatActivity extends AppCompatActivity {
             }
         });
 
-        //header icon , color
-        Toolbar toolbar = findViewById(R.id.add_chat_Toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Create New Chat");
+
 
     }
 
@@ -152,7 +188,7 @@ public class AddChatActivity extends AppCompatActivity {
     }
 
 
-    private void sendChatToDB(){
+    private void prepareChatToDB(){
 
         title = chatTitleTV.getText().toString().trim();
         level = levelTV.getText().toString().trim();
@@ -163,91 +199,135 @@ public class AddChatActivity extends AppCompatActivity {
         presentation = presentationTV.getText().toString().trim();
         comments = commentsTV.getText().toString().trim();
 
-        //deshabilitar input
-
-
 
         Boolean valid = validateInput();
-        //Boolean valid = true;
 
         if(valid){
 
 
-            Query emailQuery = db.child("Users").orderByChild("email").equalTo(facilitator);
+                Query emailQuery = db.child("Users").orderByChild("email").equalTo(facilitator);
 
-            emailQuery.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    if(dataSnapshot.exists()) {
+                emailQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.exists()) {
 
-                        for (DataSnapshot data : dataSnapshot.getChildren()) {
-                            facilitatorUID = data.getKey();
-                        }
-
-                        Boolean approvedProposal = false;
-                        Boolean finished = false;
-                        Boolean isFilled = false;
-
-                        /*if(!newChat){
-
-                        }*/
-
-                        ChatFirebaseStyled chat = new ChatFirebaseStyled(approvedProposal,finished,isFilled,comments,date,endHour,facilitatorUID,level,presentation,startHour,title);
-
-                        chatPush = chatRef.push();
-
-                        chatPush.setValue(chat).addOnCompleteListener(new OnCompleteListener<Void>() {
-
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-
-                                if (task.isSuccessful()) {
-
-
-                                    String chatID = chatPush.getKey();
-
-                                    //Agregar chat a la lista de chats de facilitador
-
-                                    db.child("Users").child(facilitatorUID).child("chatsToModerate").push().setValue(chatID).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<Void> task) {
-                                            if(task.isSuccessful()){
-
-                                                Toast.makeText(getApplicationContext(), "Process completed successfully", Toast.LENGTH_LONG).show();
-                                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                                startActivity(intent);
-
-                                            }
-
-                                        }
-                                    });
-
-
-                                } else {
-                                    Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_LONG).show();
-                                }
-
-
+                            for (DataSnapshot data : dataSnapshot.getChildren()) {
+                                facilitatorUID = data.getKey();
                             }
-                        });
 
+                            sendChatToDB(newChat);
+
+                        } else {
+                            facilitatorTV.setError("This is not a valid email");
+                            facilitatorTV.requestFocus();
+                        }
                     }
-                    else {
-                        facilitatorTV.setError("This is not a valid email");
-                        facilitatorTV.requestFocus();
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        Toast.makeText(getApplicationContext(), "Error fetching facilitator, please try again", Toast.LENGTH_LONG).show();
                     }
-                }
+                });
 
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-                    Toast.makeText(getApplicationContext(), "Error fetching facilitator, please try again", Toast.LENGTH_LONG).show();
-                }
-            });
-
+            }
 
         }
 
+
+
+    private void sendChatToDB(Boolean newChat){
+
+        ChatFirebaseStyled chat = new ChatFirebaseStyled(approvedProposal,finished,isFilled,comments,date,endHour,facilitatorUID,level,presentation,startHour,title);
+
+
+        if(newChat){
+            chatPush = chatRef.push();
+            chatPush.setValue(chat).addOnCompleteListener(new OnCompleteListener<Void>() {
+
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+
+                    if (task.isSuccessful()) {
+                        String chatID = chatPush.getKey();
+                        addToFacilitatorChatToModerate(chatID);
+
+                    } else {
+                        Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                    }
+
+                }
+            });
+
+        } else {
+
+            chatRef.child(editedChatKeyDB).setValue(chat).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+
+                    if (task.isSuccessful()) {
+                        redirectToMain();
+
+                    } else {
+                        Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                    }
+
+                }
+            });
+        }
+
+
+    }
+
+    private void redirectToMain(){
+        Toast.makeText(getApplicationContext(), "Process completed successfully", Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+
+    }
+
+    private void addToFacilitatorChatToModerate(String chatID){
+
+        db.child("Users").child(facilitatorUID).child("chatsToModerate").child(chatID).setValue(chatID).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if(task.isSuccessful()){
+                   redirectToMain();
+                }
+
+            }
+        });
+    }
+
+    private void loadChatInformation(){
+
+        //Pull email de facilitador
+
+        chatTitleTV.setText(title);
+        levelTV.setText(level);
+        dateTV.setText(date);
+        startHourTV.setText(startHour);
+        endHourTV.setText(endHour);
+        presentationTV.setText(presentation);
+        commentsTV.setText(comments);
+
+
+
+
+        db.child("Users").child(facilitatorUID).child("email").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                facilitator = dataSnapshot.getValue(String.class);
+                facilitatorTV.setText(facilitator);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(getApplicationContext(), "There was an error fetching announcements", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 }

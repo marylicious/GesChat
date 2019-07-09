@@ -79,15 +79,22 @@ public class HomeFragment extends Fragment implements AnnouncementAdapter.OnAnnL
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 anns = new ArrayList<>();
-                for(DataSnapshot dataSnapshotAnn: dataSnapshot.getChildren())
-                {
-                    Announcement ann = dataSnapshotAnn.getValue(Announcement.class);
-                    ann.setKeyDB(dataSnapshotAnn.getKey());
-                    anns.add(ann);
+                if(dataSnapshot.exists()){
+                    for(DataSnapshot dataSnapshotAnn: dataSnapshot.getChildren())
+                    {
+                        Announcement ann = dataSnapshotAnn.getValue(Announcement.class);
+                        ann.setKeyDB(dataSnapshotAnn.getKey());
+                        anns.add(ann);
+                    }
+
+                    setAnnRvAdapter();
+
+                } else
+                    {
+
+                    setAnnRvAdapter();
+
                 }
-
-                setAnnRvAdapter();
-
             }
 
             @Override
