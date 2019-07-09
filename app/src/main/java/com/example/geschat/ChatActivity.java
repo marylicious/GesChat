@@ -7,6 +7,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 
 public class ChatActivity extends AppCompatActivity {
     String keyDB;
@@ -42,6 +45,11 @@ public class ChatActivity extends AppCompatActivity {
             String endHour = bundle.getString("endHour");
             String amountPeople = bundle.getString("amountPeople");
             keyDB = bundle.getString("keyDB");
+            ArrayList<String> assistanceList = new ArrayList<>();
+            assistanceList = bundle.getStringArrayList("assistanceList");
+
+
+
 
             chatTitleTv.setText(chatName);
             levelTv.setText(level);
@@ -50,7 +58,14 @@ public class ChatActivity extends AppCompatActivity {
             startHourTv.setText(startHour);
             endHourTv.setText(endHour);
             amountPeopleTv.setText(amountPeople);
+
+            if(!assistanceList.isEmpty())
+                Toast.makeText(getApplicationContext(), "assistance"+ assistanceList.get(0), Toast.LENGTH_LONG).show();
+
+
         }
+
+
 
     }
 

@@ -8,13 +8,21 @@ public class Chat {
 
     private String chatName,keyDB;
     private Boolean finished,proposalApproved, isFilled;
-    private String level,facilitator,presentation,comments,date,facilitatorName,status;
+    private String level,facilitator,presentation,comments,date,facilitatorName,status,debug;
     int amountPeople;
     private ArrayList<String> waitList, assistanceList;
     private String startTime, endTime;
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getDebug() {
+        return debug;
+    }
+
+    public void setDebug(String debug) {
+        this.debug = debug;
     }
 
     public String getStatus() {

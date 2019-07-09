@@ -129,15 +129,17 @@ public class AddChatActivity extends AppCompatActivity {
             return false;
         }
 
-        if(!time12HoursValidator.validate(startHour)){
-            startHourTV.setError("Insert a valid hour");
-            startHourTV.requestFocus();
-            return false;
-        }
+
 
         if(!time12HoursValidator.validate(endHour)){
             endHourTV.setError("Insert a valid hour");
             endHourTV.requestFocus();
+            return false;
+        }
+
+        if(!time12HoursValidator.validate(startHour)){
+            startHourTV.setError("Insert a valid hour");
+            startHourTV.requestFocus();
             return false;
         }
 
@@ -165,8 +167,8 @@ public class AddChatActivity extends AppCompatActivity {
 
 
 
-        //Boolean valid = validateInput();
-        Boolean valid = true;
+        Boolean valid = validateInput();
+        //Boolean valid = true;
 
         if(valid){
 

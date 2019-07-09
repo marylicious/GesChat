@@ -14,7 +14,7 @@ public class Time12HoursValidator
     private Pattern pattern;
     private Matcher matcher;
 
-    private static final String TIME12HOURS_REGEX = "(1[012]|[1-9]):[0-5][0-9](\\s)?(?i)(am|pm)";
+    private static final String TIME12HOURS_REGEX = "(1[012]|[1-9]):[0-5][0-9](\\s)?(?i)(am|pm|m)";
 
     public Time12HoursValidator()
     {
