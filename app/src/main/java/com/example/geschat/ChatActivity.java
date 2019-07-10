@@ -230,6 +230,7 @@ public class ChatActivity extends AppCompatActivity {
 
     public void deleteChat(){
         deleteChatFromIncomingChatOfUsers();
+        deleteChatFromAbandonedChats();
 
         db.child("Users").child(facilitatorDB).child("chatsToModerate").child(keyDB).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
@@ -267,6 +268,17 @@ public class ChatActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private  void deleteChatFromAbandonedChats(){
+
+        for(String userID : assistanceList){
+
+            db.child("Users").child(userID).child("abandonedChats").child(keyDB).removeValue();
+
+
+        }
+
     }
 
     private void deleteChatFromIncomingChatOfUsers(){

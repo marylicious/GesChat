@@ -37,8 +37,6 @@ public class AddChatActivity extends AppCompatActivity {
     ArrayList<String> assistanceList;
 
 
-//TODO retrieve assistanceList
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -202,9 +200,9 @@ public class AddChatActivity extends AppCompatActivity {
             return false;
         }
 
+        //TODO validacion hora
 
-
-        if(!time12HoursValidator.validate(endHour)){
+        /*if(!time12HoursValidator.validate(endHour)){
             endHourTV.setError("Insert a valid hour");
             endHourTV.requestFocus();
             return false;
@@ -214,7 +212,7 @@ public class AddChatActivity extends AppCompatActivity {
             startHourTV.setError("Insert a valid hour");
             startHourTV.requestFocus();
             return false;
-        }
+        }*/
 
         return true;
 
@@ -337,9 +335,9 @@ public class AddChatActivity extends AppCompatActivity {
 
     private void addAssListToChat(){
 
-        /*for(String userID: assistanceList){
+        for(String userID: assistanceList){
             chatRef.child(editedChatKeyDB).child("assistanceList").child(userID).setValue(userID);
-        }*/
+        }
 
     }
 
