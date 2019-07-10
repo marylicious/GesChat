@@ -16,32 +16,22 @@ import java.util.ArrayList;
 public class ChatFinishedActivity extends AppCompatActivity implements ChatFinishedAdapter.OnChatListListener{
 
     ArrayList<Chat> chats;
+    RecyclerView rvChats;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_finished);
-        //header icon , color
         Toolbar toolbar = findViewById(R.id.finished_chat_Toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("gesChat");
 
-        RecyclerView rvChats = (RecyclerView) findViewById(R.id.chatFinishedrv);
-
-        //Populamos unos ejemplos de chat
-
-        chats = Chat.createChatList(20);
-
-        // Se crea el adaptador pasando los chats de ejemplo
-
-        ChatFinishedAdapter adapter = new ChatFinishedAdapter(chats,this);
-
-
-        //Unimos el adaptador y el RecyclerView
-        rvChats.setAdapter(adapter);
-
-        //Le agregamos un LayoutManager por defecto
+        rvChats =findViewById(R.id.chatFinishedrv);
         rvChats.setLayoutManager(new LinearLayoutManager(this));
+
+
+
+
     }
 
     @Override
@@ -59,6 +49,11 @@ public class ChatFinishedActivity extends AppCompatActivity implements ChatFinis
 
         startActivity(intent);
 
+    }
+
+    private void setChatAdapter(){
+        ChatFinishedAdapter adapter = new ChatFinishedAdapter(chats,this);
+        rvChats.setAdapter(adapter);
     }
 
 }
