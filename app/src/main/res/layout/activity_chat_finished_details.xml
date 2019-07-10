@@ -71,6 +71,7 @@
                             android:layout_marginLeft="15dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:id="@+id/chat_finished_level"
                             android:text="Facil" />
 
                     </LinearLayout>
@@ -98,6 +99,7 @@
                             android:layout_marginLeft="15dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:id="@+id/chat_finished_facilitator"
                             android:text="Daniel Saenz" />
 
                     </LinearLayout>
@@ -125,6 +127,7 @@
                             android:layout_marginLeft="15dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:id="@+id/chat_finished_date"
                             android:text="01/05/2020" />
 
                     </LinearLayout>
@@ -152,6 +155,7 @@
                             android:layout_marginLeft="15dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:id="@+id/chat_finished_starthour"
                             android:text="13:00 pm" />
 
                     </LinearLayout>
@@ -179,6 +183,7 @@
                             android:layout_marginLeft="15dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:id="@+id/chat_finished_endhour"
                             android:text="14:00 pm" />
 
                     </LinearLayout>
@@ -206,6 +211,7 @@
                             android:layout_marginLeft="15dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:id="@+id/chat_finished_amountpeople"
                             android:text="8" />
 
                     </LinearLayout>
@@ -222,12 +228,14 @@
                         android:layout_marginBottom="15dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Lista de asistentes: "/>
+                        android:text="Lista de asistentes: "
+                        android:visibility="gone"/>
 
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/finished_details_rv"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:visibility="gone"
                         />
 
                 </LinearLayout>

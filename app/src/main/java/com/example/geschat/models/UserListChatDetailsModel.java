@@ -8,6 +8,7 @@ public class UserListChatDetailsModel {
         this.id = id;
         this.foto = foto;
     }
+    
 
     public UserListChatDetailsModel(){}
 

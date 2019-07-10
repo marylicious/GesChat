@@ -33,7 +33,7 @@ public class ChatFinishedAdapter extends RecyclerView.Adapter<ChatFinishedAdapte
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        public TextView chatNameTextView;
+        public TextView chatNameTextView, facilitatorTv,dateTv,levelTv;
 
         OnChatListListener onChatListener;
 
@@ -42,7 +42,10 @@ public class ChatFinishedAdapter extends RecyclerView.Adapter<ChatFinishedAdapte
 
             super(itemView);
 
-            chatNameTextView = (TextView) itemView.findViewById(R.id.finishedChat_chatName);
+            chatNameTextView = itemView.findViewById(R.id.finishedChat_chatName);
+            facilitatorTv = itemView.findViewById(R.id.finishedChat_name);
+            dateTv = itemView.findViewById(R.id.finishedChat_date);
+            levelTv = itemView.findViewById(R.id.finishedChat_level);
 
             this.onChatListener = onChatListener;
 
@@ -89,6 +92,14 @@ public class ChatFinishedAdapter extends RecyclerView.Adapter<ChatFinishedAdapte
         // Set item views based on your views and data model
         TextView textView = viewHolder.chatNameTextView;
         textView.setText(chat1.getChatName());
+
+        TextView dateTv = viewHolder.dateTv;
+        TextView facTv = viewHolder.facilitatorTv;
+        TextView levelTv = viewHolder.levelTv;
+
+        dateTv.setText(chat1.getDate());
+        facTv.setText(chat1.getFacilitatorName());
+        levelTv.setText(chat1.getLevel());
 
 
 
