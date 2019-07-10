@@ -38,9 +38,9 @@ public class ProfileFragment extends Fragment {
     private FirebaseUser user;
     private FirebaseAuth auth;
     private DatabaseReference db;
-    TextView userProfileName, userLevelTv, incChatCountTv, abanChatCountTv;
+    TextView userProfileName, userLevelTv, incChatCountTv, abanChatCountTv, roleTv;
     ImageView userProfilePict;
-    
+    RecyclerView rvNext, rvPrev;
 
 
     @Nullable
@@ -63,19 +63,18 @@ public class ProfileFragment extends Fragment {
         userLevelTv = view.findViewById(R.id.profile_user_level);
         abanChatCountTv = view.findViewById(R.id.profile_abancount);
         incChatCountTv = view.findViewById(R.id.profile_inccount);
+        roleTv = view.findViewById(R.id.userProfileAddress);
+
 
         loadUserInformation();
 
 
-        rv = view.findViewById(R.id.profile_next_rv);
-        rv.setLayoutManager(new LinearLayoutManager(getActivity()));
-        ProfileNextChatAdapter adaptador = new ProfileNextChatAdapter(listaNext);
-        rv.setAdapter(adaptador);
+        rvNext = view.findViewById(R.id.profile_next_rv);
+        rvNext.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        rv = view.findViewById(R.id.profile_previous_rv);
-        rv.setLayoutManager(new LinearLayoutManager(getActivity()));
-        ProfilePreviousChatAdapter adaptador2 = new ProfilePreviousChatAdapter(listaPrev);
-        rv.setAdapter(adaptador2);
+        rvPrev = view.findViewById(R.id.profile_previous_rv);
+        rvPrev.setLayoutManager(new LinearLayoutManager(getActivity()));
+
 
 
         return view;
@@ -93,6 +92,16 @@ public class ProfileFragment extends Fragment {
         }
 
 
+    }
+
+    private void rvNextAdapterSetter(){
+        ProfileNextChatAdapter adaptador = new ProfileNextChatAdapter(listaNext);
+        rvNext.setAdapter(adaptador);
+    }
+
+    private void rvPrevAdapterSetter(){
+        ProfilePreviousChatAdapter adaptador2 = new ProfilePreviousChatAdapter(listaPrev);
+        rvPrev.setAdapter(adaptador2);
     }
 
     private void loadUserInformation(){
@@ -122,6 +131,8 @@ public class ProfileFragment extends Fragment {
                 userProfileName.setText(user.getDisplayName());
             }
 
+
+
             //cargar foto del usuario
             if(user.getPhotoUrl() != null){
                 Glide.with(this)
@@ -137,11 +148,12 @@ public class ProfileFragment extends Fragment {
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                     String level = dataSnapshot.child("level").getValue(String.class);
+                    String role = dataSnapshot.child("role").getValue(String.class);
 
                     int abandonedChats;
                     if(dataSnapshot.child("abandonedChats").exists()){
                         abandonedChats = (int) dataSnapshot.child("abandonedChats").getChildrenCount();
-                        listaPrev = new ArrayList<>();
+                        //listaPrev = new ArrayList<>();
 
                         for(DataSnapshot dataSnapshotChat: dataSnapshot.child("abandonedChats").getChildren()){
                             String chatKey = dataSnapshotChat.getValue(String.class);
@@ -149,9 +161,11 @@ public class ProfileFragment extends Fragment {
                             db.child("Chat").child(chatKey).addValueEventListener(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                    String title = dataSnapshot.child("title").getValue(String.class);
-                                    String date =  dataSnapshot.child("date").getValue(String.class);
-                                    listaPrev.add(new ProfileNextPrevChat(title, date));
+                                    if(dataSnapshot.exists()){
+                                        String title = dataSnapshot.child("title").getValue(String.class);
+                                        String date =  dataSnapshot.child("date").getValue(String.class);
+                                        listaPrev.add(new ProfileNextPrevChat(title, date));
+                                    }
                                 }
 
                                 @Override
@@ -165,10 +179,13 @@ public class ProfileFragment extends Fragment {
                         abandonedChats =0;
                     }
 
+                    rvPrevAdapterSetter();
+
+
                     int incomingChats;
                     if(dataSnapshot.child("incomingChats").exists()){
                         incomingChats = (int) dataSnapshot.child("incomingChats").getChildrenCount();
-                        listaNext = new ArrayList<>();
+                        //listaNext = new ArrayList<>();
 
                         for(DataSnapshot dataSnapshotChat: dataSnapshot.child("incomingChats").getChildren()){
                             String chatKey = dataSnapshotChat.getValue(String.class);
@@ -176,9 +193,11 @@ public class ProfileFragment extends Fragment {
                             db.child("Chat").child(chatKey).addValueEventListener(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                    String title = dataSnapshot.child("title").getValue(String.class);
-                                    String date =  dataSnapshot.child("date").getValue(String.class);
-                                    listaNext.add(new ProfileNextPrevChat(title, date));
+                                    if(dataSnapshot.exists()){
+                                        String title = dataSnapshot.child("title").getValue(String.class);
+                                        String date =  dataSnapshot.child("date").getValue(String.class);
+                                        listaNext.add(new ProfileNextPrevChat(title, date));
+                                    }
                                 }
 
                                 @Override
@@ -192,12 +211,15 @@ public class ProfileFragment extends Fragment {
                         incomingChats =0;
                     }
 
+                    rvNextAdapterSetter();
+
                     String abanStr = Integer.toString(abandonedChats);
                     String incStr = Integer.toString(incomingChats);
 
                     incChatCountTv.setText(incStr);
                     abanChatCountTv.setText(abanStr);
                     userLevelTv.setText(level);
+                    roleTv.setText(role.toUpperCase());
 
                 }
 
