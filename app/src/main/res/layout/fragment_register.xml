@@ -45,13 +45,78 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:layout_marginTop="40dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textSize="18sp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="How do you rate your english skills?"
+                    android:textColor="@color/white"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <RadioGroup
+                    android:layout_marginLeft="30dp"
+                    android:id="@+id/registerRadioGroup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <RadioButton
+                        android:paddingRight="10dp"
+                        android:paddingEnd="10dp"
+                        android:id="@+id/registerBasic_Rbtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        android:paddingVertical="15dp"
+                        android:text="Basic"
+                        android:textColor="@color/white"/>
+
+                    <RadioButton
+                        android:paddingRight="10dp"
+                        android:paddingEnd="10dp"
+                        android:id="@+id/registerIntermediate_Rbtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingVertical="15dp"
+                        android:text="Intermediate"
+                        android:textColor="@color/white"/>
+
+                    <RadioButton
+                        android:paddingRight="10dp"
+                        android:paddingEnd="10dp"
+                        android:id="@+id/registerAdvanced_Rbtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingVertical="15dp"
+                        android:text="Advanced"
+                        android:textColor="@color/white"/>
+
+                </RadioGroup>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:paddingBottom="170dp"
                 android:id="@+id/boxContainer"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="-60dp"
-                android:layout_marginTop="70dp"
+                android:layout_marginTop="50dp"
 
                 android:layout_marginRight="80dp">
+
+
 
                 <android.support.v7.widget.CardView
                     android:id="@+id/cv"
@@ -212,6 +277,8 @@
 
 
             </RelativeLayout>
+
+
 
         </LinearLayout>
 

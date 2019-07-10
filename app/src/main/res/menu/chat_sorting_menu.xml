@@ -1,18 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
     <item
-        android:icon="@drawable/ic_settings"
-        android:id="@+id/cambiarFoto"
-        android:title="Change Profile Picture"
-        app:showAsAction = "ifRoom"/>
-   <!-- <item
         android:id="@+id/chat_sortingBystatus"
         android:title="SortByStatus"
         app:showAsAction = "never"/>
     <item
         android:id="@+id/chat_sortingByDate"
         android:title="SortByDate"
-        app:showAsAction = "never"/>-->
+        app:showAsAction = "never"/>
+
 </menu>

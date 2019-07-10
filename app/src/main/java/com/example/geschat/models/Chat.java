@@ -1,5 +1,6 @@
 package com.example.geschat.models;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 
 //Adapter de RecyclerView del fragment de Chats
@@ -106,6 +107,16 @@ public class Chat {
         this.level = nivel;
     }
 
+    //DEBUG
+
+    public Chat(int inscritos, String nombreChat, String nombreFacilitador, String nivel, String fecha, boolean finished) {
+        this.amountPeople = inscritos;
+        this.chatName = nombreChat;
+        this.facilitatorName = nombreFacilitador;
+        this.level = nivel;
+        this.date = fecha;
+        this.finished = finished;
+    }
 
     public void setChatName(String chatName) {
         this.chatName = chatName;
@@ -256,7 +267,30 @@ public class Chat {
         @Override
         public int compare(Chat o1, Chat o2) {
 
-            return (o1.finished).compareTo(true);
+            int b1 = o1.isFilled ? 1: 0;
+            int b2 = o2.isFilled ? 1:0;
+            return -(b2-b1);
+
+           /* return Boolean.compare(o1.finished,o2.finished);*/
+
+           /* return -Integer.valueOf(o1.date).compareTo(Integer.valueOf(o2.date));*/
+        }
+    };
+
+
+
+    public static Comparator<Chat> ByUsers = new Comparator<Chat>() {
+        @Override
+        public int compare(Chat o1, Chat o2) {
+
+            String a =  Integer.toString(o1.amountPeople);
+            String b =  Integer.toString(o2.amountPeople);
+
+            return -(Integer.valueOf(a).compareTo(Integer.valueOf(b)));
+
+            /* return Boolean.compare(o1.finished,o2.finished);*/
+
+            /* return -Integer.valueOf(o1.date).compareTo(Integer.valueOf(o2.date));*/
         }
     };
 

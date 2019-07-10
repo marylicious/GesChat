@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.geschat.models.Chat;
 import com.example.geschat.models.User;
 import com.example.geschat.ui.login.LoginActivity;
 import com.google.firebase.FirebaseError;
@@ -136,6 +137,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.toolbar_menu,menu);
         if(menu != null){
+           /* menu.findItem(R.id.chat_sortingByDate).setVisible(false);
+            menu.findItem(R.id.chat_sortingBystatus).setVisible(false);*/
             menu.findItem(R.id.cambiarFoto).setVisible(false);
         }
         return true;
@@ -149,6 +152,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Intent intent = new Intent(this, LoadUserInfo.class);
                 startActivity(intent);
                 return true;
+           /* case R.id.chat_sortingBystatus:
+               *//*
+                Toast.makeText(this, "TOCAD", Toast.LENGTH_SHORT).show();
+                ChatFragment c = new ChatFragment();
+                c.sortview();
+                //c.update();*//*
+                return true;*/
             default:
                 return super.onOptionsItemSelected(item);
         }
