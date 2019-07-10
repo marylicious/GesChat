@@ -94,6 +94,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/frag_prof_user_level"
+                            android:id="@+id/profile_user_level"
                             android:textColor="@color/yellow_logo"
                             android:textSize="25sp" />
 
@@ -134,6 +135,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/frag_prof_user_chats_score"
+                            android:id="@+id/profile_inccount"
                             android:textColor="@color/yellow_logo"
                             android:textSize="25sp" />
 
@@ -141,7 +143,7 @@
                             android:textAlignment="center"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="completed chats"
+                            android:text="incoming chats"
                             android:textAllCaps="true"
                             android:textColor="@color/blue_logo"
                             android:layout_marginLeft="2dp"
@@ -178,6 +180,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/frag_prof_user_chats_unfinished"
+                            android:id="@+id/profile_abancount"
                             android:textColor="@color/yellow_logo"
                             android:textSize="25sp" />
 
@@ -243,6 +246,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:visibility="gone"
                     android:orientation="vertical">
 
                     <TextView
