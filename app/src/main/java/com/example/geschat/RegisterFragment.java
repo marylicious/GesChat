@@ -16,6 +16,8 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.example.geschat.models.User;
@@ -33,6 +35,8 @@ public class RegisterFragment extends Fragment {
     private ProgressBar regProgressBar;
     private FirebaseAuth auth;
     private CardView cardView;
+    RadioGroup radioGroup;
+    RadioButton radioButton;
 
 
 
@@ -50,6 +54,7 @@ public class RegisterFragment extends Fragment {
         regProgressBar = view.findViewById(R.id.regProgressBar);
         regProgressBar.setVisibility(View.GONE);
         cardView = view.findViewById(R.id.cv);
+        radioGroup = view.findViewById(R.id.registerRadioGroup);
 
         this.auth = FirebaseAuth.getInstance();
 
@@ -63,6 +68,12 @@ public class RegisterFragment extends Fragment {
         });
 
         return view;
+    }
+
+    private void checkButton(View v){
+        int radioId = radioGroup.getCheckedRadioButtonId();
+        radioButton = v.findViewById(radioId);
+        Toast.makeText(getContext(), "Selected: " + radioButton.getText(), Toast.LENGTH_SHORT).show();
     }
 
 

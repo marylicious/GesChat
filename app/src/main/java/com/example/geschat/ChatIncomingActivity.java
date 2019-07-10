@@ -11,6 +11,7 @@ import com.example.geschat.adapters.IncomingChatAdapter;
 import com.example.geschat.models.Chat;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class ChatIncomingActivity extends AppCompatActivity implements IncomingChatAdapter.OnIncomingChatListener {
 
@@ -38,13 +39,23 @@ public class ChatIncomingActivity extends AppCompatActivity implements IncomingC
 
         rv.setAdapter(adapter);
 
+        //sortview();
+
     }
 
     private void llenarListaIncoming(){
-        for (int i = 1; i <= 5; i++) {
-            listaChatsProximos.add(new Chat(5, "chat Num "+i, "Useless", "BASICO", "14/20019"));
-        }
+        /*for (int i = 1; i <= 5; i++) {*/
+            listaChatsProximos.add(new Chat(5, "chat Num ", "Useless", "BASICO", "1"));
+        listaChatsProximos.add(new Chat(5, "chat Num ", "false", "BASICO", "9"));
+        listaChatsProximos.add(new Chat(5, "chat Num ", "Useless", "BASICO", "6"));
+        listaChatsProximos.add(new Chat(5, "chat Num ", "false", "BASICO", "4"));
+       /* }*/
     }
+
+
+   /* public void sortview(){
+        Collections.sort(listaChatsProximos,Chat.ByStatus);
+    }*/
 
     @Override
     public void onIncomingChatClick(int position) {

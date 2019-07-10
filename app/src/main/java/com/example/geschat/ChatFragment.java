@@ -9,8 +9,13 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -26,18 +31,21 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.w3c.dom.Text;
+
 
 public class ChatFragment extends Fragment implements ChatAdapter.OnChatListListener{
 
     ArrayList<Chat> chats;
     DatabaseReference chatRef;
     RecyclerView rvChats;
+    TextView textView;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_chats, container,false);
-
+        setHasOptionsMenu(true);
 
         //para abrir el add chat
 
@@ -48,6 +56,36 @@ public class ChatFragment extends Fragment implements ChatAdapter.OnChatListList
             public void onClick(View v) {
                 Intent in = new Intent(getActivity(), AddChatActivity.class);
                 startActivity(in);
+            }
+        });
+
+        floatingActionButton = view.findViewById(R.id.btn_refresh);
+
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                update();
+                Toast.makeText(getContext(), "Chat List refreshed", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        LinearLayout ln = view.findViewById(R.id.sortByStatusBtn);
+        ln.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), "Chats Sorted by Status", Toast.LENGTH_SHORT).show();
+                Collections.sort(chats,Chat.ByStatus);
+                update();
+            }
+        });
+
+         ln = view.findViewById(R.id.sortByDateBtn);
+        ln.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), "Chats Sorted by Users", Toast.LENGTH_SHORT).show();
+                Collections.sort(chats,Chat.ByUsers);
+                update();
             }
         });
 
@@ -135,12 +173,6 @@ public class ChatFragment extends Fragment implements ChatAdapter.OnChatListList
         });
 
 
-
-
-
-
-       // sortview();
-
         return view;
     }
 
@@ -182,8 +214,11 @@ public class ChatFragment extends Fragment implements ChatAdapter.OnChatListList
         rvChats.setAdapter(adapter);
     }
 
-    public void sortview(){
-        Collections.sort(chats,Chat.ByStatus);
+
+    public void update(){
+        ChatAdapter adapter = new ChatAdapter(chats,this);
+        rvChats.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
     }
 
 
