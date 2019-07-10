@@ -38,7 +38,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private DatabaseReference db;
     private TextView usernameInDrawer, emailInDrawer;
     private ImageView imageViewInDrawer;
-
+    String role;
+    MenuItem menuItem;
+    Menu menu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,6 +88,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         loadUserInformation();
 
 
+        menu = navigationView.getMenu();
+        menuItem= menu.findItem(R.id.admin);
+        menuItem.setVisible(true); //cambiar a false
+        //fetchRole();
 
     }
 
@@ -235,6 +241,39 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else {
             super.onBackPressed();
         }
+
+    }
+
+
+    private void setVisibleToSupervisor(){
+        menuItem.setVisible(true);
+
+    }
+
+    private void setVisibleToFacilitator(){
+        menuItem.setVisible(true);
+        menuItem = menu.findItem(R.id.nav_rolChange);
+        menuItem.setVisible(false);
+    }
+
+    private void fetchRole(){
+        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        db.child("Users").child(uid).child("role").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                role = dataSnapshot.getValue(String.class);
+                if(role.equals("supervisor")){
+                    setVisibleToSupervisor();
+                }else if(role.equals("facilitator")){
+                    setVisibleToFacilitator();
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError error) {
+            }
+        });
+
 
     }
 

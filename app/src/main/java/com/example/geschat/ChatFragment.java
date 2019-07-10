@@ -25,6 +25,7 @@ import com.example.geschat.models.Announcement;
 import com.example.geschat.models.Chat;
 import com.example.geschat.adapters.ChatAdapter;
 import com.example.geschat.models.User;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -37,9 +38,11 @@ import org.w3c.dom.Text;
 public class ChatFragment extends Fragment implements ChatAdapter.OnChatListListener{
 
     ArrayList<Chat> chats;
-    DatabaseReference chatRef;
+    DatabaseReference chatRef,db;
     RecyclerView rvChats;
     TextView textView;
+    String role;
+    FloatingActionButton floatingActionButton;
 
     @Nullable
     @Override
@@ -49,7 +52,18 @@ public class ChatFragment extends Fragment implements ChatAdapter.OnChatListList
 
         //para abrir el add chat
 
-        FloatingActionButton floatingActionButton = (FloatingActionButton) view.findViewById(R.id.btn_addChat);
+
+        FloatingActionButton floatingActionButton2 = view.findViewById(R.id.btn_refresh);
+
+        floatingActionButton2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                update();
+                Toast.makeText(getContext(), "Chat List refreshed", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        floatingActionButton = (FloatingActionButton) view.findViewById(R.id.btn_addChat);
 
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,15 +73,10 @@ public class ChatFragment extends Fragment implements ChatAdapter.OnChatListList
             }
         });
 
-        floatingActionButton = view.findViewById(R.id.btn_refresh);
+        floatingActionButton.hide();
+        db = FirebaseDatabase.getInstance().getReference();
 
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                update();
-                Toast.makeText(getContext(), "Chat List refreshed", Toast.LENGTH_SHORT).show();
-            }
-        });
+
 
         LinearLayout ln = view.findViewById(R.id.sortByStatusBtn);
         ln.setOnClickListener(new View.OnClickListener() {
@@ -182,6 +191,8 @@ public class ChatFragment extends Fragment implements ChatAdapter.OnChatListList
         });
 
 
+        fetchRole();
+
         return view;
     }
 
@@ -228,6 +239,29 @@ public class ChatFragment extends Fragment implements ChatAdapter.OnChatListList
         ChatAdapter adapter = new ChatAdapter(chats,this);
         rvChats.setAdapter(adapter);
         adapter.notifyDataSetChanged();
+    }
+
+    private void setVisibleToSupervisor(){
+        floatingActionButton.show();
+
+    }
+
+    private void fetchRole(){
+        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        db.child("Users").child(uid).child("role").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                role = dataSnapshot.getValue(String.class);
+                if(role.equals("supervisor") || role.equals("facilitator")){
+                    setVisibleToSupervisor();
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError error) {
+            }
+        });
+
+
     }
 
 

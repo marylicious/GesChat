@@ -201,7 +201,11 @@ public class AddChatActivity extends AppCompatActivity {
         }
 
 
+
+        //if(!time12HoursValidator.validate(endHour)){
+
         if(time12HoursValidator.validate(endHour)== false){
+
             endHourTV.setError("Insert a valid hour");
             endHourTV.requestFocus();
             return false;

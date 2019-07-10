@@ -27,7 +27,8 @@
 
             </group>
 
-    <item android:title="Admin" >
+    <item android:title="Admin"
+        android:id="@+id/admin">
         <menu>
             <item
                 android:id="@+id/nav_dashboard"
