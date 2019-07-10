@@ -202,7 +202,7 @@ public class AddChatActivity extends AppCompatActivity {
 
         //TODO validacion hora
 
-        /*if(!time12HoursValidator.validate(endHour)){
+        if(!time12HoursValidator.validate(endHour)){
             endHourTV.setError("Insert a valid hour");
             endHourTV.requestFocus();
             return false;
@@ -212,7 +212,7 @@ public class AddChatActivity extends AppCompatActivity {
             startHourTV.setError("Insert a valid hour");
             startHourTV.requestFocus();
             return false;
-        }*/
+        }
 
         return true;
 
