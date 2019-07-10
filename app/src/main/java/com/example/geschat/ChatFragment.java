@@ -106,59 +106,68 @@ public class ChatFragment extends Fragment implements ChatAdapter.OnChatListList
 
                 if(dataSnapshot.exists()){
 
-                for (DataSnapshot dataSnapshotChat : dataSnapshot.getChildren()) {   //Reading chat info
-                    ArrayList<String> assistanceListKeys = new ArrayList<>();
-                    Boolean approvedProposal = dataSnapshotChat.child("approvedProposal").getValue(Boolean.class);
-                    String dateEpoch = dataSnapshotChat.child("date").getValue(String.class);
-                    String facilitator = dataSnapshotChat.child("facilitator").getValue(String.class);
-                    String comments = dataSnapshotChat.child("comments").getValue(String.class);
-                    Boolean finished = dataSnapshotChat.child("finished").getValue(Boolean.class);
-                    Boolean isFilled = dataSnapshotChat.child("filled").getValue(Boolean.class);
-                    String presentation = dataSnapshotChat.child("presentation").getValue(String.class);
-                    String chatName = dataSnapshotChat.child("title").getValue(String.class);
-                    String level = dataSnapshotChat.child("level").getValue(String.class);
-                    String startHour = dataSnapshotChat.child("startHour").getValue(String.class);
-                    String endHour = dataSnapshotChat.child("endHour").getValue(String.class);
+                for (DataSnapshot dataSnapshotChat : dataSnapshot.getChildren()) {
+                    Boolean fin = (Boolean) dataSnapshotChat.child("finished").getValue();
+                    Boolean aprov = (Boolean) dataSnapshotChat.child("approvedProposal").getValue();
 
-                    int amountPeople;
+                    if(!fin && aprov) {
 
-                    //este query no va aqui pero lo deje para usarlo cuando necesite la lista de asistencia
+                        ArrayList<String> assistanceListKeys = new ArrayList<>();
+                        Boolean approvedProposal = dataSnapshotChat.child("approvedProposal").getValue(Boolean.class);
+                        String dateEpoch = dataSnapshotChat.child("date").getValue(String.class);
+                        String facilitator = dataSnapshotChat.child("facilitator").getValue(String.class);
+                        String comments = dataSnapshotChat.child("comments").getValue(String.class);
+                        Boolean finished = dataSnapshotChat.child("finished").getValue(Boolean.class);
+                        Boolean isFilled = dataSnapshotChat.child("filled").getValue(Boolean.class);
+                        String presentation = dataSnapshotChat.child("presentation").getValue(String.class);
+                        String chatName = dataSnapshotChat.child("title").getValue(String.class);
+                        String level = dataSnapshotChat.child("level").getValue(String.class);
+                        String startHour = dataSnapshotChat.child("startHour").getValue(String.class);
+                        String endHour = dataSnapshotChat.child("endHour").getValue(String.class);
 
-                    if (dataSnapshotChat.hasChild("assistanceList")) {
+                        int amountPeople;
+
+                        //este query no va aqui pero lo deje para usarlo cuando necesite la lista de asistencia
+
+                        if (dataSnapshotChat.hasChild("assistanceList")) {
 
 
-                        for (DataSnapshot userUID : dataSnapshotChat.child("assistanceList").getChildren()) {
-                            String userKey = userUID.getValue(String.class);
-                            assistanceListKeys.add(userKey);
+                            for (DataSnapshot userUID : dataSnapshotChat.child("assistanceList").getChildren()) {
+                                String userKey = userUID.getValue(String.class);
+                                assistanceListKeys.add(userKey);
+                            }
+
+                            amountPeople = (int) dataSnapshotChat.child("assistanceList").getChildrenCount();
+
+
+                        } else {
+                            amountPeople = 0;
                         }
 
-                        amountPeople = (int) dataSnapshotChat.child("assistanceList").getChildrenCount();
+
+                        final Chat chat = new Chat(assistanceListKeys, approvedProposal, dateEpoch, facilitator, comments, finished, isFilled, presentation, chatName, level, amountPeople, startHour, endHour);
+                        chat.setKeyDB(dataSnapshotChat.getKey());
 
 
-                    } else {
-                        amountPeople = 0;
+                        FirebaseDatabase.getInstance().getReference().child("Users").child(facilitator).child("name").addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                chat.setFacilitatorName(dataSnapshot.getValue(String.class));
+
+                                if(!chat.getFinished() && chat.getProposalApproved()){
+                                    chats.add(chat);
+                                }
+
+                                setChatAdapter();
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
                     }
-
-
-                    final Chat chat = new Chat(assistanceListKeys, approvedProposal, dateEpoch, facilitator, comments, finished, isFilled, presentation, chatName, level, amountPeople, startHour, endHour);
-                    chat.setKeyDB(dataSnapshotChat.getKey());
-
-
-                    FirebaseDatabase.getInstance().getReference().child("Users").child(facilitator).child("name").addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            chat.setFacilitatorName(dataSnapshot.getValue(String.class));
-                            chats.add(chat);
-                            setChatAdapter();
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                        }
-                    });
-
-                }
+                } // here
 
             } else {
                     setChatAdapter();

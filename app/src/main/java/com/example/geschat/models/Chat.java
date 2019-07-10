@@ -9,7 +9,7 @@ public class Chat {
 
     private String chatName,keyDB;
     private Boolean finished,proposalApproved, isFilled;
-    private String level,facilitator,presentation,comments,date,facilitatorName,status,debug;
+    private String level,facilitator,presentation,comments,date,facilitatorName,status,debug, rejected;
     int amountPeople;
     private ArrayList<String> waitList, assistanceList;
     private String startTime, endTime;
@@ -41,6 +41,22 @@ public class Chat {
     public Chat(String chatName, Boolean finished){
         this.chatName = chatName;
         this.finished = finished;
+    }
+
+    public String getRejected() {
+        return rejected;
+    }
+
+    public void setRejected(String rejected) {
+        this.rejected = rejected;
+    }
+
+    public static int getLastContactId() {
+        return lastContactId;
+    }
+
+    public static void setLastContactId(int lastContactId) {
+        Chat.lastContactId = lastContactId;
     }
 
     public String getFacilitatorName() {
@@ -92,7 +108,7 @@ public class Chat {
     public Chat(String chatName, Boolean finished, String facilitador, String nivel, String fecha ){
         this.chatName = chatName;
         this.finished = finished;
-        this.facilitatorName = facilitador;
+        this.facilitator = facilitador;
         this.level = nivel;
         this.date = fecha;
     }
