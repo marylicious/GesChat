@@ -57,7 +57,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="40dp"
-                        android:text="Facilitador:"
+                        android:text="Facilitator:"
                         android:textSize="12sp" />
                     <TextView
                         android:id="@+id/chat_review_facilitador"
@@ -80,7 +80,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="40dp"
-                        android:text="Nivel:"
+                        android:text="Level:"
                         android:textSize="12sp" />
                     <TextView
                         android:id="@+id/chat_review_nivel"
@@ -101,7 +101,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="40dp"
-                        android:text="Fecha:"
+                        android:text="Date:"
                         android:textSize="12sp" />
                     <TextView
                         android:id="@+id/chat_review_fecha"
@@ -118,6 +118,7 @@
                     android:layout_height="wrap_content"
                     android:text="pending"
                     android:padding="10dp"
+                    android:id="@+id/chat_review_status"
                     android:layout_marginRight="20dp"
                     android:textAllCaps="true"
                     android:textColor="@color/yellow_logo"
