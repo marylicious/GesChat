@@ -7,7 +7,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class User {
-    public String name, email, photo,role,id;
+    public String name, email, level,role,id;
 
     public User(){
 
@@ -15,11 +15,11 @@ public class User {
     //QUITAR: photo
     //AGREGAR: level
 
-    public User(String name, String email, String id, String photo, String role) {
+    public User(String name, String email, String id, String level, String role) {
         this.name = name;
         this.email = email;
         this.id = id;
-        this.photo = photo;
+        this.level = level;
         this.role = role;
     }
 

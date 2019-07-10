@@ -38,8 +38,9 @@ public class ProfileFragment extends Fragment {
     private FirebaseUser user;
     private FirebaseAuth auth;
     private DatabaseReference db;
-    TextView userProfileName;
+    TextView userProfileName, userLevelTv, incChatCountTv, abanChatCountTv, roleTv;
     ImageView userProfilePict;
+    RecyclerView rvNext, rvPrev;
 
 
     @Nullable
@@ -56,24 +57,24 @@ public class ProfileFragment extends Fragment {
         listaNext = new ArrayList<>();
         listaPrev = new ArrayList<>();
 
-        RecyclerView rv;
-        rv = view.findViewById(R.id.profile_next_rv);
-        rv.setLayoutManager(new LinearLayoutManager(getActivity()));
-        llenar();
-        ProfileNextChatAdapter adaptador = new ProfileNextChatAdapter(listaNext);
-        rv.setAdapter(adaptador);
-
-        rv = view.findViewById(R.id.profile_previous_rv);
-        rv.setLayoutManager(new LinearLayoutManager(getActivity()));
-        llenar2();
-        ProfilePreviousChatAdapter adaptador2 = new ProfilePreviousChatAdapter(listaPrev);
-        rv.setAdapter(adaptador2);
-
         //PARA SETEAR COSAS DEL PERFIL
         userProfileName = view.findViewById(R.id.userProfileName);
         userProfilePict = view.findViewById(R.id.userProfilePict);
+        userLevelTv = view.findViewById(R.id.profile_user_level);
+        abanChatCountTv = view.findViewById(R.id.profile_abancount);
+        incChatCountTv = view.findViewById(R.id.profile_inccount);
+        roleTv = view.findViewById(R.id.userProfileAddress);
+
 
         loadUserInformation();
+
+
+        rvNext = view.findViewById(R.id.profile_next_rv);
+        rvNext.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        rvPrev = view.findViewById(R.id.profile_previous_rv);
+        rvPrev.setLayoutManager(new LinearLayoutManager(getActivity()));
+
 
 
         return view;
@@ -81,18 +82,7 @@ public class ProfileFragment extends Fragment {
 
     }
 
-    public void llenar(){
-        for(int i = 1; i <= 6; i++){
-            listaNext.add(new ProfileNextPrevChat("Chat # "+ i, "01/05/2000"));
-        }
 
-    }
-    public void llenar2(){
-        for(int i = 1; i <= 6; i++){
-            listaPrev.add(new ProfileNextPrevChat("asd","asd"));
-        }
-
-    }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -104,6 +94,16 @@ public class ProfileFragment extends Fragment {
 
     }
 
+    private void rvNextAdapterSetter(){
+        ProfileNextChatAdapter adaptador = new ProfileNextChatAdapter(listaNext);
+        rvNext.setAdapter(adaptador);
+    }
+
+    private void rvPrevAdapterSetter(){
+        ProfilePreviousChatAdapter adaptador2 = new ProfilePreviousChatAdapter(listaPrev);
+        rvPrev.setAdapter(adaptador2);
+    }
+
     private void loadUserInformation(){
 
         if (user != null) {
@@ -111,12 +111,11 @@ public class ProfileFragment extends Fragment {
 
             //cargar nombre del usuario
 
+            DatabaseReference userRef= db.child("Users").child(user.getUid());
+
             if(user.getDisplayName() == null){
 
-                DatabaseReference userRef = db.child("Users").child(user.getUid()).child("name");
-
-
-                userRef.addValueEventListener(new ValueEventListener() {
+                userRef.child("name").addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         String name = dataSnapshot.getValue(String.class);
@@ -132,6 +131,8 @@ public class ProfileFragment extends Fragment {
                 userProfileName.setText(user.getDisplayName());
             }
 
+
+
             //cargar foto del usuario
             if(user.getPhotoUrl() != null){
                 Glide.with(this)
@@ -140,6 +141,98 @@ public class ProfileFragment extends Fragment {
                         .centerCrop()
                         .into(userProfilePict);
             }
+
+            //nivel
+            userRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                    String level = dataSnapshot.child("level").getValue(String.class);
+                    String role = dataSnapshot.child("role").getValue(String.class);
+
+                    int abandonedChats;
+                    if(dataSnapshot.child("abandonedChats").exists()){
+                        abandonedChats = (int) dataSnapshot.child("abandonedChats").getChildrenCount();
+                        //listaPrev = new ArrayList<>();
+
+                        for(DataSnapshot dataSnapshotChat: dataSnapshot.child("abandonedChats").getChildren()){
+                            String chatKey = dataSnapshotChat.getValue(String.class);
+
+                            db.child("Chat").child(chatKey).addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    if(dataSnapshot.exists()){
+                                        String title = dataSnapshot.child("title").getValue(String.class);
+                                        String date =  dataSnapshot.child("date").getValue(String.class);
+                                        listaPrev.add(new ProfileNextPrevChat(title, date));
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                }
+                            });
+                        }
+
+                    } else {
+                        abandonedChats =0;
+                    }
+
+                    rvPrevAdapterSetter();
+
+
+                    int incomingChats;
+                    if(dataSnapshot.child("incomingChats").exists()){
+                        incomingChats = (int) dataSnapshot.child("incomingChats").getChildrenCount();
+                        //listaNext = new ArrayList<>();
+
+                        for(DataSnapshot dataSnapshotChat: dataSnapshot.child("incomingChats").getChildren()){
+                            String chatKey = dataSnapshotChat.getValue(String.class);
+
+                            db.child("Chat").child(chatKey).addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    if(dataSnapshot.exists()){
+                                        String title = dataSnapshot.child("title").getValue(String.class);
+                                        String date =  dataSnapshot.child("date").getValue(String.class);
+                                        listaNext.add(new ProfileNextPrevChat(title, date));
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                }
+                            });
+                        }
+
+                    }else{
+                        incomingChats =0;
+                    }
+
+                    rvNextAdapterSetter();
+
+                    String abanStr = Integer.toString(abandonedChats);
+                    String incStr = Integer.toString(incomingChats);
+
+                    incChatCountTv.setText(incStr);
+                    abanChatCountTv.setText(abanStr);
+                    userLevelTv.setText(level);
+                    roleTv.setText(role.toUpperCase());
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+
+
+
+
+
 
         }
 

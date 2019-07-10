@@ -37,6 +37,7 @@ public class RegisterFragment extends Fragment {
     private CardView cardView;
     RadioGroup radioGroup;
     RadioButton radioButton;
+    View view;
 
 
 
@@ -44,7 +45,7 @@ public class RegisterFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view= inflater.inflate(R.layout.fragment_register, container, false);
+        view= inflater.inflate(R.layout.fragment_register, container, false);
 
         regFullName = view.findViewById(R.id.regFullName);
         regId = view.findViewById(R.id.regId);
@@ -67,13 +68,15 @@ public class RegisterFragment extends Fragment {
             }
         });
 
+
+
         return view;
     }
 
-    private void checkButton(View v){
+    private String checkButton(){
         int radioId = radioGroup.getCheckedRadioButtonId();
-        radioButton = v.findViewById(radioId);
-        Toast.makeText(getContext(), "Selected: " + radioButton.getText(), Toast.LENGTH_SHORT).show();
+        radioButton = view.findViewById(radioId);
+        return radioButton.getText().toString().toLowerCase();
     }
 
 
@@ -141,7 +144,7 @@ public class RegisterFragment extends Fragment {
         final String idPerson = regId.getText().toString().trim();
         String password = regPassword.getText().toString().trim();
         String confPassword = regConfPassword.getText().toString().trim();
-        final String photo = "urlphoto";
+        final String level = checkButton();
         final String role = "scholar";
 
 
@@ -176,7 +179,7 @@ public class RegisterFragment extends Fragment {
 
                             if (task.isSuccessful()) {
 
-                                User user = new User(name, email, idPerson,photo,role);
+                                User user = new User(name, email, idPerson,level,role);
 
                                 FirebaseDatabase.getInstance().getReference("Users")
                                         .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
