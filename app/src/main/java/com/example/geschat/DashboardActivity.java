@@ -13,6 +13,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TabHost;
+import android.widget.TabWidget;
 
 import com.example.geschat.ui.main.SectionsPagerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
@@ -41,7 +43,6 @@ public class DashboardActivity extends AppCompatActivity {
         viewPager.setAdapter(sectionsPagerAdapter);
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
-
 
 
 

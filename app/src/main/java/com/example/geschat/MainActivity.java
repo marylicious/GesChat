@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         menu = navigationView.getMenu();
         menuItem= menu.findItem(R.id.admin);
         menuItem.setVisible(true); //cambiar a false
-        //fetchRole();
+       // fetchRole();
 
     }
 
